@@ -13,9 +13,9 @@ In brief, an autoencoder is a neural network that attempts to “copy” its inp
 
 The network consists of two parts: an **encoder** and a **decoder**, the encoder translates input into an intermediate state. The decoder takes this intermediate state and tries to output something that is approximates the input.
 
-Encoder: $\boldsymbol{h} = f(\boldsymbol{x})$
+Encoder: \\( \boldsymbol{h} = f(\boldsymbol{x}) \\)
 
-Decoder: $\boldsymbol{r} = g(\boldsymbol{h}$
+Decoder: \\( \boldsymbol{r} = g(\boldsymbol{h} \\)
 
 Autoencoders are designed to be unable to copy the input perfectly. Therefore, the model is forced to prioritize which aspects should be copied and which should not. It is this property that makes autoencoders cool!
 
@@ -23,7 +23,7 @@ The different flavours of autoencoders is all about how we constrain the archite
 
 We use two terms: `code` and `capacity`
 
-`code` refers to $\boldsymbol{h}$ (i.e. the intermediate state of the inputs)
+`code` refers to \\( \boldsymbol{h} \\) (i.e. the intermediate state of the inputs)
 
 `capacity` refers to the model’s ability to fit various functions. Higher capacity means it can fit more complex functions. Capacity could be the number and types of layers in the encoder/decoder, what activation functions are used, what loss function we are optimizing over, the batch size, the number of neurons per layer, what regularization technique we are using, etc.
 
@@ -33,7 +33,7 @@ One traditional way to achieve the incomplete copying is by encoding the inputs 
 
 Learning this network is done by minimizing the following loss function:
 
-$L(\boldsymbol{x}, g(f(\boldsymbol{x}))$, where $L$ is a loss function penalizing the prediction for being dissimilar from the input (MAE for example).
+\\( L(\boldsymbol{x}, g(f(\boldsymbol{x})) \\), where \\( L \\) is a loss function penalizing the prediction for being dissimilar from the input (MAE for example).
 
 When the decoder is linear and the loss function is MAE, what we get is the same as PCA.
 
@@ -75,11 +75,10 @@ Here we penalize the model for having non-zero values in the latent space.
 
 Thus, the model naturally tries to find the “best” neurons to activate and let others die out.
 
-Sparsity loss = $\sum_{i=1}^n \|z_i\|_1$
+Sparsity loss = \\( \sum_{i=1}^n \|z_i\|_1 \\)
 
 Here the z_i is the ith element in the latent space, and the norm is the L1 norm
 
-[Norms](../math/linalg/norms.md)
 
 **Smallness of the derivative of the representation**
 
@@ -95,20 +94,24 @@ This encourages the latent space to change slowly / smoothly with respect to cha
 
 This is often implemented using a contractive penalty on the loss function, which discourages large derivatives in the latent space.
 
-Contractive loss = $\lambda \sum_{i=1}^n(\frac{\partial z_i}{\partial x})^2$
+Contractive loss =  \\( \lambda \sum_{i=1}^n(\frac{\partial z_i}{\partial x})^2 \\)
 
 the lambda is the parameter that determines the strength of the penalty.
 
 The book describes the following loss function: 
 
 $$
+\begin{align}
 L(\boldsymbol{x}, g(f(\boldsymbol{x}))) + \Omega(\boldsymbol{h}, \boldsymbol{x})
+\end{align}
 $$
 
-Where $\Omega$ is the regularization term and is defined as follows:
+Where \\( \Omega \\) is the regularization term and is defined as follows:
 
 $$
+\begin{align}
 \Omega(\boldsymbol{h}, \boldsymbol{x}) =\ \lambda\sum_i \|\nabla \boldsymbol{x}h_i\|^2 .
+\end{align}
 $$
 
 This forces the model to learn a function that does not change much when **x** changes slightly. Because this penalty is applied only at training examples, it forces the autoencoder to learn features that capture information about the training distribution. An autoencoder regularized in this way is called a `contractive autoencoder` or CAE.
@@ -119,19 +122,21 @@ Robustness means that the model is able to reconstruct input even if noice has b
 
 Denoising autoencoders (DAE) achieve this by training on noisy versions of the input but using the clean version for computing the loss.
 
-If $x$ is the clean input and $x^\prime$ is the noisy input, the reconstruction loss is:
+If \\(x\\) is the clean input and \\(x^\prime\\) is the noisy input, the reconstruction loss is:
 
-Reconstruction loss = $\|x - g(f(x^\prime)\|^2 = \sum_{i=1}^n (x_i - \hat{x}_i)^2$, where the norm is the L2 norm
+Reconstruction loss = \\(\|x - g(f(x^\prime)\|^2 = \sum_{i=1}^n (x_i - \hat{x}_i)^2\\), where the norm is the L2 norm
 
 ### Sparse autoencoders
 
-These are autoencoders whose training criterion involves a sparsity penalty $\Omega(\boldsymbol{h})$ on the code layer in addition to the reconstruction error:
+These are autoencoders whose training criterion involves a sparsity penalty \\(\Omega(\boldsymbol{h})\\) on the code layer in addition to the reconstruction error:
 
 $$
+\begin{align}
 L\left(\boldsymbol{x}, g(f(\boldsymbol{x}))\right) + \Omega(\boldsymbol{h})
+\end{align}
 $$
 
-where $\boldsymbol{h} = f(\boldsymbol{x})$.
+where \\(\boldsymbol{h} = f(\boldsymbol{x})\\).
 
 An autoencoder that has been regularized to be sparse must respond to unique statistical features of the dataset it has been trained on, rather than simply acting as an identity function. In this way, training to perform the copying task with a sparsity penalty can yield a model that has learned useful features as a byproduct.
 
@@ -150,7 +155,7 @@ Unlike other regularizers such as weight decay, there is not a straightforward B
 
 The difference:
 
-**Prior on Model Parameters ($p(\theta)$)**
+**Prior on Model Parameters (\\(p(\theta)\\))**
 
 This is the "traditional" prior we often talk about in Bayesian statistics. It represents our initial belief about the model parameters θ before we've seen any data. For example, in a linear regression model, θ could be the coefficients, and p(θ) could be a Gaussian distribution centered at zero, indicating a belief that the coefficients should be small.
 
@@ -160,46 +165,56 @@ This is a different kind of prior. It's not about the model parameters but about
 
 In the context of a generative model like a Variational Autoencoder or a Gaussian Mixture Model, pmodel(h) represents the model's belief about what kinds of latent variables are likely before it sees any actual data *x*.
 
-Suppose we have a model with visible variables $\boldsymbol{x}$ and latent variables $\boldsymbol{h}$, with an explicit joint distribution 
-$p_{\text{model} }(\boldsymbol{x},\boldsymbol{h}) = p_{\text{model} }(\boldsymbol{h})p_{\text{model} }(\boldsymbol{x}|\boldsymbol{h})$ .
+Suppose we have a model with visible variables \\(\boldsymbol{x}\\) and latent variables \\(\boldsymbol{h}\\), with an explicit joint distribution 
+\\(p_{\text{model} }(\boldsymbol{x},\boldsymbol{h}) = p_{\text{model} }(\boldsymbol{h})p_{\text{model} }(\boldsymbol{x}|\boldsymbol{h})\\) .
 
-Here $p_{\text{model} }(\boldsymbol{h})$ is understood as the model’s prior distribution over the latent variables, representing the model’s beliefs prior to seeing $\boldsymbol{x}$.
+Here \\(p_{\text{model} }(\boldsymbol{h})\\) is understood as the model’s prior distribution over the latent variables, representing the model’s beliefs prior to seeing \\(\boldsymbol{x}\\).
 
 The log likelihood can be decomposed as:
 
 $$
+\begin{align}
 \log p_{\text{model} }(\boldsymbol{x}) = \log \sum_{\boldsymbol{h} } p_{\text{model} }(\boldsymbol{h},\boldsymbol{x})
+\end{align}
 $$
 
 This equation sums over all possible values of ***h*** to get the total likelihood of ***x.*** This is computationally expensive and often intractable for complex models and large datasets.
 
-The Autoencoder simplifies this by an approximation. We can think of the autoencoder as approximating this sum with a point estimate for just one highly likely value for $\boldsymbol{h}$. This is then used to approximate $\log p_{\text{model} }(\boldsymbol{x})$.
+The Autoencoder simplifies this by an approximation. We can think of the autoencoder as approximating this sum with a point estimate for just one highly likely value for \\(\boldsymbol{h}\\). This is then used to approximate \\(\log p_{\text{model} }(\boldsymbol{x})\\).
 
 The encoder part of the autoencoder maps ***x*** to a point in the latent space ***h***, and the decoder reconstructs ***x*** from ***h***. This can be seen as a "shortcut" to directly estimate a likely ***h*** without having to sum over all possible ***h***.
 
 From this point of view, with the chosen ***h*** we are maximizing:
 
 $$
-\log p_{\text{model} }(\boldsymbol{h},\boldsymbol{x}) = \log p_{\text{model} }(\boldsymbol{h}) + \log p_{\text{model} }(\boldsymbol{x}|\boldsymbol{h}).
+\begin{align}
+	\log p_{\text{model} }(\boldsymbol{h},\boldsymbol{x}) = \log p_{\text{model} }(\boldsymbol{h}) + \log p_{\text{model} }(\boldsymbol{x}|\boldsymbol{h}).
+\end{align}
 $$
 
-$\log p_{\text{model} }(\boldsymbol{h})$ can be sparsity-inducing. For example with the Laplace prior:
+\\(\log p_{\text{model} }(\boldsymbol{h})\\) can be sparsity-inducing. For example with the Laplace prior:
 
 $$
-p_{\text{model} }(h_i)=\frac{\lambda}{2}e^{-\lambda|h_i|},
+\begin{align}
+p_{\text{model} }(h_i)=\frac{\lambda}{2}e^{-\lambda|h_i|},	
+\end{align}
 $$
 
 corresponds to the absolute value sparsity penalty. Expressing the log-prior as an absolute value penalty, we obtain:
 
 $$
-\Omega(\boldsymbol{h}) = \lambda\sum_i|h_i|
+\begin{align}
+\Omega(\boldsymbol{h}) = \lambda\sum_i|h_i|	
+\end{align}
 $$
 
 $$
--\log p_{\text{model} }(\boldsymbol{h}) = \sum_i\left(\lambda|h_i|-\log\frac{\lambda}{2}\right) = \Omega(\boldsymbol{h})+\text{const}
+\begin{align}
+-\log p_{\text{model} }(\boldsymbol{h}) = \sum_i\left(\lambda|h_i|-\log\frac{\lambda}{2}\right) = \Omega(\boldsymbol{h})+\text{const}	
+\end{align}
 $$
 
-Where the constant term depends only on $\lambda$ and not $\boldsymbol{h}$. Typically, $\lambda$ is treated as a hyperparameter and the constant term is discarded since it does not affect parameter learning.
+Where the constant term depends only on \\(\lambda\\) and not \\(\boldsymbol{h}\\). Typically, \\(\lambda\\) is treated as a hyperparameter and the constant term is discarded since it does not affect parameter learning.
 
  
 
@@ -207,7 +222,6 @@ The key insight here is that the sparsity penalty is not an arbitrary regulariza
 
 1. **Generative model:** The autoencoder is approximating a generative model with latent variables **h** and observed variables **x** 
 
-[Generative models] (generative_models.md)
 
 2. **Useful features:** The features learned by the autoencoder are useful because they describe the latent variables ***h*** that explain the input **x**
 
@@ -217,8 +231,8 @@ Stochastic autoencoders introduce randomness into the encoding and decoding proc
 
 **Determinism vs stochastic:**
 
-- In a deterministic autoencoder, the encoder and decoder functions are deterministic mappings. Given an input *x*, the encoder produces a fixed latent representation *h*, and the decoder produces a fixed reconstruction \hat{x}.
-- In contrast, stochastic encoders and decoders introduce randomness into these mappings. The encoder produces a distribution over latent variables *h* given an input *x*, and the decoder produces a distribution over reconstructed inputs \hat{x} given a latent variable *h*.
+- In a deterministic autoencoder, the encoder and decoder functions are deterministic mappings. Given an input *x*, the encoder produces a fixed latent representation *h*, and the decoder produces a fixed reconstruction \\(\hat{x}\\).
+- In contrast, stochastic encoders and decoders introduce randomness into these mappings. The encoder produces a distribution over latent variables *h* given an input *x*, and the decoder produces a distribution over reconstructed inputs \\(\hat{x}\\) given a latent variable *h*.
 
 If X is real valued we use a gaussian distribution and take the negative log-likelihood yields a mean squared error criterion.
 
@@ -227,13 +241,17 @@ If X is real valued we use a gaussian distribution and take the negative log-lik
 Stochastic encoder: 
 
 $$
+\begin{align}
 p(\boldsymbol{h}|\boldsymbol{x}) = \mathcal{N}(\boldsymbol{h}, \mu(\boldsymbol{x}), \sigma(\boldsymbol{x}))
+\end{align}
 $$
 
 Stochastic decoder:
 
 $$
-p(\boldsymbol{x} | \boldsymbol{h}) = \mathcal{N}(\boldsymbol{x};\mu(\boldsymbol{h}),\sigma(\boldsymbol{h}))
+\begin{align}
+p(\boldsymbol{x} | \boldsymbol{h}) = \mathcal{N}(\boldsymbol{x};\mu(\boldsymbol{h}),\sigma(\boldsymbol{h}))	
+\end{align}
 $$
 
 Binary X values correspond to a Bernoulli distribution whose paramenters are given by a sigmoid output, here we use cross entropy loss to calculate the error. 
