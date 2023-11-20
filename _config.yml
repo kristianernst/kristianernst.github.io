@@ -1,0 +1,18 @@
+# Site settings
+title: Kristian Ernst blog
+email: 
+description: "Randn"
+baseurl: ""
+url: "http://ernst-hub.github.io"
+twitter_username: _kristianernst
+github_username:  Ernst-Hub
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
