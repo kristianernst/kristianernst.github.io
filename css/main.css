@@ -435,10 +435,10 @@ a:visited { color: #205caa; }
 /* Common MathJax Styles */
 .MathJax_Display, .MathJax, .mjx-math {
 
-font-size: 0.9em;
+font-size: 0.7em;
 font-weight: 400;
 line-height: 1.5;
-letter-spacing: -0.1em;
+letter-spacing: -0.4em;
 color: #333;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -450,7 +450,7 @@ color: #333;
   background-color: #fdfdfd;
   padding: 0.2em 0.4em;
   border-radius: 0.2em;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   box-shadow: 0 1px 1px rgba(0,0,0,0.2);
   display: block;
   margin: 0.5em 0;
