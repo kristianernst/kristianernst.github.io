@@ -4,15 +4,20 @@ layout: default
 
 <div class="home">
   
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        <br>
-        {{ post.excerpt }}
-      </li>
-    {% endfor %}
-  </ul>
-
+  {% assign sorted_categories = site.categories | sort %}
+  {% for category in sorted_categories %}
+    <h2>{{ category[0] }}</h2> <!-- Display the category name -->
+    <ul class="posts">
+      {% assign posts = category[1] | sort: 'date' | reverse %}
+      {% for post in posts %}
+        <li>
+          <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <br>
+          {{ post.excerpt }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+  
 </div>
