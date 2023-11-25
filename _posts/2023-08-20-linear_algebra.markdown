@@ -290,14 +290,16 @@ Algebraically, the determinant follows these three properties (from which all ot
 
 3. If we exchange any two rows, the determinant of the new matrix is \\(-\mid \boldsymbol{A}\mid \\).
 
-	$$
-    \left\mid \left[\begin{array}{c}
-    a_2^T \\
-    a_1^T \\
-    \vdots \\
-    a_m^T
-    \end{array}\right]\right\mid = -\mid A \mid .
-    $$
+$$
+\begin{align}
+\left\mid \left[\begin{array}{c}
+a_2^T \\
+a_1^T \\
+\vdots \\
+a_m^T
+\end{array}\right]\right\mid = -\mid A \mid .
+\end{align}
+$$
 
 
 Given these three properties, here’s other useful ones:
