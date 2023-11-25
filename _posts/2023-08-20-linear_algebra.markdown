@@ -282,11 +282,12 @@ Algebraically, the determinant follows these three properties (from which all ot
 
 2. Given a matrix \\(\boldsymbol{A}^{n\times n}\\), if we multiply a single row in \\(\boldsymbol{A}\\) by a scalar \\(t\\), then the determinant of the new matrix is \\(t\mid \boldsymbol{A}\mid \\) (geometrically, multiplying one of the sides of the set \\(S\\) by a factor of \\(t\\) causes the volume to increase by \\(t\\)
 
-	$$
-    \begin{align}
-	\left\mid \left[\begin{array}{ccc}- & t a_1^T & - \\- & a_2^T & - \\& \vdots & \\- & a_m^T & -\end{array}\right]\right\mid =t\mid A\mid  .
-	\end{align}
     $$
+    \begin{align}
+    \left\lvert \begin{bmatrix} - & t a_1^T & - \\ - & a_2^T & - \\ & \vdots & \\ - & a_m^T & - \end{bmatrix} \right\rvert = t \lvert A \rvert .
+    \end{align}
+    $$
+
 
 3. If we exchange any two rows, the determinant of the new matrix is \\(-\mid \boldsymbol{A}\mid \\).
 
@@ -312,10 +313,11 @@ The general (recursive) formula for the determinant is
 
 $$
 \begin{align}
-\mid \boldsymbol{A}\mid  & =\sum_{i=1}^n(-1)^{i+j} a_{i j}\left\mid \boldsymbol{A}_{\backslash i, \backslash j}\right\mid  \quad(\text { for any } j \in 1, \ldots, n) \\
-& =\sum_{i=1}^n(-1)^{i+j} a_{i j}\left\mid \boldsymbol{A}_{\backslash i, \backslash j}\right\mid  \quad(\text { for any } i \in 1, \ldots, n)
+\lvert \boldsymbol{A}\rvert  &= \sum_{i=1}^n (-1)^{i+j} a_{ij} \lvert \boldsymbol{A}_{\backslash i, \backslash j}\rvert \quad (\text{for any } j \in 1, \ldots, n) \\
+&= \sum_{i=1}^n (-1)^{i+j} a_{ij} \lvert \boldsymbol{A}_{\backslash i, \backslash j}\rvert \quad (\text{for any } i \in 1, \ldots, n)
 \end{align}
 $$
+
 
 Example:
 
