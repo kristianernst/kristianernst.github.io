@@ -428,8 +428,9 @@ a:visited { color: #205caa; }
     width: auto;
     margin: 0 0 15px; }
 
+}
 
-  /* Combined MathJax Styles from .math- Blocks */
+/* Combined MathJax Styles from .math- Blocks */
 
   
   /* Block-level MathJax Styles */
@@ -489,9 +490,3 @@ a:visited { color: #205caa; }
   vertical-align: middle;
   
   }
-
-}
-
-
-
-  
