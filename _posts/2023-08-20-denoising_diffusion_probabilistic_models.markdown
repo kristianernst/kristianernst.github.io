@@ -63,7 +63,7 @@ Consequently, all KL divergences in Eq. (5) are comparisons between Gaussians, s
 -  \\(p_\theta(\textbf{x}_{0:T})\\)  is the joint distribution.In our case, represents the joint distribution over the observed data and the entire sequence of latent states.
 
 -  This needs some explanation:
-     - If \\(|\textbf{x}_t|=5\\) then a joint distribution at each state will be a join of 5 different probability distributions. 
+     - If \\(\mid\textbf{x}_t\mid=5\\) then a joint distribution at each state will be a join of 5 different probability distributions. 
      	- So for all \\(t, \ t\in {1,\dots,T}\\) we join these 5 different probability distributions. hence we get \\(5 \times (T+1)\\) dimensional probability distribution (since we take \\(\textbf{x}_0\\) to \\(\textbf{x}_T\\)).
      	- One caveat, as defined by (1) the different states are not independent dimensions, they are tied together through learned transition distributions and the initial distribution \\(\textbf{x}_T\\). 
      	- you can think of it as a joint distribution in 5×(T+1) dimensions, but it's a complicated one where each subset of 5 dimensions is linked to the next via a learned, conditional Gaussian distribution.
@@ -72,7 +72,7 @@ Consequently, all KL divergences in Eq. (5) are comparisons between Gaussians, s
 -  Why  \\(p_\theta\left(\mathbf{x}_0\right):=\int p_\theta\left(\mathbf{x}_{0: T}\right) d \mathbf{x}_{1: T}\\) makes sense:
 
 -  lets say we have two variables, \\(a\\) and \\(b\\)
-  - \\(p(a)=\int p(a,b)db = \int p(a|b) \times p(b) db\\)
+  - \\(p(a)=\int p(a,b)db = \int p(a\midb) \times p(b) db\\)
   - This is a fundamental definition in probability theory. The joint probability of \\(a\\) and \\(b\\) 1occurring can be found by first looking at the likelihood that \\(a\\) occurs given \\(b\\) and then multiplied by the likelihood that \\(b\\) occurs.
   - The integration sums up the influence of all possible values of b on a, thereby eliminating the condition, ultimately giving us the marginal distribution \\(p(a)\\)
 
@@ -87,7 +87,7 @@ Consequently, all KL divergences in Eq. (5) are comparisons between Gaussians, s
      -  Rao-Blackwell theorem is often used to improve the efficiency of an estimator by reducing its variance.  Basically, because both posteriors are Gaussian, their KL divergence can be calculated with a closed-form expression rather than Monte Carlo estimates, which is more computationally efficient.
      -  Formula:  \\(D_{KL}(p \| q) = \frac{1}{2} \left[ \text{Tr}(\Sigma_q^{-1} \Sigma_p) + (\mu_q - \mu_p)^T \Sigma_q^{-1} (\mu_q - \mu_p) - k + \log \left( \frac{\det \Sigma_q}{\det \Sigma_p} \right) \right]\\), where \\(\mu\\) are means and \\(\Sigma\\) are covariances.
 
--  Conditioning \\(q(\textbf{x}_{t-1}|\textbf{x}_t, \textbf{x}_0)\\) on both the current state t and the original data. 
+-  Conditioning \\(q(\textbf{x}_{t-1}\mid\textbf{x}_t, \textbf{x}_0)\\) on both the current state t and the original data. 
 
      -  The model aims to learn how to reverse this diffusion process, starting from the noisy x_T to recover a denoised or "cleaned" version of x_0.
      -  \\(\textbf{x}_0\\) serves as a critical anchor point for the whole diffusion process. The conditioning on \\(\textbf{x}_0\\) can be thought of as encoding how each subsequent state should "remember" this initial clean state as it undergoes transformation. It serves to guide the reverse diffusion process.
@@ -111,7 +111,7 @@ Consequently, all KL divergences in Eq. (5) are comparisons between Gaussians, s
 
 ### <img src="/assets/sd/image-20231007134048374.png" alt="image-20231007134048374" style="zoom:50%;" />
 
-To represent the mean \\(\boldsymbol{\mu}_\theta(\textbf{x}_t,t)\\), we propose a specific parameterization motivated by the following analysis of \\(L_t\\). With \\(p_\theta(\textbf{x}_{t-1}|\textbf{x}_t) = \mathcal{N}(\textbf{x}_{t-1};\boldsymbol{\mu}_\theta(\textbf{x}_{t}, t), \sigma^2_t\boldsymbol{I})\\) we can write the loss:
+To represent the mean \\(\boldsymbol{\mu}_\theta(\textbf{x}_t,t)\\), we propose a specific parameterization motivated by the following analysis of \\(L_t\\). With \\(p_\theta(\textbf{x}_{t-1}\mid\textbf{x}_t) = \mathcal{N}(\textbf{x}_{t-1};\boldsymbol{\mu}_\theta(\textbf{x}_{t}, t), \sigma^2_t\boldsymbol{I})\\) we can write the loss:
 $$
 L_{t-1} = \mathbb{E}_q\left[\frac{1}{2\sigma^2_t}\left\| \tilde{\boldsymbol{\mu} }_t(\textbf{x}_t, \textbf{x}_0) - \boldsymbol{\mu}_\theta(\textbf{x}_t, t)\right\|^2\right] + C
 $$
@@ -130,7 +130,7 @@ Equation 10 reveals that \\(\boldsymbol{\mu}_\theta\\) must predict \\(\frac{1}{
 $$
 \boldsymbol{\mu}_\theta(\textbf{x}_t, t) = \tilde{\boldsymbol{\mu} }\left(\textbf{x}_t, \frac{1}{\sqrt{\alpha_t} } \left(\textbf{x}_t - {\sqrt{1-\bar{\alpha}_t} }\boldsymbol{\epsilon}_\theta(\textbf{x}_t) \right)\right) = \frac{1}{\sqrt{\alpha_t} } \left(\textbf{x}_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t} }\boldsymbol{\epsilon}(\textbf{x}_t,t) \right)
 $$
-Where \\(\epsilon_\theta\\) is a function approximator intended to predict \\(\boldsymbol\epsilon\\) from  \\(\textbf{x}_t\\). To sample \\(\textbf{x}_{t-1} \sim p_\theta(\textbf{x}_{t-1}|\textbf{x}_t)\\) is to compute: \\(\textbf{x}_{t-1} = \frac{1}{\sqrt{\alpha_t} } \left(\textbf{x}_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t} }\boldsymbol{\epsilon}(\textbf{x}_t,t) \right) + \sigma_t \textbf{z}\\) where \\(\textbf{z}\sim\mathcal{N}(\boldsymbol 0,\boldsymbol I)\\).
+Where \\(\epsilon_\theta\\) is a function approximator intended to predict \\(\boldsymbol\epsilon\\) from  \\(\textbf{x}_t\\). To sample \\(\textbf{x}_{t-1} \sim p_\theta(\textbf{x}_{t-1}\mid\textbf{x}_t)\\) is to compute: \\(\textbf{x}_{t-1} = \frac{1}{\sqrt{\alpha_t} } \left(\textbf{x}_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t} }\boldsymbol{\epsilon}(\textbf{x}_t,t) \right) + \sigma_t \textbf{z}\\) where \\(\textbf{z}\sim\mathcal{N}(\boldsymbol 0,\boldsymbol I)\\).
 
 The complete sampling procedure (Algorithm 2) resembles Langevin dynamics with \\(\boldsymbol{\epsilon}_\theta\\) a learned gradient of the data density. Furthermore, with the parameterization (11) eq(10) simplifies to:
 $$
@@ -144,7 +144,7 @@ which resembles denoising score matching over multiple noise scales indexed by t
 
 ==To summarize, we can train the reverse process mean function approximator \\(\boldsymbol{\mu}_\theta\\) to predict \\(\tilde{\boldsymbol{\mu} }_t\\) , or by modifying its parameterization, we can train it to predict \\(\boldsymbol\epsilon\\)==. We have shown that the \\(\boldsymbol \epsilon\\)-prediction parameterization both resembles Langevin dynamics and simplifies the diffusion model's variational bound to an objective that resembles denoising score matching.
 
-Nonetheless, it is just another parameterization of \\(p_\theta(\textbf{x}_{t-1}|\textbf{x}_t)\\), so we verify its effectiveness in Section 4 in an ablation where we compare predicting \\(\boldsymbol \epsilon\\) against predicting \\(\tilde{\boldsymbol{\mu} }_t\\).
+Nonetheless, it is just another parameterization of \\(p_\theta(\textbf{x}_{t-1}\mid\textbf{x}_t)\\), so we verify its effectiveness in Section 4 in an ablation where we compare predicting \\(\boldsymbol \epsilon\\) against predicting \\(\tilde{\boldsymbol{\mu} }_t\\).
 
 
 

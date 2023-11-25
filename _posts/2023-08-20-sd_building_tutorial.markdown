@@ -200,12 +200,3 @@ Now, we want to build the U-Net, and to that end we need to connect multiple arc
 ==How can we relate these two models to each other? With the use of cross-attention==.
 
 The query is from the first sequence and the key and value from another sequence.
-
-
-
-
-
-
-
-
-
