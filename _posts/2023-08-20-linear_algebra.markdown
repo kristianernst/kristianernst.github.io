@@ -110,7 +110,11 @@ The transpose of \\(\boldsymbol{A}\\) is given by:
 
 Hence, 
 
-\\(\boldsymbol{A}_{ij} = \boldsymbol{A}^T_{ji}\\)
+$$
+\begin{align}
+\boldsymbol{A}_{ij} = \boldsymbol{A}^T_{ji}
+\end{align}
+$$
 
 , i.e., the rows and columns has been swapped. 
 
