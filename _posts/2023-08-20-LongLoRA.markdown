@@ -62,7 +62,8 @@ qkv = cat((qkv.chunk(2, 3)[0], qkv.chunk(2, 3)[1].roll(-G/2, 1)), 3).view(B*
 
 \\(S^2\\) attention: shift short attention:
 
-![zoomed image](assets/nlp/image-20231005164105473.png){: .zoomed}
+
+<img src="/assets/nlp/image-20231005164105473.png" alt="image-123" style="zoom:50%;" />
 
 We present shift short attention (S2-Attn) as an efficient substitute for standard self-attention. As shown in Figure 2, we split context length into several groups and conduct attention in each group individually. In half attention heads, we shift the tokens by half group size, which ensures the information flow between neighbouring groups. For example, we use S2-Attn with group size 2048 to approximate the total 8192 context length training.
 
@@ -70,10 +71,10 @@ Models fine-tuned via S2-Attn retain the original attention architecture during 
 
 We empirically show that learnable embedding and normalization layers are the key to unlocking long context LoRA fine-tuning,
 
-![zoomed image](assets/nlp/image-20231005164056529.png){: .zoomed}
+<img src="/assets/nlp/image-20231005164056529.png" alt="image-1233" style="zoom:50%;" />
 
 We shift the group partition by half group size in half attention heads. Taking the overall 8192 context length for example, in pattern 1, the first group conducts self-attention from 1st to 2048th tokens. In Pattern 2, the group partition is shifted by 1024. The first attention group begins from 1025th and ends at 3072th tokens, while the first and the last 1024 tokens belong to the same group. We use patterns 1 and 2 in each half self-attention heads respectively. This manner does not increase additional computation cost but enables the the information flow between different groups. We show that it gets close to the standard attention baseline in Table 1.
 
 **Easy Implementation.** Shift short attention is easy to implement. It involves only two steps: (1) shifting tokens in half attention heads, and (2) transposing features from token dimension to batch dimension. Two lines of code are enough. We provide a PyTorch-style code in Algorithm 1. In the following, we make a pilot study and clarify the reasons for our design step by step.
 
-![zoomed image](assets/nlp/image-20231005164124428.png){: .zoomed}
+<img src="/assets/nlp/image-20231005164124428.png" alt="image-12323" style="zoom:50%;" />

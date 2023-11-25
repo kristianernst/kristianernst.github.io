@@ -16,7 +16,7 @@ As we know, the attention mechanism has no natural “awareness” tokens’ pos
 
 The original solution as described in these notes: 
 
-[OG positional encoding](og_positional_encoding.md)
+[OG positional encoding](https://ernst-hub.github.io/nlp/2023/08/20/og_positional_encoding/)
 
 Rotary embeddings have shown to increase performance of transformer models, and has therefore been widely adopted since then. 
 

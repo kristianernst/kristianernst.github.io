@@ -86,7 +86,7 @@ $$
 
 *Short on Expectation:* 
 
-[Expectation vs average](expectation_vs_avg.md)
+[Expectation vs average](https://ernst-hub.github.io/math/2023/08/20/expectation_vs_avg/)
 
 ### The connection to KL divergence:
 
@@ -94,7 +94,7 @@ One way to interpret maximum likelihood estimation is to view it as minimizing t
 
 KL divergence:
 
-[Kullback-Liebler Divergence](kl_divergence.md)
+[Kullback-Liebler Divergence](https://ernst-hub.github.io/math/2023/08/20/kl_divergence/)
 $$
 D_{KL}(\hat{p}_{data} \| p_{model})=\mathbb{E}_{\textbf{x} \sim \hat{p}_{data} } \left[\log \hat{p}_{data}(\boldsymbol{x}) - \log p_{model}(\boldsymbol{x})\right]
 $$

@@ -25,7 +25,7 @@ Rational numbers are numbers that can be expressed as a fraction: \\(\frac{p}{q}
 
 We can arrange rational numbers in a grid where the numerator \\(p\\) is on one axis and the denominator \\(q\\) is on another axis. We start from \\(1/1\\) and move in a zigzag manner to cover all possible fractions. This way, each rational number can be mapped to a unique natural number.
 
-![image-20231005153539785](assets/set/image-20231005153539785.png){: .zoom-50}
+<img src="/assets/set/image-20231005153539785.png" alt="Screenas.png" style="zoom: 33%;" />
 
 *Irrational numbers: uncountable*
 
@@ -38,9 +38,9 @@ To show this, we use a proof by contradiction in which we assume that the set of
 We take a subset \\((0,1) \Leftrightarrow \mathbb{Z}^+\\)
 
 ```
-0. d11 d12 d13 d14 ...
-0. d21 d22 d23 d24 ...
-0. d31 d32 d33 d34 ... 
+1. d11 d12 d13 d14 ...
+2. d21 d22 d23 d24 ...
+3. d31 d32 d33 d34 ... 
 .   .   .   .   .  .
 .   .   .   .   .   .
 .   .   .   .   .    .

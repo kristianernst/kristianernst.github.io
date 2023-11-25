@@ -32,7 +32,7 @@ So, in a nutshell, LoRA is like a savvy hacker who knows exactly where to inject
 
 Some of my previous notes touched upon the notion of manifolds:
 
-[Recap 1: Constructing manifolds?](../../math/topology_and_manifolds/recap_manifolds.md)
+[Recap 1: Constructing manifolds?](https://ernst-hub.github.io/math/2023/08/20/manifolds/)
 
 It is conceptually rewarding to understand the possible parameter space of the model as vast and high-dimensional. The pre-trained model has then approximated a manifold in this space. This manifold is of course based on the training input. For downstream tasks, there need to be some adaptation, i.e. fine-tuning. LoRA is essentially approximating the manifold and making efficient adaptations to the model without straying far from this manifold. LoRA is like a navigator that already has a good map (the pre-trained model) and is making precise, efficient updates to reach a new destination (adaptation) without getting lost in the high-dimensional wilderness.
 
@@ -77,7 +77,7 @@ All answers are founded empirically, not theoretically proven. The results are d
 
 ## **1) which weight matrices to use under budget constraint?**
 
-![zoomed image](assets/nlp/Untitled.png){: .zoomed}
+<img src="/assets/nlp/Untitled.png" alt="Screenas.png" style="zoom: 33%;" />
 
 Generally, using both Wq and Wv is better than only using one of them. 
 
@@ -101,9 +101,9 @@ This is measured by the normalised subspace similarity based on the Grassmann di
 
  
 
-\\(\\)
+$$
 \phi(A_{r=8}, A_{r=64},i,j) = \frac{\left\| U^{i^T}_{A_{r=8} } U^{j}_{A_{r=64} }\right\|^2_F}{\min(i,j)}
-\\(\\)
+$$
 
 Where \\(U^i_{A_{r=8} }\\) represents the columns of \\(U_{A_{r=8} }\\) corresponding to the top-i singular vectors.
 
@@ -111,7 +111,8 @@ Where \\(U^i_{A_{r=8} }\\) represents the columns of \\(U_{A_{r=8} }\\) correspo
 
 This figure shows the 48th layer of the 96 layers in the transformer.
 
-![zoomed image](assets/nlp/Untitled 2.png){: .zoomed}
+<img src="/assets/nlp/Untitled 2.png" alt="Screenas2323png" style="zoom: 33%;" />
+
 
 By looking at the figure, the authors state: “Directions corresponding to the top singular vector overlap significantly between \\(A_{r=8}\\) and \\(A_{r=64}\\), while others do not.”
 
@@ -121,7 +122,9 @@ The focus is on comparing subspaces of the same dimensionality or how a larger s
 
 Across different random seeds:
 
-![zoomed image](assets/nlp/Untitled 3.png){: .zoomed}
+
+
+<img src="/assets/nlp/Untitled 3.png" alt="Screenpng" style="zoom: 33%;" />
 
 \\(\nabla W_q\\) appears to have a higher intrinsic rank than \\(\nabla W_v\\), since more common singular value directions are learned by both runs for \\(\nabla W_q\\)
 
@@ -129,15 +132,15 @@ Across different random seeds:
 
 TO answer these questions we project \\(W\\) onto the \\(r\\)-dimensional subspace of \\(\nabla W\\). This is done by computing:
 
-\\(\\)
+$$
 U^TWV^T
-\\(\\)
+$$
 
 Here U and V are the left and right singular vector matrices of \\(\nabla W\\).
 
 Once this is computed, we can compare the Frobenius norm between: \\(\|U^TWV^T\|_F\\) and \\(\|W \|_F\\). For comparisons, we can also compute \\(\|U^TWV^T\|_F\\) by replacing \\(U, V\\) with the top \\(r\\) singular vectors of \\(W\\) itself or a random matrix.
 
-![zoomed image](assets/nlp/Untitled 4.png){: .zoomed}
+<img src="/assets/nlp/Untitled 4.png" alt="Screenas123png" style="zoom: 33%;" />
 
 - It shows that \\(\nabla W\\) has a stronger correlation with \\(W\\) compared to a random matrix. Hence \\(\nabla W\\) amplifies some features already present in \\(W\\).
 - Second, instead of repeating the top singular directions of \\(W\\), \\(\nabla W\\) only amplifies directions that are not emphasized in \\(W\\).

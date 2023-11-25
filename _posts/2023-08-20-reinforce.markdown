@@ -172,9 +172,9 @@ The ideal value function, `v*`, represents the true expected return of each stat
 The goal is to try to learn an approximation of this value function using a neural network. Let's call this approximation `vθ(s)`. The subscript θ here represents the parameters of the neural network. So, in essence, our RL agent is trying to make its own GPS by training this network.
 
 Now, for the cool part. To train this network, we use the following gradient:
-\\(\\)
+$$
 Δθ \propto \frac{∂\log v_θ(s)}{∂θ} (z - v_θ(s))
-\\(\\)
+$$
 
 
 \\(\frac{∂\log v_θ(s)}{∂θ}\\) is the gradient of the log of our approximated value function with respect to the network parameters. It helps us understand how tweaking the parameters affects our approximation.
@@ -222,31 +222,31 @@ The slide discusses a policy network and how it interacts with roll-outs in the 
 
 **Sampling roll-outs**, \\(\quad\\) A roll-out in the context of reinforcement learning, refers to the process of simulating forward in time from a given state using the current policy. It's like saying, "If I take this action now, and then follow my policy thereafter, what sequence of actions am I likely to take?" 
 The equation given for \\(\textbf{a}\\)  is demonstrating this: over a sequence of T time steps, the actions are being sampled from the policy:
-\\(\\)
+$$
 \textbf{a} = a_1, \dots , a_T \sim p_\theta(\textbf{a}|\textbf{s})
-\\(\\)
+$$
 **Joint probability** \\(\quad\\) The equation 3 represents the joint probability of a sequence of actions, given a sequence of states. Simply, it multiplies the porbabilities of taking each action at each time step, given the previous state.
-\\(\\)
+$$
 p_\theta(\textbf{a}|\textbf{s}) = \prod_{t=1}^Tp_\theta (a_t|s_{t-1})
-\\(\\)
+$$
 **Expected Discounted Cumulative Reward** \\(\quad\\) This is the meat of reinforcement learning. It's the expected sum of rewards you'd receive if you follow a policy starting from a given state. The integral is essentially saying, "For all possible roll-outs (i.e., sequences of actions) you can take, multiply the probability of that roll-out by the reward of that roll-out, and then sum it all up." The "discounted" part typically means that future rewards are worth less than immediate ones, but this equation seems to exclude the discounting factor (commonly denoted by a gamma, as we saw earlier).
-\\(\\)
+$$
 \mathbb{E}[R|\theta] = \int_{\text{roll-outs} }{R(\textbf{a})p_\theta(\textbf{a}|\textbf{s})}d\textbf{a}
-\\(\\)
+$$
 
 
 **Taking the Gradient with Respect to θ** \\(\quad\\) The objective in many reinforcement learning algorithms is to maximize the expected reward. If we take the gradient with respect to \\(\theta\\), we can use:
-\\(\\)
+$$
 \grad_\theta p_\theta(\textbf{a}|\textbf{s}) = p_\theta(\textbf{a}|\textbf{s})\grad_\theta\log p_\theta(\textbf{a}|\textbf{s})
-\\(\\)
+$$
 The above identity is quite crucial and can be derived from the properties of the gradient and the logarithm. Without going too deep into the proof, this identity basically relates the gradient of the policy itself to the gradient of the logarithm of the policy. The logarithm helps because it can transform products into sums, which are often easier to handle, especially when dealing with probabilities. 
 
 **Replacing Integral by Average over S Roll-outs** \\(\quad\\) Instead of calculating the exact gradient of the expected reward, which might involve integrals over the entire state and action spaces, we can approximate this gradient using Monte Carlo methods. We do this by sampling trajectories (or roll-outs) from our current policy. For each trajectory, we can compute the total reward and weight this with the gradient of the log-probability of the trajectory under our policy.
 
 By replacing the integral by an average over \\(S\\) roll-outs:
-\\(\\)
+$$
 \grad_\theta \mathbb{E}[R|\theta]\approx \frac{1}{S}\sum_{s = 1}^S R(\textbf{a}^{(s)})\grad_{\theta}\log p_\theta(\textbf{a}^{(s)}|\textbf{s}^{(s)})
-\\(\\)
+$$
 This equation essentially says that to estimate the gradient of our expected reward, we'll sample \\(S\\) trajectories and for each trajextory we compute the reward \\(R(\textbf{a}^{(s)})\\) and multiply it with the gradient of the log probability of the action taken given the state under our current policy.
 
 - The gradient estimate does have a high variance but we can correct for that.

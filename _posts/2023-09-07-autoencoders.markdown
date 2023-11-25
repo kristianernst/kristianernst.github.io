@@ -164,7 +164,7 @@ We can think of the penalty Ω(h) simply as a regularizer term added to a feedfo
 
 **Relation to bayesian inference**
 
-[Bayesian statistics](../math/statistics/bayesian_stat.md)
+[Bayesian statistics](https://ernst-hub.github.io/math/2023/08/20/bayesian_stat/)
 
 Unlike other regularizers such as weight decay, there is not a straightforward Bayesian interpretation to this regularizer. Regularized autoencoders defy such an interpretation because the regularizer depends on the data and is therefore by definition not a prior in the formal sense of the word. We can still think of these regularization terms as implicitly expressing a preference over functions.
 
@@ -400,7 +400,7 @@ The vector points in the direction in which log p(x) increases most rapidly.
 	6. **Connection to information theory**: The logarithm of probabilities is related to information content (measured in bits if you use base-2 logarithms, or nats if you use natural logarithms). This has various theoretical advantages in understanding the behavior of algorithms.
 	7. **Converting multiplicative factors to additive**: Some models have multiplicative factors that become additive after taking the logarithm, making it easier to separate different components of the model.
 
-[Transformations](../math/transformations/transformations.md)
+[Transformations](https://ernst-hub.github.io/math/2023/08/20/transformations/)
 
 Learning the gradient field of \\(\log p_{\text{data} }\\) is one way to learn the structure of \\(p_{\text{data} }\\) itself. 
 
@@ -408,7 +408,7 @@ A very important property of DAEs is that their training criterion (with conditi
 
 ## Learning manifolds with Autoencoders
 
-[Manifolds](../math/topology_and_manifolds/differentiable_manifolds.md):
+[Manifolds](https://ernst-hub.github.io/math/2023/08/20/manifolds/):
 
 [https://mathworld.wolfram.com/Manifold.html](https://mathworld.wolfram.com/Manifold.html)
 

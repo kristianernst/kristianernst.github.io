@@ -50,9 +50,9 @@ Basically we add noice to an image, and learn a neural net to reverse this noice
 How do we do it on a practical level: 
 
 After we get the ELBO, we can parameterize the loss as the following. 
-\\(\\)
+$$
 \nabla\theta \left \| \boldsymbol\epsilon - \boldsymbol\epsilon_\theta \left( \sqrt{\bar{\alpha}_t}\textbf{x}_0 + \sqrt{1-\bar\alpha_t}\boldsymbol{\epsilon},t\right)\right \|^2
-\\(\\)
+$$
 We need to train a network called \\(\boldsymbol\epsilon_\theta\\) , that, given a noisy image \\(\left( \sqrt{\bar{\alpha}_t}\textbf{x}_0 + \sqrt{1-\bar\alpha_t}\boldsymbol{\epsilon},t\right)\\) (this means that the noisy image at time-step \\(t\\) and the time-step at which the noice was added: \\(t\\)). The network has to predict how much noise is in the image. If we do gradient descent on (1) we will maximize the ELBO and correspndingly we will maximize the log-likelihood of our data: \\(\log p_\theta(\textbf{x}_0)\\).
 
 *How do we generate new data?*

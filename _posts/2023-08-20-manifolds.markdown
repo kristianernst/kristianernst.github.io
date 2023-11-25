@@ -64,27 +64,27 @@ If we have a set of points \\(X\\), \\(J_X\\) is a topology of \\(X\\) that cont
 
 These subsets inside the topology are called open sets \\(u\\). 
 
-\\(\\)
+$$
 u_1, u_2, u_3 \in J_X
-\\(\\)
+$$
 
 Rules:
 
-\\(\\)
+$$
 \begin{align}\cup u_i \in J_X \end{align}
-\\(\\)
+$$
 
-\\(\\)
+$$
 \begin{align} \cap u_i \in J_x \end{align}
-\\(\\)
+$$
 
 The intersections have to be a finite number of open sets.
 
 The null set is also in the topology of X and the set itself is an element in the topology of X. These mark the smallest and largest elements of X.
 
-\\(\\)
+$$
 \emptyset \in J_X, \quad X \in J_X
-\\(\\)
+$$
 
 ## What is an open set?
 
@@ -124,15 +124,15 @@ Let \\(P\\) be a limit point of \\(S\\), where \\(S \subset X\\), IF every neigh
 
 Thus the following must be true:
 
-\\(\\)
+$$
 u_P\cap S \neq \emptyset
-\\(\\)
+$$
 
 The following is NOT always true:
 
-\\(\\)
+$$
 u_P \cap S = u_p \ ,
-\\(\\)
+$$
 
 because, \\(u_P\\) can exist on the border of \\(S\\), which still constitutes a limit point
 
@@ -150,9 +150,9 @@ The closure of the set is the set unionised with all of its limit points.
 A point \\(P\\) is in the interior of \\(S\\) if I can find an open set of \\(P\\) \\(u_P\\) that is a subset of \\(S\\).
 
 
-\\(\\)
+$$
 u_P \cap S = u_p \  \rightarrow p\in S^{o}
-\\(\\)
+$$
 
 **Important:** The interior of any set is always open!
 
@@ -172,7 +172,8 @@ The exterior of a set \\(S\\) is the complement of its closure.
 
 What is not in the exterior nor in the interior.
 
-![Untitled](/assets/manifold/Untitled.png){: .zoom50% }
+
+<img src="/assets/nlp/manifold/Untitled.png" alt="Screenas2323png" style="zoom: 33%;" />
 
 ## Density
 
@@ -212,7 +213,8 @@ For any two points \\(x, y \in X\\) there exists two open sets \\(U, V\\) such t
 
 This is an extension of T1 that also says that the two sets V and U has to be disjoint!
 
-![Untitled](/assets/manifold/Untitled-6515138.png){: .zoom50% }
+
+<img src="/assets/nlp/manifold/Untitled-6515138.png" alt="as" style="zoom: 33%;" />
 
 It is clear that if \\(T_1\\) is true, then \\(T_0\\) is automatically true, however not the other way around.
 
@@ -245,7 +247,7 @@ In this sense, we have created a cover of neighbourhoods that cover all points i
 
 **Example of mapping to R2:**
 
-![Untitled](/assets/manifold/Untitled-6515426.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled-6515426.png" alt="as" style="zoom: 33%;" />
 
 ### Example: Sphere
 
@@ -307,13 +309,12 @@ lets construct a neighborhood \\(U_p = X \setminus q\\), where \\(q\\) is simply
 
 Here's how a geometric interpretation of a function \\(f\\) mapping \\(U_p\\) to \\(V\\)
 
-![Untitled](/assets/manifold/Untitled 1-6515433.png){: .zoom50% }
-
+<img src="/assets/nlp/manifold/Untitled-6515433.png" alt="ddd" style="zoom: 33%;" />
 Then we do it again, but instead of removing the south pole, we remove the north pole.
 
 \\(U_q = X \setminus p\\)
 
-![Untitled](/assets/manifold/Untitled 2-6515436.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled-6515436.png" alt="222" style="zoom: 33%;" />
 
 We then take these two homeomorphisms, pair them up with the sets they are attached to, and put them in a set together
 
@@ -325,14 +326,13 @@ So we want to map \\((X, T_{\mathbb{R}^2 | X})\\) to \\(\mathbb{R}^1\\)
 
 And X is essentially two lines, where one begins from a point on the other line and is ortogonal to that line.
 
-![Untitled](/assets/manifold/Untitled 3-6515441.png){: .zoom50% }
-
+<img src="/assets/nlp/manifold/Untitled-6515441.png" alt="333" style="zoom: 33%;" />
 It is impossible to construct a homeomorphic relationship between these two topological spaces. It is possible to map from the higher dimensional space to the lower dimensional one, but not the other way around. Therefore \\(f^{-1}\\) is not onto and one to one (and is thus not invertible).
 
 
 # Compactness, Connectedness and Topological properties
 
-![Untitled](/assets/manifold/Untitled-6515326.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled-6515326.png" alt="555" style="zoom: 33%;" />
 
 How do we know that a space is homeomorphic to another space? (in this case X and Y). Any single function that is 1-1 onto and i continuous and has a continuous inverse, then the two spaces are homeomorphic.
 
@@ -367,9 +367,9 @@ First, let us ask about a subset. let the open set \\(A \subset (X, J_X)\\), is 
 
 An open cover of a subset \\(S\\) of \\(X\\) is a collection \\(\mathcal{C} = \{ U_\alpha \}\\) of open sets in \\(X\\) such that 
 
-\\(\\)
+$$
 S \subseteq \bigcup_\alpha U_{\alpha}
-\\(\\)
+$$
 
 A subcover is a sub collection \\(\mathcal{C}^{\prime} \subseteq \mathcal{C}\\) that still covers \\(S\\).
 
@@ -403,13 +403,13 @@ Definition: A connected set is a set that cannot be partitioned into two non-emp
 
 If we have a topological space \\((X, J_X)\\) 
 
-![Untitled](/assets/manifold/Untitled 1-6515321.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled-6515321.png" alt="545" style="zoom: 33%;" />
 
 Where the space X consists of two spaces G and H, let G and H be open sets in the topology, if there is no intersection between them, then we can say that the space \\(X\\) is NOT connected.
 
 By the property of homeomorphism, if we map to another topological space, the property of connectedness follows:
 
-![Untitled](/assets/manifold/Untitled 2.png){: .zoom50% }
+d<img src="/assets/nlp/manifold/Untitled 2.png" alt="546" style="zoom: 33%;" />
 
 **Path-connectedness**
 
@@ -423,13 +423,15 @@ and we have a continuous function \\(f\\) from \\([0,1]\\) to \\(X\\) such that 
 
 If you are path connected, you are connected.
 
-![Untitled](/assets/manifold/Untitled 3.png){: .zoom50% }
+
+<img src="/assets/nlp/manifold/Untitled 3.png" alt="526" style="zoom: 33%;" />
+
 
 ## Homotopy
 
 Definition: A continuous transformation from one function to another. A homotopy between functions \\(f\\) and \\(g\\) from a space \\(X\\) to a space \\(Y\\) is a continuous map \\(G\\) from \\(X \times [0,1] \rightarrow Y\\) such that \\(G(x,0)=f(x)\\) and \\(G(x,1)=g(x)\\) where \\(\times\\) denotes set pairing. another way of saying this is that a homotopy is a path in the mapping space \\(\operatorname{Map}(X,Y)\\) from the first function to the second. Two mathematical objects are said to be [homotopic](https://mathworld.wolfram.com/Homotopic.html) if one can be continuously deformed into the other.
 
-![Untitled](/assets/manifold/Untitled 4.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled 4.png" alt="527" style="zoom: 33%;" />
 
 The doughnut have different homotopies of paths because of the hole in the space. I.e. the blue function of path-connectedness behaves vastly different from that of the red line, and the green line and vice versa. However in the topological space of \\(X\\), the red line and the blue line and the green line can be deformed to the other (this is called “simply connected” \\(C \sim X\\)).
 
@@ -448,7 +450,7 @@ We do not have notions of shape, distance and other measurements.
 
 This relates very much to my previous notes on countability in set theory:
 
-[Countability](../set_theory/countability.md)
+[Countability](https://ernst-hub.github.io/math/2023/08/20/set_theory/)
 
 ## Countability
 
@@ -487,9 +489,9 @@ IF you are second countable, you are definitely  first countable, but not the ot
 
 - The cofinite topology (where we omit points along the line) is NOT first countable
 
-	11:31 [https://www.youtube.com/watch?v=L1MC5GvlxPI&list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo&index=4](https://www.youtube.com/watch?v=L1MC5GvlxPI&list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo&index=4)
+	11:31 [youtube](https://www.youtube.com/watch?v=L1MC5GvlxPI&list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo&index=4)
 
-	![Untitled](/assets/manifold/Untitled-6515262.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled-6515262.png" alt="520" style="zoom: 33%;" />
 
 We want to have second countable properties when working with manifolds.
 
@@ -526,9 +528,9 @@ A function is continuous if any open set in \\((Y, J_Y)\\), if the pre-image und
 
 So \\(f\\) is continuous, it depends on any open set \\(u \in J_y\\) and the inverse mapping of \\(u\\), \\(f^{-1}(u)\\). The inverse mapping has to be an element in the topology of \\(X\\). 
 
-\\(\\)
+$$
 f^{-1}(u) \in J_X
-\\(\\)
+$$
 
 In terms of neighbourhoods:
 
@@ -536,7 +538,7 @@ If \\(f(x)\\) is a point in \\(Y\\), and \\(x\\) is a point in \\(X\\). And \\(u
 
 So for every \\(v\\) that is an open neighbourhood of \\(f(x)\\), for the function to be continuous, I need to be able to find an open neighbourhood in \\(x\\) with that entire open neighbourhood maps to a subset of the open neighbourhood in \\(v\\).
 
-![Untitled](/assets/manifold/Untitled 1.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled 1.png" alt="220" style="zoom: 33%;" />
 
 **Examples:**
 
@@ -575,7 +577,8 @@ Let \\(\lambda\\) be any point on an open line, \\(\lambda \in \mathbb{R}\\).
 
 Let the function \\(f\\) map \\(\lambda\\) to X,  \\(f(\lambda) \in X\\) because \\(f(\lambda): \mathbb{R} \rightarrow X\\)
 
-![Untitled](/assets/manifold/Untitled-6515580.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled-6515580.png" alt="120" style="zoom: 33%;" />
+
 
 This picture tells that to construct curves and use them  for calculus, we can map then onto the differential manifold and then map them to a euclidean range, in this case \\(\mathbb{R}^2\\) with the usual topology. Hence to optain the coordinates in the chart, \\((a,b) = \gamma \circ f(\lambda_i) \in \mathbb{R}^2\\), for a given value of \\(\lambda\\). We really need the chart \\(\gamma\\) for this whole thing to work, otherwise we would not be able to obtain coordinates. 
 
@@ -595,7 +598,7 @@ We could also view \\(\gamma(p) = \left(\alpha^1(p), \alpha^2(p)\right)\\), here
 
 ## General relativity reference
 
-![Untitled](/assets/manifold/Untitled 1-6515584.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled 1-6515584.png" alt="12" style="zoom: 33%;" />
 
 This picture shows how a new coordinate \\(X^{0^{\prime} }\\) is a function of old coordinates. 
 
@@ -615,7 +618,8 @@ Is \\(f\\) a differentiable function?
 
 \\(f : X \rightarrow Y\\), where \\(X\\) is a differentiable manifold \\((X, \mathcal{T}_X, \mathcal{A})\\), and \\(Y\\) is a differentiable manifold \\((Y,\mathcal{T}_Y,\mathcal{B})\\)
 
-![Untitled](/assets/manifold/Untitled 2-6515589.png){: .zoom50% }
+
+<img src="/assets/nlp/manifold/Untitled 2-6515589.png" alt="12123123" style="zoom: 33%;" />
 
 Instead of using transition functions from one chart to another of an atlas, can we transition from one manifold to another? (this is marked with the purple line)
 
@@ -648,7 +652,7 @@ What is the distinction between DM and TM?
 
 All of these charts cover the entire topological space \\(X\\), which forms the atlas. Locally each chart cover an open neighborhood which is an open subset of the topology. And each chart region is locally homeomorphic to some region of the euclidean space \\(\mathbb{R}^d = \mathbb{R} \times \mathbb{R} \times \dots \times \mathbb{R}_d\\) where \\(\times\\) is the cartesian product, which yields ordered pairs that can be used as coordinates in the euclidean space.
 
-![Untitled](/assets/manifold/Untitled-6515497.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled-6515497.png" alt="44444444" style="zoom: 33%;" />
 
 We can do calculus in the euclidean space!
 
@@ -664,8 +668,6 @@ If we have an atlas \\(\mathcal{A} = \{ (U_1, \gamma_1), (U_2, \gamma_2), \dots 
 
 The sphere example from earlier showed a stereographic function, that overlapped almost entirely between the two sets aside from two points, the north and the south pole. 
 
-[Topological manifolds](topological_manifolds.md)
-
 Charts have overlaps, however, we do not need extreme overlaps.
 
 Any point \\(p \in U_{1,2}\\), can be mapped into the regions of the euclidean space by either \\(\gamma_1(p)\\) or \\(\gamma_2(p)\\)
@@ -676,9 +678,9 @@ We want to make a map from one euclidean sub-region of one chart to another eucl
 
 Let's say we want to map the point \\(p\\) from the euclidean range, obtained via \\(\gamma_1(p)\\). We simply need to leverage the fact that \\(\gamma\\) is bi-continuous, so we can easily map it back to the domain. Then, once we have \\(p\\) in the domain, we can map it to the euclidean range via \\(\gamma_2(p)\\):
 
-\\(\\)
+$$
 \gamma_2\left(\gamma_1^{-1}\left(\gamma_1(p)\right)\right)
-\\(\\)
+$$
 
 This looks like the standard functional notation. We don’t like this notation.
 
@@ -688,7 +690,8 @@ Instead we say \\(\gamma_2 \circ \gamma_1^{-1}(\gamma_1(p))\\), where \\(\gamma_
 
 It transitions from one chart to another! and we can take derivatives of this, because it maps from \\(\mathbb{R}^d \rightarrow \mathbb{R}^d\\)
 
-![Untitled](/assets/manifold/Untitled 1-6515493.png){: .zoom50% }
+
+<img src="/assets/nlp/manifold/Untitled 1-6515493.png" alt="r2" style="zoom: 33%;" />
 
 These functions can be made given we have a topological manifold. Because the composition of the two functions \\(\gamma\\) are continuous, \\(\gamma_i \circ \gamma_j^{-1}\\) is also continuous. Given we have a topological manifold, we are guarranteed that the composition functions are continuous. This means they are at least \\(C^0\\). 
 
@@ -726,7 +729,7 @@ This is the perferct differentiable manifold, however some loosen the criteria a
 
 We go back to the sphere and we want to map it to \\(\mathbb{R}^2\\) with the usual topology.
 
-![Untitled](/assets/manifold/Untitled 2-6515488.png){: .zoom50% }
+<img src="/assets/nlp/manifold/Untitled 2-6515488.png" alt="r3" style="zoom: 33%;" />
 
 In principle, the R2 is different from \\(\gamma_1(p)\\) and  \\(\gamma_2(p)\\), but we use it for illustrational ease. 
 
@@ -741,8 +744,6 @@ So a manifold is a topological space, which can be charted. These charts are par
 
 \\((X, \mathcal{T}_X, \mathcal{A})\\). The charts map points or regions from the manifold to a euclidean space with the usual topology as explained in: 
 
-[Topological manifolds](topological_manifolds.md)
-
 - It is possible because a manifold is a topological space that is locally Euclidean
 
 We remember the atlas was composed of charts \\((U, \gamma)\\), where U is an open set of the manifold and \\(\gamma\\) is
@@ -755,8 +756,6 @@ For a manifold to be differentiable, for any open set \\(U\\), we must be able t
 We know from the fact \\(\gamma\\)’s are homeomorphic that they are continuous, therefore, the composition of the two functions \\(\gamma\\) are continuous, \\(\gamma_i \circ \gamma_j^{-1}\\) is also continuous.
 
 So let us just call \\(\gamma_i \circ \gamma_j^{-1} = \Psi\\) for now. We know we can differentiate on continuous functions, yet there are different degrees of differentiability as explained in  
-
-[Differentiable manifolds](differentiable_manifolds.md)
 
 It goes from \\(C^0\\) which is not differentiable but continuous to \\(C^{\infty}\\) which is infinitely differentiable.
 

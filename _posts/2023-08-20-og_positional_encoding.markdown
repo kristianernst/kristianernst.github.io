@@ -56,10 +56,10 @@ Why? because we essentially decompose every token vector into two parts: one vec
 
 Here is the mathematical formula that essentially tells the same thing (I found the updating of i unintuitive, in the formula):
 
-\\(\\)
+$$
 PE _{(pos, 2i)} = sin\left(pos/n^{2i/d_{model} }\right) \\ 
 PE _{(pos, 2i + 1)} = cos\left(pos/n^{2i/d_{model} }\right)
-\\(\\)
+$$
 
 So now that we know what is going on, it is time to explain why this makes sense.
 
