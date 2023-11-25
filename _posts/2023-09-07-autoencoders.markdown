@@ -268,9 +268,11 @@ The denoising autoencoder (DAE) is an autoencoder that receives a corrupted data
 
 How does it work?
 
-1. We define a corruption process to corrupt X: \\(C(\tilde{\boldsymbol{x} } | \boldsymbol{x})\\), then we store both the corrupted and the non-corrupted data somewhere. 
-2. We sample a training example \\(\boldsymbol{x}\\) from the training data, and \\(\tilde{\boldsymbol{x} }\\) from the corrupted version \\(C(\tilde{\textbf{x} }|\textbf{x} = \boldsymbol{x})\\).
-3. We then use \\((\boldsymbol{x}, \tilde{\boldsymbol{x} })\\) as a training example for estimating the autoencoder reconstruction distribution: \\(p_{\text{reconstruct} }(\boldsymbol{x}|\tilde{\boldsymbol{x} }) = p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})\\), where the \\(\boldsymbol{h}\\) is the output of the encoder \\(f(\tilde{\boldsymbol{x} })\\).
+We define a corruption process to corrupt X: \\(C(\tilde{\boldsymbol{x} } | \boldsymbol{x})\\), then we store both the corrupted and the non-corrupted data somewhere. 
+
+We sample a training example \\(\boldsymbol{x}\\) from the training data, and \\(\tilde{\boldsymbol{x} }\\) from the corrupted version \\(C(\tilde{\textbf{x} }|\textbf{x} = \boldsymbol{x})\\).
+
+We then use \\((\boldsymbol{x}, \tilde{\boldsymbol{x} })\\) as a training example for estimating the autoencoder reconstruction distribution: \\(p_{\text{reconstruct} }(\boldsymbol{x}|\tilde{\boldsymbol{x} }) = p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})\\), where the \\(\boldsymbol{h}\\) is the output of the encoder \\(f(\tilde{\boldsymbol{x} })\\).
 
 Optimization: 
 
