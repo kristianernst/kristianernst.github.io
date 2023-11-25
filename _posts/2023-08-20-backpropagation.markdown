@@ -96,8 +96,8 @@ We can write the expression in short:
 $$
 \begin{align*}
 \frac{\partial C}{\partial w}=&a_\text{in} \delta_\text{out} \\ \\
-\text{where} \\  & a_\text{in}: \text{is the activation of the neuron input to the weight \\(w\\).} \\
-& \delta_\text{out}: \text{is the error of the neuron output from the weight \\(w\\).}
+\text{where} \\  & a_\text{in}: \text{is the activation of the neuron input to the weight \\( w \\) .} \\
+& \delta_\text{out}: \text{is the error of the neuron output from the weight \\( w \\) .}
 \end{align*}
 $$
 
