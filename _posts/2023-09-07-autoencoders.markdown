@@ -19,7 +19,7 @@ The network consists of two parts: an **encoder** and a **decoder**, the encoder
 
 Encoder: \\( \boldsymbol{h} = f(\boldsymbol{x}) \\)
 
-Decoder: \\( \boldsymbol{r} = g(\boldsymbol{h} \\)
+Decoder: \\( \boldsymbol{r} = g(\boldsymbol{h}) \\)
 
 Autoencoders are designed to be unable to copy the input perfectly. Therefore, the model is forced to prioritize which aspects should be copied and which should not. It is this property that makes autoencoders cool!
 
