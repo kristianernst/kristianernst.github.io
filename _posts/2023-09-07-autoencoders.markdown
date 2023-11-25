@@ -11,6 +11,9 @@ mathjax: true
 # Autoencoders
 
 In brief, an autoencoder is a neural network that attempts to “copy” its input to its output.
+These notes are deeply inspired by the book [Deep Learning](https://www.deeplearningbook.org/contents/autoencoders.html) by Ian Goodfellow, Yoshua Bengio and Aaron Courville.
+
+
 
 The network consists of two parts: an **encoder** and a **decoder**, the encoder translates input into an intermediate state. The decoder takes this intermediate state and tries to output something that is approximates the input.
 
@@ -34,7 +37,7 @@ One traditional way to achieve the incomplete copying is by encoding the inputs 
 
 Learning this network is done by minimizing the following loss function:
 
-\\( L(\boldsymbol{x}, g(f(\boldsymbol{x})) \\), where \\( L \\) is a loss function penalizing the prediction for being dissimilar from the input (MAE for example).
+\\(L(\boldsymbol{x}, g(f(\boldsymbol{x}))\\), where \\(L\\) is a loss function penalizing the prediction for being dissimilar from the input (MAE for example).
 
 When the decoder is linear and the loss function is MAE, what we get is the same as PCA.
 
@@ -95,7 +98,7 @@ This encourages the latent space to change slowly / smoothly with respect to cha
 
 This is often implemented using a contractive penalty on the loss function, which discourages large derivatives in the latent space.
 
-Contractive loss =  \\( \lambda \sum_{i=1}^n(\frac{\partial z_i}{\partial x})^2 \\)
+Contractive loss =  \\(\lambda \sum_{i=1}^n(\frac{\partial z_i}{\partial x})^2\\)
 
 the lambda is the parameter that determines the strength of the penalty.
 
@@ -156,7 +159,7 @@ Unlike other regularizers such as weight decay, there is not a straightforward B
 
 The difference:
 
-**Prior on Model Parameters (\\(p(\theta)\\))**
+**Prior on Model Parameters \\((p(\theta))\\)**
 
 This is the "traditional" prior we often talk about in Bayesian statistics. It represents our initial belief about the model parameters θ before we've seen any data. For example, in a linear regression model, θ could be the coefficients, and p(θ) could be a Gaussian distribution centered at zero, indicating a belief that the coefficients should be small.
 
@@ -265,13 +268,13 @@ The denoising autoencoder (DAE) is an autoencoder that receives a corrupted data
 
 How does it work?
 
-1. We define a corruption process to corrupt X: $C(\tilde{\boldsymbol{x} } | \boldsymbol{x})$, then we store both the corrupted and the non-corrupted data somewhere. 
-2. We sample a training example $\boldsymbol{x}$ from the training data, and $\tilde{\boldsymbol{x} }$ from the corrupted version $C(\tilde{\textbf{x} }|\textbf{x} = \boldsymbol{x})$.
-3. We then use $(\boldsymbol{x}, \tilde{\boldsymbol{x} })$ as a training example for estimating the autoencoder reconstruction distribution: $p_{\text{reconstruct} }(\boldsymbol{x}|\tilde{\boldsymbol{x} }) = p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})$, where the $\boldsymbol{h}$ is the output of the encoder $f(\tilde{\boldsymbol{x} })$.
+1. We define a corruption process to corrupt X: \\(C(\tilde{\boldsymbol{x} } | \boldsymbol{x})\\), then we store both the corrupted and the non-corrupted data somewhere. 
+2. We sample a training example \\(\boldsymbol{x}\\) from the training data, and \\(\tilde{\boldsymbol{x} }\\) from the corrupted version \\(C(\tilde{\textbf{x} }|\textbf{x} = \boldsymbol{x})\\).
+3. We then use \\((\boldsymbol{x}, \tilde{\boldsymbol{x} })\\) as a training example for estimating the autoencoder reconstruction distribution: \\(p_{\text{reconstruct} }(\boldsymbol{x}|\tilde{\boldsymbol{x} }) = p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})\\), where the \\(\boldsymbol{h}\\) is the output of the encoder \\(f(\tilde{\boldsymbol{x} })\\).
 
 Optimization: 
 
-We can perform gradient-based approximate minimization such as minibatch gradient descent on the negative log likelihood: $-\log p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})$. So long as the encoder is deterministic, the denoising autoencoder is a feedforward network and may be trained with exactly the same techniques as any other feedforward network.
+We can perform gradient-based approximate minimization such as minibatch gradient descent on the negative log likelihood: \\(-\log p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})\\). So long as the encoder is deterministic, the denoising autoencoder is a feedforward network and may be trained with exactly the same techniques as any other feedforward network.
 
 We can therefore view the DAE as performing stochastic gradient descent on the following expectation:
 
@@ -279,29 +282,29 @@ $$
 -\mathbb{E}_{\textbf{x}\sim \hat{p}_\text{data} }\mathbb{E}_{\tilde{\textbf{x} }\sim C(\tilde{\textbf{x} }|\textbf{x})}\log p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h} = f\left(\tilde{\boldsymbol{x} })\right)
 $$
 
-Where $\hat{p}_{\text{data} }(\textbf{x})$ is the training distribution
+Where \\(\hat{p}_{\text{data} }(\textbf{x})\\) is the training distribution
 
 - Calculation example (to highlight notation mechanism)
 
-	data points: $x_1 = 5, x_2 = 10$
+	data points: \\(x_1 = 5, x_2 = 10\\)
 
 	Corrupted versions: 
 
-	x1: $\tilde{x}_{1,1} = 4, \tilde{x}_{1,2}=6$
+	x1: \\(\tilde{x}_{1,1} = 4, \tilde{x}_{1,2}=6\\)
 
-	x2: $\tilde{x}_{2,1} = 9, \tilde{x}_{2,2}=11$
+	x2: \\(\tilde{x}_{2,1} = 9, \tilde{x}_{2,2}=11\\)
 
 	Encoder-decoder gives:
 
-	$f(4)=h_{1,1}=0.8, f(6)=h_{1,2}=1.2$
+	\\(f(4)=h_{1,1}=0.8, f(6)=h_{1,2}=1.2\\)
 
-	$f(9)=h_{2,1}=1.8, f(11)=h_{2,2}=2.2$
+	\\(f(9)=h_{2,1}=1.8, f(11)=h_{2,2}=2.2\\)
 
 	Assume log likelihood constructions are:
 
-	$\log p_{\text{decoder} }(5|h_{1,1}) = -0.1, \log p_{\text{decoder} }(5|h_{1,2}) = -0.2$
+	\\(\log p_{\text{decoder} }(5|h_{1,1}) = -0.1, \log p_{\text{decoder} }(5|h_{1,2}) = -0.2\\)
 
-	$\log p_{\text{decoder} }(10|h_{2,1}) = -0.3, \log p_{\text{decoder} }(10|h_{2,2}) = -0.4$
+	\\(\log p_{\text{decoder} }(10|h_{2,1}) = -0.3, \log p_{\text{decoder} }(10|h_{2,2}) = -0.4\\)
 
 	Calculate objective:
 
@@ -321,7 +324,7 @@ Since |**x**| = 2, we do this twice. We then add these together and divide by 2 
 
 Score matching is an alternantive to maximun likelihood.
 
-- consistent estimations of probability distributions based on encouraging the model to have the same `score` as the data distribution at every training point $\boldsymbol{x}$.
+- consistent estimations of probability distributions based on encouraging the model to have the same `score` as the data distribution at every training point \\(\boldsymbol{x}\\).
 
 In the context of denoising auto envoders, the score is a paricular gradient field:
 
@@ -331,9 +334,9 @@ $$
 \end{align}
 $$
 
-The gradient operator, $\nabla_{\boldsymbol{x} }$, is a vector containing the partial derivatives of the different vector components of **x** when applied to a function**.** These indicate different slopes along the different “directions”. 
+The gradient operator, \\(\nabla_{\boldsymbol{x} }\\), is a vector containing the partial derivatives of the different vector components of **x** when applied to a function**.** These indicate different slopes along the different “directions”. 
 
-Log(p(x)) is a function that maps $\boldsymbol{x}$ from $\mathbb{R}^{n} \rightarrow \mathbb{R}$. It is the logarithm of the probability density function (or mass if x is discrete).
+Log(p(x)) is a function that maps \\(\boldsymbol{x}\\) from \\(\mathbb{R}^{n} \rightarrow \mathbb{R}\\). It is the logarithm of the probability density function (or mass if x is discrete).
 
 Thus, when taking the gradient of log(p(x)), the result is a vector known as the “score” where each component is given by:
 
@@ -354,7 +357,7 @@ The vector points in the direction in which log p(x) increases most rapidly.
 
 [Transformations](../math/transformations/transformations.md)
 
-Learning the gradient field of $\log p_{\text{data} }$ is one way to learn the structure of $p_{\text{data} }$ itself. 
+Learning the gradient field of \\(\log p_{\text{data} }\\) is one way to learn the structure of \\(p_{\text{data} }\\) itself. 
 
 A very important property of DAEs is that their training criterion (with conditionally Gaussian p(x | h)) makes the autoencoder learn a vector field (g(f(x)) − x) that estimates the score of the data distribution. (figure 14.4)
 
@@ -370,9 +373,9 @@ Like many other machine learning algorithms, autoencoders exploit the idea that 
 
 An important characterization of a manifold is the set of its tangent planes. At a point x on a d-dimensional manifold, the tangent plane is given by d basis vectors that span the local directions of variation allowed on the manifold. As illustrated in **figure** **14.6**, these local directions specify how one can change x infinitesimally while staying on the manifold.
 
-<img src="assets/Screenshot_2023-09-14_at_23.52.40.png" alt="Screenshot 2023-09-14 at 23.52.40.png" style="zoom: 33%;" />
+<img src="../assets/architectures/Screenshot_2023-09-14_at_23.52.40.png" alt="Screenshot 2023-09-14 at 23.52.40.png" style="zoom: 33%;" />
 
-<img src="assets/Screenshot_2023-09-14_at_23.58.43.png" alt="Screenshot 2023-09-14 at 23.58.43.png" style="zoom:33%;" />
+<img src="../assets/architectures/Screenshot_2023-09-14_at_23.58.43.png" alt="Screenshot 2023-09-14 at 23.58.43.png" style="zoom:33%;" />
 
 All autoencoder training procedures involve a compromise between two forces:
 
@@ -388,17 +391,19 @@ To understand why autoencoders are useful for manifold learning, it is instructi
 
 ## Contractive autoencoder
 
-This autoencoder uses a regularizer on the code $\boldsymbol{h}$ to make the derivatives as small as possible
+This autoencoder uses a regularizer on the code \\(\boldsymbol{h}\\) to make the derivatives as small as possible
 
 $$
+\begin{align}
 \Omega(\boldsymbol{h}) = \lambda \left\|\frac{\partial f(\boldsymbol{x})}{\partial \boldsymbol{x} }\right\|^2_F
+\end{align}
 $$
 
 The penalty is the squared frobenius norm of the jacobian matrix of partial derivatives associated with the encoder function.
 
-The name contractive arises from the way that the CAE warps space. Specifically, because the CAE is trained to resist perturbations of its input, it is encouraged to map a neighborhood of input points to a smaller neighborhood of output points. We can think of this as contracting the input neighborhood to a smaller output neighborhood. TO CLARIFY: the CAE is contractive only locally, all perturbations of a training point $\boldsymbol{x}$ are mapped near to $f(\boldsymbol{x})$. Globally, however, two different points $\boldsymbol{x}$ and $\boldsymbol{x}^{\prime}$ may be mapped to $f(\boldsymbol{x})$ and $f(\boldsymbol{x}^{\prime})$ wich are farther apart than their original points!
+The name contractive arises from the way that the CAE warps space. Specifically, because the CAE is trained to resist perturbations of its input, it is encouraged to map a neighborhood of input points to a smaller neighborhood of output points. We can think of this as contracting the input neighborhood to a smaller output neighborhood. TO CLARIFY: the CAE is contractive only locally, all perturbations of a training point \\(\boldsymbol{x}\\) are mapped near to \\(f(\boldsymbol{x})\\). Globally, however, two different points \\(\boldsymbol{x}\\) and \\(\boldsymbol{x}^{\prime}\\) may be mapped to \\(f(\boldsymbol{x})\\) and \\(f(\boldsymbol{x}^{\prime})\\) which are farther apart than their original points!
 
-This makes sense because the jacobian basically contains all first-order partial derivatives of a vector-valued function. In the context of the encoder function: $f: \mathbb{R}^n \Rightarrow \mathbb{R}^m$, the jacobian matrix $\boldsymbol{J}_{ij}$ is the partial derivative of the i-th output with respect to the j-th input.
+This makes sense because the jacobian basically contains all first-order partial derivatives of a vector-valued function. In the context of the encoder function: \\(f: \mathbb{R}^n \Rightarrow \mathbb{R}^m\\), the jacobian matrix \\(\boldsymbol{J}_{ij}\\) is the partial derivative of the i-th output with respect to the j-th input.
 
 $$
 \begin{align} 
@@ -411,13 +416,13 @@ $$
 \end{align}
 $$
 
-This matrix provides a linear approximation that describes how small changes in the input $\boldsymbol{x}$ will affect the output $f(\boldsymbol{x}) = \boldsymbol{h}$. In the context of a Contractive Autoencoder, you want this matrix to have small values, which means that the function is not very sensitive to changes in its input—hence the "contractive" property.
+This matrix provides a linear approximation that describes how small changes in the input \\(\boldsymbol{x}\\) will affect the output \\(f(\boldsymbol{x}) = \boldsymbol{h}\\). In the context of a Contractive Autoencoder, you want this matrix to have small values, which means that the function is not very sensitive to changes in its input—hence the "contractive" property.
 
 As described, regularized autoencoders learn manifolds by balancing two opposing forces. In the case of the CAE, these two forces are reconstruction error and the contractive penalty Ω(h). Reconstruction error alone would encourage the CAE to learn an identity function. The contractive penalty alone would encourage the CAE to learn features that are constant with respect to x. The compromise between these two forces yields an autoencoder whose derivatives are mostly tiny. Only a small number of hidden units, corresponding to a small number of directions in the input, may have significant derivatives.
 
 # Probabilistic approach to latent variable models
 
-<img src="assets/Untitled.png" alt="Untitled" style="zoom:33%;" />
+<img src="assets/architectures/Untitled.png" alt="Untitled" style="zoom:33%;" />
 
 Joint distribution of Xs and latent variables Zs can be decomposed in terms of a simple distribution of our latent manifold p(z), which we simply take to be a normal distribution.
 
@@ -425,7 +430,7 @@ $$
 p_\theta(x, z)=\underbrace{p_\theta(x \mid z)}_{\text {FFNN } } \underbrace{p(z)}_{\mathcal{N}(z \mid 0, I)}
 $$
 
-We have an inference step, that is finding the posterior distribution of $z$ given an $x$, which corresponds to reversing the conditionals using Bayes theorem:
+We have an inference step, that is finding the posterior distribution of \\(z\\) given an \\(x\\), which corresponds to reversing the conditionals using Bayes theorem:
 
 $$
 z \sim p(z|x)=\frac{p(x|z)p(z)}{p(x)}
@@ -457,7 +462,7 @@ $$
 p_\theta(x|z)=\mathcal{N}\left(x|\underbrace{\mu_\theta(z)}_{\text {FFNN } }, \underbrace{\operatorname{diag}\left(\sigma_\theta^2(z)\right)}_{\text {FFNN} }\right)
 $$
 
-Assume $x$ is continuous, then we can model $x$’s distribution with a gaussian normal distribution, and we use neural networks to describe the mean and the variance.
+Assume $x$ is continuous, then we can model \\(x\\)’s distribution with a gaussian normal distribution, and we use neural networks to describe the mean and the variance.
 
 The specific value of the mean and variance will depend on the specific value of the latent variable
 
@@ -485,7 +490,7 @@ $$
 \begin{align*}\log p_\theta(x) & \geq \mathcal{L}_{\theta, \phi}(x) = \color{red} \int q_{\theta}(z|x)\log \left(\frac{p_\theta(x|z)p(z)}{q_\phi(z|x)}\right)dz \\ & = \underbrace{\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]}_{\mathbb{E}_q \log\text{likelihood} }+ \underbrace{\mathbb{E}_{q_\phi(z|x)}\left[\log\frac{p(z)}{q_\phi (z|x)}\right]}_{\text{regularization} }\end{align*}
 $$
 
-We can write a lower bound of the likelihood. It is still an integral over $z$, but it turns out, it is much easier to evaluate than the original integral.
+We can write a lower bound of the likelihood. It is still an integral over \\(z\\), but it turns out, it is much easier to evaluate than the original integral.
 
 This variational bound is written for one single example (coloured red). It involves an average of the encoder distribution of the log between the joint distribution of x and z from the generative model (decoder?) divided by the encoder function. 
 
@@ -495,11 +500,11 @@ And then we have a regularization term, it has the log of the prior distribution
 
 <aside>
 💡 So optimising the variational bound is a tradeoff between fitting the data and getting closer to the prior manifold!
-The regularization term is essentially the KL divergence between the encoders distribution $q_\phi(z|x)$ and the prior $p(z)$.
+The regularization term is essentially the KL divergence between the encoders distribution \\(q_\phi(z|x)\\) and the prior \\(p(z)\\).
 
-- The original $\log p_\theta(x)$ is hard to compute but $\mathcal{L}_{\theta, \phi}(x)$ is a **tractable lower bound**
+- The original \\(\log p_\theta(x)\\) is hard to compute but \\(\mathcal{L}_{\theta, \phi}(x)\\) is a **tractable lower bound**
 
-1. **Two Neural Networks**: One for encoding $x$ to $z$ and another for decoding $z$ to $x$, with no parameter sharing.
+1. **Two Neural Networks**: One for encoding x to z and another for decoding z to x, with no parameter sharing.
 2. **Gaussian Assumptions**: Both the encoder and decoder output Gaussian distributions, parameterized by neural networks.
 3. **Objective Function**: It's a balance between reconstruction quality and regularization.
 4. **Tractability**: The variational lower bound makes an otherwise intractable problem more manageable.
@@ -526,11 +531,11 @@ Now we have a bound for one example, and then the log likelihood bound is the su
 
 The variational distribution is of course limited in a way, that we have taken a quite simple normal distribution. If we have a lot of data it will be asymptotically normally, but we have ignored covariances between the latent variables due to the diagonal covariance matrix above.
 
-**Encoder**  $z = \mu_\phi(x) + \sigma(x) \otimes \epsilon$
+**Encoder**  \\(z = \mu_\phi(x) + \sigma(x) \otimes \epsilon\\)
 
-**Decoder**  $p_\theta(x|z) = \mathcal{N}\left(x|\mu_\theta(z),\operatorname{diag}(\sigma^2_\theta(z))\right)$
+**Decoder**  \\(p_\theta(x|z) = \mathcal{N}\left(x|\mu_\theta(z),\operatorname{diag}(\sigma^2_\theta(z))\right)\\)
 
-- We allow us to compute the conditional density of our observed observation $x$.
+- We allow us to compute the conditional density of our observed observation \\(x\\).
 
 **Why do we call this an autoencoder?**
 
@@ -541,17 +546,17 @@ The variational distribution is of course limited in a way, that we have taken a
 
 How it works:
 
-To generate a sample from the model, VAE draws a sample $\boldsymbol{z}$ from the coding distribution $p_{\text{model} }(\boldsymbol{z})$. This sample then run through a differentiable generator network $g(\boldsymbol{z})$. Finally $\boldsymbol{x}$ is sampled from a distribution $p_{\text{model} }(\boldsymbol{x};g(\boldsymbol{z})) = p_{\text{model} }(\boldsymbol{x}|\boldsymbol{z})$. 
+To generate a sample from the model, VAE draws a sample \\(\boldsymbol{z}\\) from the coding distribution \\(p_{\text{model} }(\boldsymbol{z})\\). This sample then run through a differentiable generator network \\(g(\boldsymbol{z})\\). Finally \\(\boldsymbol{x}\\) is sampled from a distribution \\(p_{\text{model} }(\boldsymbol{x};g(\boldsymbol{z})) = p_{\text{model} }(\boldsymbol{x}|\boldsymbol{z})\\). 
 
-However, during training, the approximate inference network (or encoder) $q(\boldsymbol{z}|\boldsymbol{x})$ is used to obtain $\boldsymbol{z}$ and $p_{\text{model} }(\boldsymbol{x}|\boldsymbol{z})$ is then viewed as the decoder network.
+However, during training, the approximate inference network (or encoder) \\(q(\boldsymbol{z}|\boldsymbol{x})\\) is used to obtain \\(\boldsymbol{z}\\) and \\(p_{\text{model} }(\boldsymbol{x}|\boldsymbol{z})\\) is then viewed as the decoder network.
 
-The key insight behind VAEs is that they can be trained by maximizing the variational lower bound $\mathcal{L}(q)$ associated with data point $\boldsymbol{x}$:
+The key insight behind VAEs is that they can be trained by maximizing the variational lower bound \\(\mathcal{L}(q)\\) associated with data point \\(\boldsymbol{x}\\):
 
  
 
-\\[
+\[
 \begin{align} \mathcal{L}(q) & = \mathbb{E}_{\boldsymbol{z} \sim q(\boldsymbol{z} | \boldsymbol{x})\log p_{\text{model} } (\boldsymbol{z}|\boldsymbol{x}) + \mathcal{H}(q(\textbf{z}|\boldsymbol{x}))} \\ &= \mathbb{E}_{\boldsymbol{z} \sim q(\boldsymbol{z} | \boldsymbol{x})\log p_{\text{model} } (\boldsymbol{x}|\boldsymbol{z})} - D_{KL}(q(\textbf{z}|\boldsymbol{x})\|p_{\text{model} }(\textbf{z})) \\ & \leq \log p_{\text{model} }(\boldsymbol{x}). \end{align}
-\\]
+\]
 
 VAE Pytorch implementation:
 

@@ -1,0 +1,207 @@
+---
+layout: post
+comments: true
+title:  "Notes on compute"
+excerpt: "Notes on compute"
+date:   2023-10-11 22:00:00
+category: "Compute"
+mathjax: true
+---
+
+> “Civilization advances by extending the number of important operations which we can perform without thinking about them.”
+>
+> Alfred North Whitehead, AN Introduction to Mathematics, 1911
+
+[TOC]
+
+![image-20230729211418372](../assets/compute/image-20230729211418372.png)
+
+# Chapter 1
+
+## Recent trends
+
+We have switched from one core to mutlicore processing
+
+why?
+
+A good argument is the fact that [Moore's law](https://en.wikipedia.org/wiki/Moore%27s_law) and [Dennard scaling](https://www.google.com/search?rlz=1C5CHFA_enDK1049DK1049&sxsrf=AB5stBgRF1Yw-KiKjezY4zL_MeSXJGCO2A:1690653894324&q=why+did+dennard+scaling+end&tbm=vid&source=lnms&sa=X&ved=2ahUKEwiFh7zGwLSAAxVr87sIHYq9DQsQ0pQJegQICxAB&biw=1382&bih=941&dpr=2.5#fpstate=ive&vld=cid:c651395a,vid:dK66mV6RU5Q) has shown to slow in some cases. Therefore, to increase compute, we increase power with diminishing returns to increase processing speeds. This is done by combining cores.
+
+[Amsdahl's law](https://en.wikipedia.org/wiki/Amdahl%27s_law) says that: "the overall performance improvement gained by optimizing a single part of a system is limited by the fraction of time that the improved part is actually used." 
+
+A special type of architecture (aside from the general purpose CPU) has gained increasing popularity. It is the *Domain specific architecture* (DSA), these are processors that are used and optimized for a specific use-case/domain.
+
+Cloud and SaaS has made it lucrative for firms to invest in their own DSA's following open-source instruction sets such as RISC-V. 
+
+
+
+## Chapter 1
+
+Understanding program performance
+
+
+
+| Hardware / software component                    | How component affects performance                            | Where this topic is covered |
+| ------------------------------------------------ | ------------------------------------------------------------ | --------------------------- |
+| Algorithm                                        | Determines the number of source-level statements and the number of I/O operations executed | Other books                 |
+| Programming language, compiler, and architecture | Determines the number of computer instructions for each source-level statement | C2,3                        |
+| Processor and memory system                      | Determines how fast instructions can be executed             | C4,5,6                      |
+| I/O system (hardware and operating system)       | determines for fast I/O ops may be executed                  | C4,5,6                      |
+
+
+
+### Great ideas in computer architecture
+
+1. Use abstraction to simplify design
+2. Make common use cases fast rather than edge cases
+3. Parallelism to increase performance (do computations in parallel)
+4. Performance via pipelining (lining up operations efficiently, a common parallellism pattern)
+5. Performance via prediction: it can be faster to guess and start working rather than wait for certainty
+6. Hierarchy of memories: fast, small and most expensive memory per bit at the top of the hierarchy and the slowest, largest and cheapest bit at the bottom
+7. Dependability via redundancy: make systems dependable by including redundant components to avoid single points of failure. Redundant components must be designed to replace *and* to detect when a failure occurs
+
+
+
+### Basic functions of the underlying hardware:
+
+Inputting data, outputting data, processing data, and storing data.
+
+The five components that allow the computer to perform these tasks:
+
+1. Input: feeds the computer with information
+	1. Could be a microphone
+2. Output: feeds the user the processed input
+	1. Could be a speaker
+3. Memory: where the programs are kept when they are running; it also contains the data needed by running programs.
+	1. DRAM is found in the iPhone, DRAM (dynamic random-access memory) are used together to contain instructions and data of a program. In contrast to sequential-access memory, such as magnetic tapes, the *RAM* portion of the term DRAM means that memory accesses take basically the same amount of time no matter what portion of memory is read. (we will go back to memory)
+4. Datapath: Performs arithmetic ops
+5. Control: tells the datapath, memory and I/O devices to do according with the instructions provided.
+
+
+
+![image-20230729214456850](../assets/compute/image-20230729214456850.png)
+
+
+
+#### The processor:
+
+The processor logically comprises two main components: datapath and control, the respective brawn and brain of the processor. 
+
+1. The **datapath** performs the arithmetic operations, and 
+2. **control** tells the datapath, memory, and I/O devices what to do according to the wishes of the instructions of the program.
+
+#### Memory:
+
+`DRAM`: dynamic random-access memory - Memory built as an integrated circuit; it provides random access to any location. Access times are 50 nanoseconds and cost per gigabyte in 2012 was USD5 to USD10.
+
+`Cache memory`: small and fast memory acting as a DRAM buffer (a safe place for hiding things). Caches are built using SRAM. 
+
+`SRAM`: Static random access memory - faster but less dense and hence more expensive than DRAM (C5)
+
+
+
+#### Language
+
+`The instruction set architecture` also called `the architecture` is the lowest level programming language that provides the hardware with instructions. The instruction set architecture includes anything programmers need to know to make a binary machine language program work correctly, including instructions, I/O devices, and so on. 
+
+Typically, the operating system will encapsulate the details of doing I/O, allocating memory, and other low-level system functions so that application programmers do not need to worry about such details. The combination of the basic instruction set and the operating system interface provided for application programmers is called the `application binary interface (ABI)`.
+
+When the hardware obeys the architecture abstractions provided by an instruction set architecture, we talk of an `implementation`.
+
+### Big pictures
+
+- The five components of a computer: I/O, store, process, and control
+
+- Both hardware and software consist of hierarchical layers using abstraction, with each lower layer hiding details from the level above. One key interface between the levels of abstraction is the *instruction set architecture* - the interface between the hardware and low-level software. This abstract interface enables many *implementations* of varying cost and performance to run identical software.
+- 
+
+### Safe place for data (how it is stored when we shut the pc down)
+
+Memory can be divided into:
+
+`volatile memory` storage such as DRAM that retains memory only when receiving power
+
+- also coined primary memory
+
+`non-volatile memory` storage that retains memory even in the absence of a power source (a DVD for example)
+
+- also coined secondary memory
+- "flash memory" is a semiconductor memory used in most mobile devices.
+- It is slower and cheaper than DRAM 
+- disks are also secondary memory, they are less power efficient than flash memory
+
+
+
+### Tech for building processors
+
+`transistor`: an on/off switch controlled by electricity. The integrated circuit (IC) combines hundreds/thousands/millions of transistors into a single chip depending on its purpose. In an M1 Max, we have 57 billion transistors.
+
+`Silicon` does not conduct electricity well, it is therefore a `semiconductor`. With a special chemical process, we can add materials to the silicon, allowing for tiny areas to transform into one of three devices:
+
+- excellent conductor of electricity (by adding copper or aluminium wire (microscopic))
+- excellent insulators from electricity (like plastic sheathing)
+- areas to conduct or insulate under specific conditions (switch on/off) - this is transistors.
+
+A very large  `integrated circuit` is a conglomerate of these three features.
+
+#### How a chip is made:
+
+![image-20230802224849099](../assets/compute/image-20230802224849099.png)
+
+During the process of creating the patterned wafers, it is almost impossible to secure no defects. For that reason, to cope with this circumstance, we place many independent components on a single wafer. the patterned wafer is then diced into these components called dies (also known as `chips`). Dicing enables you to discard only those dies that were unlucky enough to contain the flaws, rather than the whole wafer.
+
+![image-20230802225922168](../assets/compute/image-20230802225922168.png)
+
+### Performance
+
+`response time` or `execution time`: the total time required by a computer to complete a task.
+
+`throughput` or `bandwidth`: the number of tasks completed per unit time.
+
+For a computer \\(X\\), we say that its performance is as follows:
+
+\\(\operatorname{Performance}_X = \frac{1}{\operatorname{Execution time}_X}\\)
+
+To compare computers \\(X\\) and \\(Y\\):
+
+\\(\frac{\operatorname{Performance}_X}{\operatorname{Performance}_Y} = \frac{\operatorname{Execution time}_Y}{\operatorname{Execution time}_X} = n\\), i.e., \\(X\\) is \\(n\\) times faster than \\(Y\\)
+
+*Measuring performance*
+
+Time is the measure of computer performance: the computer that performs the same amount of work in the least time is the fastest. The most straightforward definition of time is called *wall clock time*, *response time*, or *elapsed time*. These terms mean the total time to complete a task, including disk accesses, memory accesses, *input/output* (I/O) activities, operating system overhead—everything. **Caveat**: we could be running other programs in the background effectively disturbing comparisons between computers.
+
+`CPU (execution) time` is the time the CPU spends computing a task, and does not include time spent waiting for I/O or running other programs. This is a way to deal with the caveat.
+
+`CPU time` can be further divided into the CPU time spent in ONE program, called `user CPU time`, and the CPU time spent in the operating system performing tasks on behalf of the program, called `system CPU time`.
+
+Differentiating between system and user CPU time is difficult to do accurately, because it is often hard to assign responsibility for operating system activities to one user program rather than another and because of the functionality differences between operating systems.
+
+
+
+`clock cycle`: the time for one clock period (usually of the processor clock which runs at a constant rate). A clock rate is the inverse of a clock cycle.
+
+CPU execution time for a program = CPU clock cycles for a program times Clock cycle time
+$$
+\text{CPU execution time for a program} =  \\\text{CPU clock cycles for a program} \times \text{Clock cycle time}=   \\
+\frac{\text{CPU clock cycles for a program} }{\text{Clock rate} }
+$$
+because CPU cycle time and Clock rate are in an inverse relationship.
+
+
+
+CPU clock cycles can be understood as the number instructions executed multiplied by the average time per instruction:
+$$
+\text{CPU clock cycles} = & \\ \text{Instructions for a program}  \times  \text{Average clock cycles per instruction}
+$$
+`clock cycles per instruction (CPI)`: average number of clock cycles each instruction takes to execute. \\(\text{CPI} = \frac{\text{CPU clock cycles} }{\text{Instruction count} }\\).
+
+**The classic equations:**
+
+This lead us to CPU time in terms of instruction count (# of instructions executed by a program): 
+$$
+\text{CPU time} & = & \text{Instruction count} \times \text{CPI} \times \text{Clock cycle time} \\ 
+& = & \text{Instruction count} \times \text{CPI} \times \text{Clock rate}^{-1}
+$$
+These formulas are particularly useful because they separate the three key factors that affect performance. We can use these formulas to compare two different implementations or to evaluate a design alternative if we know its impact on these three parameters.
+
+
+
