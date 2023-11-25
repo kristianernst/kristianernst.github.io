@@ -464,3 +464,53 @@ margin: 0 0.1em;
 vertical-align: middle;
 
 }
+
+.collapsible {
+  background-color: #f9f9f9;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+  border-bottom: 1px solid #eaeaea; /* Add a bottom border to indicate separability */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.collapsible:hover {
+  background-color: #e6e6e6; /* Slight color change to indicate interactiveness */
+}
+
+.collapsible:after {
+  content: '\002B'; /* Unicode character for "plus" sign */
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.collapsible.active:after {
+  content: "\2212"; /* Unicode character for "minus" sign */
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f8f8f8;
+}
+
+/* Style adjustments for better visual appeal */
+.home ul.posts {
+  list-style-type: none;
+  padding: 0;
+}
+
+.home ul.posts li {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
