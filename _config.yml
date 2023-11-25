@@ -1,11 +1,11 @@
 # Site settings
-title: Kristian Ernst blog
-email: 
-description: "Randn"
+title: Kristian Ernst's blog
+email: kristian.ernst@yahoo.com
+description: "simple blog about my notes and stuff"
 baseurl: ""
 url: "http://ernst-hub.github.io"
 twitter_username: _kristianernst
-github_username:  Ernst-Hub
+github_username:  Ernst-hub
 
 # Build settings
 markdown: kramdown

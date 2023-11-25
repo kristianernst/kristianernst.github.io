@@ -482,15 +482,15 @@ vertical-align: middle;
   background-color: transparent; /* Remove the background */
   color: #333; /* Match the text color to your site's style */
   cursor: pointer;
-  padding: 10px; /* Reduce padding */
+  padding-left: 30px; /* Reduce padding */
   margin: 10px 0 30px;
   position: relative;
   width: 100%;
   border: none;
   text-align: left;
   outline: none;
-  font-size: 1.25em; /* Adjust font size as needed */
-  font-weight: 500; /* Make the font a bit bolder */
+  font-size: 1.1em; /* Adjust font size as needed */
+  font-weight: 400; /* Make the font a bit bolder */
 }
 
 .collapsible:hover {
@@ -505,7 +505,7 @@ vertical-align: middle;
   content: '+';
   color: #333;
   float: right;
-  font-size: 1.25em; /* Keep the plus sign proportional */
+  font-size: 1.1em; /* Keep the plus sign proportional */
   margin-right: 1em; /* Ensure space on the right */
 }
 
