@@ -8,24 +8,12 @@ category: "Math"
 mathjax: true
 ---
 
-# General note:
+## General note:
 
 These notes was based on the youtube video [series](https://www.youtube.com/watch?v=CEXSSz0gZI4&list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo) by XylyXylyX
 
 
 
-- [General note:](#general-note)
-- [Topology](#topology)
-  - [What is an open set?](#what-is-an-open-set)
-  - [What is a closed set?](#what-is-a-closed-set)
-  - [The notion of limit points](#the-notion-of-limit-points)
-    - [Open neighbourhood](#open-neighbourhood)
-    - [Limit points](#limit-points)
-  - [Closure](#closure)
-  - [Interior](#interior)
-  - [Exterior](#exterior)
-  - [The Boundary](#the-boundary)
-  - [Density](#density)
 - [Separability](#separability)
   - [The Base of the topology](#the-base-of-the-topology)
   - [Separability](#separability-1)
@@ -56,7 +44,7 @@ These notes was based on the youtube video [series](https://www.youtube.com/watc
 
 
 
-# Topology
+## Topology
 
 Point set topology / general topology is the study of the general abstract nature of continuity or "closeness" on [spaces](https://mathworld.wolfram.com/Space.html). Basic point-set topological notions are ones like [continuity](https://mathworld.wolfram.com/ContinuousSpace.html), [dimension](https://mathworld.wolfram.com/Dimension.html), [compactness](https://mathworld.wolfram.com/CompactSpace.html), and [connectedness](https://mathworld.wolfram.com/ConnectedSpace.html).
 
@@ -86,7 +74,7 @@ $$
 \emptyset \in J_X, \quad X \in J_X
 $$
 
-## What is an open set?
+### What is an open set?
 
 We use the notion “[open balls](https://mathworld.wolfram.com/OpenBall.html)” to constitute open sets. 
 
@@ -102,7 +90,7 @@ There exists different types of topologies:
 2. The discrete: which amounts to the power set \\(2^X\\), i.e. it contains all possible sets of \\(X\\).
 3. `The trivial topology` which amounts to \\(J_X = \{ \emptyset, X\}\\), simply contains \\(X\\) itself and the empty set.
 
-## What is a closed set?
+### What is a closed set?
 
 A closed set is simply the complement of an open set.
 
@@ -110,15 +98,15 @@ A closed set is simply the complement of an open set.
 
 The rules following a closed set is the almost the same as (1) and (2), except now we can intersect over an infinite number of closed sets and unionise a finite number of closed sets.
 
-## The notion of limit points
+### The notion of limit points
 
-### Open neighbourhood
+#### Open neighbourhood
 
 An open neighbourhood of a point P is an open set that contains the point P
 
 Therefore, open sets are open neighbourhoods of all of its points.
 
-### Limit points
+#### Limit points
 
 Let \\(P\\) be a limit point of \\(S\\), where \\(S \subset X\\), IF every neighbourhood of P (\\(u_{P}\\)) contain some element of \\(S\\).
 
@@ -138,14 +126,14 @@ because, \\(u_P\\) can exist on the border of \\(S\\), which still constitutes a
 
 The same is true for a single missing point inside of \\(S\\).  
 
-## Closure
+### Closure
 
 The closure of the set is the set unionised with all of its limit points. 
 
 - If you have an open ball, the closure of that ball is the open ball plus its boundary
-	- [https://mathworld.wolfram.com/ClosedDisk.html](https://mathworld.wolfram.com/ClosedDisk.html)
+	- [ClosedDisk](https://mathworld.wolfram.com/ClosedDisk.html)
 
-## Interior
+### Interior
 
 A point \\(P\\) is in the interior of \\(S\\) if I can find an open set of \\(P\\) \\(u_P\\) that is a subset of \\(S\\).
 
@@ -162,18 +150,18 @@ If S is an open set, \\(S = S^{o}\\)
 
 The interior is the complement of the closure of the complement of \\(S\\).
 
-## Exterior
+### Exterior
 
 The exterior of a set \\(S\\) is the complement of its closure. 
 
-[https://www.youtube.com/watch?v=EsF_5LoaL_8&list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo&index=2](https://www.youtube.com/watch?v=EsF_5LoaL_8&list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo&index=2) 27:48
+[video](https://www.youtube.com/watch?v=EsF_5LoaL_8&list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo&index=2) 27:48
 
-## The Boundary
+### The Boundary
 
 What is not in the exterior nor in the interior.
 
 
-<img src="/assets/nlp/manifold/Untitled.png" alt="Screenas2323png" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled.png" alt="Screenang" style="zoom: 33%;" />
 
 ## Density
 
@@ -214,7 +202,7 @@ For any two points \\(x, y \in X\\) there exists two open sets \\(U, V\\) such t
 This is an extension of T1 that also says that the two sets V and U has to be disjoint!
 
 
-<img src="/assets/nlp/manifold/Untitled-6515138.png" alt="as" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515138.png" alt="as" style="zoom: 33%;" />
 
 It is clear that if \\(T_1\\) is true, then \\(T_0\\) is automatically true, however not the other way around.
 
@@ -247,7 +235,7 @@ In this sense, we have created a cover of neighbourhoods that cover all points i
 
 **Example of mapping to R2:**
 
-<img src="/assets/nlp/manifold/Untitled-6515426.png" alt="as" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515426.png" alt="as" style="zoom: 33%;" />
 
 ### Example: Sphere
 
@@ -309,12 +297,12 @@ lets construct a neighborhood \\(U_p = X \setminus q\\), where \\(q\\) is simply
 
 Here's how a geometric interpretation of a function \\(f\\) mapping \\(U_p\\) to \\(V\\)
 
-<img src="/assets/nlp/manifold/Untitled-6515433.png" alt="ddd" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515433.png" alt="ddd" style="zoom: 33%;" />
 Then we do it again, but instead of removing the south pole, we remove the north pole.
 
 \\(U_q = X \setminus p\\)
 
-<img src="/assets/nlp/manifold/Untitled-6515436.png" alt="222" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515436.png" alt="222" style="zoom: 33%;" />
 
 We then take these two homeomorphisms, pair them up with the sets they are attached to, and put them in a set together
 
@@ -326,13 +314,13 @@ So we want to map \\((X, T_{\mathbb{R}^2 | X})\\) to \\(\mathbb{R}^1\\)
 
 And X is essentially two lines, where one begins from a point on the other line and is ortogonal to that line.
 
-<img src="/assets/nlp/manifold/Untitled-6515441.png" alt="333" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515441.png" alt="333" style="zoom: 33%;" />
 It is impossible to construct a homeomorphic relationship between these two topological spaces. It is possible to map from the higher dimensional space to the lower dimensional one, but not the other way around. Therefore \\(f^{-1}\\) is not onto and one to one (and is thus not invertible).
 
 
 # Compactness, Connectedness and Topological properties
 
-<img src="/assets/nlp/manifold/Untitled-6515326.png" alt="555" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515326.png" alt="555" style="zoom: 33%;" />
 
 How do we know that a space is homeomorphic to another space? (in this case X and Y). Any single function that is 1-1 onto and i continuous and has a continuous inverse, then the two spaces are homeomorphic.
 
@@ -403,13 +391,13 @@ Definition: A connected set is a set that cannot be partitioned into two non-emp
 
 If we have a topological space \\((X, J_X)\\) 
 
-<img src="/assets/nlp/manifold/Untitled-6515321.png" alt="545" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515321.png" alt="545" style="zoom: 33%;" />
 
 Where the space X consists of two spaces G and H, let G and H be open sets in the topology, if there is no intersection between them, then we can say that the space \\(X\\) is NOT connected.
 
 By the property of homeomorphism, if we map to another topological space, the property of connectedness follows:
 
-d<img src="/assets/nlp/manifold/Untitled 2.png" alt="546" style="zoom: 33%;" />
+d<img src="/assets/manifold/Untitled 2.png" alt="546" style="zoom: 33%;" />
 
 **Path-connectedness**
 
@@ -424,14 +412,14 @@ and we have a continuous function \\(f\\) from \\([0,1]\\) to \\(X\\) such that 
 If you are path connected, you are connected.
 
 
-<img src="/assets/nlp/manifold/Untitled 3.png" alt="526" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled 3.png" alt="526" style="zoom: 33%;" />
 
 
 ## Homotopy
 
 Definition: A continuous transformation from one function to another. A homotopy between functions \\(f\\) and \\(g\\) from a space \\(X\\) to a space \\(Y\\) is a continuous map \\(G\\) from \\(X \times [0,1] \rightarrow Y\\) such that \\(G(x,0)=f(x)\\) and \\(G(x,1)=g(x)\\) where \\(\times\\) denotes set pairing. another way of saying this is that a homotopy is a path in the mapping space \\(\operatorname{Map}(X,Y)\\) from the first function to the second. Two mathematical objects are said to be [homotopic](https://mathworld.wolfram.com/Homotopic.html) if one can be continuously deformed into the other.
 
-<img src="/assets/nlp/manifold/Untitled 4.png" alt="527" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled 4.png" alt="527" style="zoom: 33%;" />
 
 The doughnut have different homotopies of paths because of the hole in the space. I.e. the blue function of path-connectedness behaves vastly different from that of the red line, and the green line and vice versa. However in the topological space of \\(X\\), the red line and the blue line and the green line can be deformed to the other (this is called “simply connected” \\(C \sim X\\)).
 
@@ -491,7 +479,7 @@ IF you are second countable, you are definitely  first countable, but not the ot
 
 	11:31 [youtube](https://www.youtube.com/watch?v=L1MC5GvlxPI&list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo&index=4)
 
-<img src="/assets/nlp/manifold/Untitled-6515262.png" alt="520" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515262.png" alt="520" style="zoom: 33%;" />
 
 We want to have second countable properties when working with manifolds.
 
@@ -538,7 +526,7 @@ If \\(f(x)\\) is a point in \\(Y\\), and \\(x\\) is a point in \\(X\\). And \\(u
 
 So for every \\(v\\) that is an open neighbourhood of \\(f(x)\\), for the function to be continuous, I need to be able to find an open neighbourhood in \\(x\\) with that entire open neighbourhood maps to a subset of the open neighbourhood in \\(v\\).
 
-<img src="/assets/nlp/manifold/Untitled 1.png" alt="220" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled 1.png" alt="220" style="zoom: 33%;" />
 
 **Examples:**
 
@@ -577,7 +565,7 @@ Let \\(\lambda\\) be any point on an open line, \\(\lambda \in \mathbb{R}\\).
 
 Let the function \\(f\\) map \\(\lambda\\) to X,  \\(f(\lambda) \in X\\) because \\(f(\lambda): \mathbb{R} \rightarrow X\\)
 
-<img src="/assets/nlp/manifold/Untitled-6515580.png" alt="120" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515580.png" alt="120" style="zoom: 33%;" />
 
 
 This picture tells that to construct curves and use them  for calculus, we can map then onto the differential manifold and then map them to a euclidean range, in this case \\(\mathbb{R}^2\\) with the usual topology. Hence to optain the coordinates in the chart, \\((a,b) = \gamma \circ f(\lambda_i) \in \mathbb{R}^2\\), for a given value of \\(\lambda\\). We really need the chart \\(\gamma\\) for this whole thing to work, otherwise we would not be able to obtain coordinates. 
@@ -598,7 +586,7 @@ We could also view \\(\gamma(p) = \left(\alpha^1(p), \alpha^2(p)\right)\\), here
 
 ## General relativity reference
 
-<img src="/assets/nlp/manifold/Untitled 1-6515584.png" alt="12" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled 1-6515584.png" alt="12" style="zoom: 33%;" />
 
 This picture shows how a new coordinate \\(X^{0^{\prime} }\\) is a function of old coordinates. 
 
@@ -619,7 +607,7 @@ Is \\(f\\) a differentiable function?
 \\(f : X \rightarrow Y\\), where \\(X\\) is a differentiable manifold \\((X, \mathcal{T}_X, \mathcal{A})\\), and \\(Y\\) is a differentiable manifold \\((Y,\mathcal{T}_Y,\mathcal{B})\\)
 
 
-<img src="/assets/nlp/manifold/Untitled 2-6515589.png" alt="12123123" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled 2-6515589.png" alt="12123123" style="zoom: 33%;" />
 
 Instead of using transition functions from one chart to another of an atlas, can we transition from one manifold to another? (this is marked with the purple line)
 
@@ -652,7 +640,7 @@ What is the distinction between DM and TM?
 
 All of these charts cover the entire topological space \\(X\\), which forms the atlas. Locally each chart cover an open neighborhood which is an open subset of the topology. And each chart region is locally homeomorphic to some region of the euclidean space \\(\mathbb{R}^d = \mathbb{R} \times \mathbb{R} \times \dots \times \mathbb{R}_d\\) where \\(\times\\) is the cartesian product, which yields ordered pairs that can be used as coordinates in the euclidean space.
 
-<img src="/assets/nlp/manifold/Untitled-6515497.png" alt="44444444" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled-6515497.png" alt="44444444" style="zoom: 33%;" />
 
 We can do calculus in the euclidean space!
 
@@ -691,7 +679,7 @@ Instead we say \\(\gamma_2 \circ \gamma_1^{-1}(\gamma_1(p))\\), where \\(\gamma_
 It transitions from one chart to another! and we can take derivatives of this, because it maps from \\(\mathbb{R}^d \rightarrow \mathbb{R}^d\\)
 
 
-<img src="/assets/nlp/manifold/Untitled 1-6515493.png" alt="r2" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled 1-6515493.png" alt="r2" style="zoom: 33%;" />
 
 These functions can be made given we have a topological manifold. Because the composition of the two functions \\(\gamma\\) are continuous, \\(\gamma_i \circ \gamma_j^{-1}\\) is also continuous. Given we have a topological manifold, we are guarranteed that the composition functions are continuous. This means they are at least \\(C^0\\). 
 
@@ -729,7 +717,7 @@ This is the perferct differentiable manifold, however some loosen the criteria a
 
 We go back to the sphere and we want to map it to \\(\mathbb{R}^2\\) with the usual topology.
 
-<img src="/assets/nlp/manifold/Untitled 2-6515488.png" alt="r3" style="zoom: 33%;" />
+<img src="/assets/manifold/Untitled 2-6515488.png" alt="r3" style="zoom: 33%;" />
 
 In principle, the R2 is different from \\(\gamma_1(p)\\) and  \\(\gamma_2(p)\\), but we use it for illustrational ease. 
 
