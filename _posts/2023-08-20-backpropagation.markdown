@@ -214,7 +214,7 @@ $$
 \end{align*}
 $$
 
-We know that differentiating with respect to the bias, which has an additive relation to \\(z_j^l\\) (\\(z_j^l = ∑_k w_{jk}^la_k^l − 1 + b_j^l) \\), the derivative \\(\frac{\partial b^l_j}{\partial z^l_j} = 1\\).
+We know that differentiating with respect to the bias, which has an additive relation to \\(z_j^l\\) \\(z_j^l = ∑_k w_{jk}^la_k^l − 1 + b_j^l \\), the derivative \\(\frac{\partial b^l_j}{\partial z^l_j} = 1\\).
 
 Therefore:
 
@@ -250,7 +250,7 @@ $$
 \end{align*}
 $$
 
-since \\(\frac{\partial C}{\partial z^l_j}=\delta^l_j\\), and \\(z_j^l = ∑_k w_{jk}^la_k^l − 1 + b_j^l) \\) , the partial derivative is \\(\frac{\partial z^l_j}{\partial w_{jk}^l} = a_k^{l-1}\\).
+since \\(\frac{\partial C}{\partial z^l_j}=\delta^l_j\\), and \\(z_j^l = ∑_k w_{jk}^la_k^l − 1 + b_j^l \\) , the partial derivative is \\(\frac{\partial z^l_j}{\partial w_{jk}^l} = a_k^{l-1}\\).
 
 Thus we can rewrite the expression above and finish the proof:
 
