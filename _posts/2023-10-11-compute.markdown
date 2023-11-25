@@ -12,9 +12,25 @@ mathjax: true
 >
 > Alfred North Whitehead, AN Introduction to Mathematics, 1911
 
-[TOC]
 
-![image-20230729211418372](/assets/compute/image-20230729211418372.png)
+<img src="/assets/compute/image-20230729211418372.png" alt="image-20230729211418372" style="zoom:22%;" />
+
+
+- [Chapter 1](#chapter-1)
+	- [Recent trends](#recent-trends)
+	- [Chapter 1](#chapter-1-1)
+		- [Great ideas in computer architecture](#great-ideas-in-computer-architecture)
+		- [Basic functions of the underlying hardware:](#basic-functions-of-the-underlying-hardware)
+			- [The processor:](#the-processor)
+			- [Memory:](#memory)
+			- [Language](#language)
+		- [Big pictures](#big-pictures)
+		- [Safe place for data (how it is stored when we shut the pc down)](#safe-place-for-data-how-it-is-stored-when-we-shut-the-pc-down)
+		- [Tech for building processors](#tech-for-building-processors)
+			- [How a chip is made:](#how-a-chip-is-made)
+		- [Performance](#performance)
+
+
 
 # Chapter 1
 
@@ -40,7 +56,7 @@ Understanding program performance
 
 
 
-| Hardware / software component                    | How component affects performance                            | Where this topic is covered |
+| **Hardware / software component**                    | **How component affects performance**                            | **Where this topic is covered** |
 | ------------------------------------------------ | ------------------------------------------------------------ | --------------------------- |
 | Algorithm                                        | Determines the number of source-level statements and the number of I/O operations executed | Other books                 |
 | Programming language, compiler, and architecture | Determines the number of computer instructions for each source-level statement | C2,3                        |
@@ -180,27 +196,39 @@ Differentiating between system and user CPU time is difficult to do accurately, 
 `clock cycle`: the time for one clock period (usually of the processor clock which runs at a constant rate). A clock rate is the inverse of a clock cycle.
 
 CPU execution time for a program = CPU clock cycles for a program times Clock cycle time
+
 $$
+\begin{align}
 \text{CPU execution time for a program} =  \\\text{CPU clock cycles for a program} \times \text{Clock cycle time}=   \\
 \frac{\text{CPU clock cycles for a program} }{\text{Clock rate} }
+\end{align}
 $$
+
 because CPU cycle time and Clock rate are in an inverse relationship.
 
 
 
 CPU clock cycles can be understood as the number instructions executed multiplied by the average time per instruction:
+
 $$
+\begin{align}
 \text{CPU clock cycles} = & \\ \text{Instructions for a program}  \times  \text{Average clock cycles per instruction}
+\end{align}
 $$
+
 `clock cycles per instruction (CPI)`: average number of clock cycles each instruction takes to execute. \\(\text{CPI} = \frac{\text{CPU clock cycles} }{\text{Instruction count} }\\).
 
 **The classic equations:**
 
 This lead us to CPU time in terms of instruction count (# of instructions executed by a program): 
+
 $$
+\begin{align}
 \text{CPU time} & = & \text{Instruction count} \times \text{CPI} \times \text{Clock cycle time} \\ 
 & = & \text{Instruction count} \times \text{CPI} \times \text{Clock rate}^{-1}
+\end{align}
 $$
+
 These formulas are particularly useful because they separate the three key factors that affect performance. We can use these formulas to compare two different implementations or to evaluate a design alternative if we know its impact on these three parameters.
 
 

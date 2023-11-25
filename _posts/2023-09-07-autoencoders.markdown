@@ -14,6 +14,22 @@ In brief, an autoencoder is a neural network that attempts to “copy” its inp
 These notes are deeply inspired by the book [Deep Learning](https://www.deeplearningbook.org/contents/autoencoders.html) by Ian Goodfellow, Yoshua Bengio and Aaron Courville.
 
 
+- [Autoencoders](#autoencoders)
+	- [Undercomplete Autoencoders](#undercomplete-autoencoders)
+	- [Regularized autoencoders](#regularized-autoencoders)
+		- [Sparse autoencoders](#sparse-autoencoders)
+	- [Stochastic Encoders and decoders](#stochastic-encoders-and-decoders)
+	- [Denoising Autoencoders (DAEs)](#denoising-autoencoders-daes)
+		- [Score matching](#score-matching)
+	- [Learning manifolds with Autoencoders](#learning-manifolds-with-autoencoders)
+		- [Manifolds:](#manifolds)
+	- [Contractive autoencoder](#contractive-autoencoder)
+- [Probabilistic approach to latent variable models](#probabilistic-approach-to-latent-variable-models)
+- [Variational Autoencoders](#variational-autoencoders)
+	- [Handle integration by sampling](#handle-integration-by-sampling)
+	- [Deep learning book:](#deep-learning-book)
+
+
 
 The network consists of two parts: an **encoder** and a **decoder**, the encoder translates input into an intermediate state. The decoder takes this intermediate state and tries to output something that is approximates the input.
 
@@ -146,7 +162,7 @@ An autoencoder that has been regularized to be sparse must respond to unique sta
 
 We can think of the penalty Ω(h) simply as a regularizer term added to a feedforward network whose primary task is to copy the input to the output
 
-****Relation to bayesian inference****
+**Relation to bayesian inference**
 
 [Bayesian statistics](../math/statistics/bayesian_stat.md)
 
@@ -170,7 +186,7 @@ This is a different kind of prior. It's not about the model parameters but about
 In the context of a generative model like a Variational Autoencoder or a Gaussian Mixture Model, pmodel(h) represents the model's belief about what kinds of latent variables are likely before it sees any actual data *x*.
 
 Suppose we have a model with visible variables \\(\boldsymbol{x}\\) and latent variables \\(\boldsymbol{h}\\), with an explicit joint distribution 
-\\(p_{\text{model} }(\boldsymbol{x},\boldsymbol{h}) = p_{\text{model} }(\boldsymbol{h})p_{\text{model} }(\boldsymbol{x}|\boldsymbol{h})\\) .
+\\(p_{\text{model} }(\boldsymbol{x},\boldsymbol{h}) = p_{\text{model} }(\boldsymbol{h})p_{\text{model} }(\boldsymbol{x}\mid\boldsymbol{h})\\) .
 
 Here \\(p_{\text{model} }(\boldsymbol{h})\\) is understood as the model’s prior distribution over the latent variables, representing the model’s beliefs prior to seeing \\(\boldsymbol{x}\\).
 
@@ -192,7 +208,7 @@ From this point of view, with the chosen ***h*** we are maximizing:
 
 $$
 \begin{align}
-	\log p_{\text{model} }(\boldsymbol{h},\boldsymbol{x}) = \log p_{\text{model} }(\boldsymbol{h}) + \log p_{\text{model} }(\boldsymbol{x}|\boldsymbol{h}).
+	\log p_{\text{model} }(\boldsymbol{h},\boldsymbol{x}) = \log p_{\text{model} }(\boldsymbol{h}) + \log p_{\text{model} }(\boldsymbol{x}\mid\boldsymbol{h}).
 \end{align}
 $$
 
@@ -200,7 +216,7 @@ $$
 
 $$
 \begin{align}
-p_{\text{model} }(h_i)=\frac{\lambda}{2}e^{-\lambda|h_i|},	
+p_{\text{model} }(h_i)=\frac{\lambda}{2}e^{-\lambda\midh_i\mid},	
 \end{align}
 $$
 
@@ -208,13 +224,13 @@ corresponds to the absolute value sparsity penalty. Expressing the log-prior as 
 
 $$
 \begin{align}
-\Omega(\boldsymbol{h}) = \lambda\sum_i|h_i|	
+\Omega(\boldsymbol{h}) = \lambda\sum_i\midh_i\mid	
 \end{align}
 $$
 
 $$
 \begin{align}
--\log p_{\text{model} }(\boldsymbol{h}) = \sum_i\left(\lambda|h_i|-\log\frac{\lambda}{2}\right) = \Omega(\boldsymbol{h})+\text{const}	
+-\log p_{\text{model} }(\boldsymbol{h}) = \sum_i\left(\lambda\midh_i\mid-\log\frac{\lambda}{2}\right) = \Omega(\boldsymbol{h})+\text{const}	
 \end{align}
 $$
 
@@ -246,7 +262,7 @@ Stochastic encoder:
 
 $$
 \begin{align}
-p(\boldsymbol{h}|\boldsymbol{x}) = \mathcal{N}(\boldsymbol{h}, \mu(\boldsymbol{x}), \sigma(\boldsymbol{x}))
+p(\boldsymbol{h}\mid\boldsymbol{x}) = \mathcal{N}(\boldsymbol{h}, \mu(\boldsymbol{x}), \sigma(\boldsymbol{x}))
 \end{align}
 $$
 
@@ -254,7 +270,7 @@ Stochastic decoder:
 
 $$
 \begin{align}
-p(\boldsymbol{x} | \boldsymbol{h}) = \mathcal{N}(\boldsymbol{x};\mu(\boldsymbol{h}),\sigma(\boldsymbol{h}))	
+p(\boldsymbol{x} \mid \boldsymbol{h}) = \mathcal{N}(\boldsymbol{x};\mu(\boldsymbol{h}),\sigma(\boldsymbol{h}))	
 \end{align}
 $$
 
@@ -268,71 +284,82 @@ The denoising autoencoder (DAE) is an autoencoder that receives a corrupted data
 
 How does it work?
 
-We define a corruption process to corrupt X: 
-\[
-	C(\tilde{\boldsymbol{x} } | \boldsymbol{x})
-\], then we store both the corrupted and the non-corrupted data somewhere. 
+We define a corruption process to corrupt X:
+
+$$
+	C(\tilde{\boldsymbol{x} } \mid \boldsymbol{x})
+$$
+
+, then we store both the corrupted and the non-corrupted data somewhere. 
 
 We sample a training example \\(\boldsymbol{x}\\) from the training data, and \\(\tilde{\boldsymbol{x} }\\) from the corrupted version 
-\[
-	C(\tilde{\textbf{x} }|\textbf{x} = \boldsymbol{x})
-\].
+
+$$
+	C(\tilde{\textbf{x} }\mid\textbf{x} = \boldsymbol{x}) .
+$$
 
 We then use \\((\boldsymbol{x}, \tilde{\boldsymbol{x} })\\) as a training example for estimating the autoencoder reconstruction distribution: 
-\[
-	p_{\text{reconstruct} }(\boldsymbol{x}|\tilde{\boldsymbol{x} }) = p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})
-\], where the \\(\boldsymbol{h}\\) is the output of the encoder \\(f(\tilde{\boldsymbol{x}})\\).
+
+$$
+	p_{\text{reconstruct} }(\boldsymbol{x}\mid\tilde{\boldsymbol{x} }) = p_{\text{decoder} }(\boldsymbol{x}\mid\boldsymbol{h})
+$$
+
+, where the \\(\boldsymbol{h}\\) is the output of the encoder \\(f(\tilde{\boldsymbol{x}})\\).
 
 Optimization: 
 
 We can perform gradient-based approximate minimization such as minibatch gradient descent on the negative log likelihood: 
-\[
-	-\log p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})
-\]. So long as the encoder is deterministic, the denoising autoencoder is a feedforward network and may be trained with exactly the same techniques as any other feedforward network.
+
+$$
+	-\log p_{\text{decoder} }(\boldsymbol{x}\mid\boldsymbol{h})
+$$
+
+So long as the encoder is deterministic, the denoising autoencoder is a feedforward network and may be trained with exactly the same techniques as any other feedforward network.
 
 We can therefore view the DAE as performing stochastic gradient descent on the following expectation:
 
 $$
--\mathbb{E}_{\textbf{x}\sim \hat{p}_\text{data} }\mathbb{E}_{\tilde{\textbf{x} }\sim C(\tilde{\textbf{x} }|\textbf{x})}\log p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h} = f\left(\tilde{\boldsymbol{x} })\right)
+-\mathbb{E}_{\textbf{x}\sim \hat{p}_\text{data} }\mathbb{E}_{\tilde{\textbf{x} }\sim C(\tilde{\textbf{x} }\mid\textbf{x})}\log p_{\text{decoder} }(\boldsymbol{x}\mid\boldsymbol{h} = f\left(\tilde{\boldsymbol{x} })\right)
 $$
 
 Where \\(\hat{p}_{\text{data} }(\textbf{x})\\) is the training distribution
 
-- Calculation example (to highlight notation mechanism)
 
-	data points: \\(x_1 = 5, x_2 = 10\\)
+*Calculation example (to highlight notation mechanism)*
 
-	Corrupted versions: 
+data points: \\(x_1 = 5, x_2 = 10\\)
 
-	x1: \\(\tilde{x}_{1,1} = 4, \tilde{x}_{1,2}=6\\)
+Corrupted versions: 
 
-	x2: \\(\tilde{x}_{2,1} = 9, \tilde{x}_{2,2}=11\\)
+x1: \\(\tilde{x}_{1,1} = 4, \tilde{x}_{1,2}=6\\)
 
-	Encoder-decoder gives:
+x2: \\(\tilde{x}_{2,1} = 9, \tilde{x}_{2,2}=11\\)
 
-	\\(f(4)=h_{1,1}=0.8, f(6)=h_{1,2}=1.2\\)
+Encoder-decoder gives:
 
-	\\(f(9)=h_{2,1}=1.8, f(11)=h_{2,2}=2.2\\)
+\\(f(4)=h_{1,1}=0.8, f(6)=h_{1,2}=1.2\\)
 
-	Assume log likelihood constructions are:
+\\(f(9)=h_{2,1}=1.8, f(11)=h_{2,2}=2.2\\)
 
-	\\(\log p_{\text{decoder} }(5|h_{1,1}) = -0.1, \log p_{\text{decoder} }(5|h_{1,2}) = -0.2\\)
+Assume log likelihood constructions are:
 
-	\\(\log p_{\text{decoder} }(10|h_{2,1}) = -0.3, \log p_{\text{decoder} }(10|h_{2,2}) = -0.4\\)
+\\(\log p_{\text{decoder} }(5\midh_{1,1}) = -0.1, \log p_{\text{decoder} }(5\midh_{1,2}) = -0.2\\)
 
-	Calculate objective:
+\\(\log p_{\text{decoder} }(10\midh_{2,1}) = -0.3, \log p_{\text{decoder} }(10\midh_{2,2}) = -0.4\\)
 
-	$$
-	\begin{align*}
-	& -\mathbb{E}_{\textbf{x}\sim \hat{p}_\text{data} }\mathbb{E}_{\tilde{\textbf{x} }\sim C(\tilde{\textbf{x} }|\textbf{x})}\log p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h} = f\left(\tilde{\boldsymbol{x} })\right) =  \\ & -\frac{1}{2}(\frac{-0.1 + -0.2}{2} + \frac{-0.3 + -0.4}{2}) = \\ & - \frac{1}{2}(-0.15 + -0.35) = -\frac{1}{2} \cdot -0.5 = 0.25
-	\end{align*}
-	$$
+Calculate objective:
+
+$$
+\begin{align*}
+& -\mathbb{E}_{\textbf{x}\sim \hat{p}_\text{data} }\mathbb{E}_{\tilde{\textbf{x} }\sim C(\tilde{\textbf{x} }\mid\textbf{x})}\log p_{\text{decoder} }(\boldsymbol{x}\mid\boldsymbol{h} = f\left(\tilde{\boldsymbol{x} })\right) =  \\ & -\frac{1}{2}(\frac{-0.1 + -0.2}{2} + \frac{-0.3 + -0.4}{2}) = \\ & - \frac{1}{2}(-0.15 + -0.35) = -\frac{1}{2} \cdot -0.5 = 0.25
+\end{align*}
+$$
 
 So really, the inner expectation calculates the expectation term for each sample x in **x**. Empirically, this is the average.
 
-Since |**x**| = 2, we do this twice. We then add these together and divide by 2 to get the outer mean (the empirical approximation to the outer expectation).
+Since \mid**x**\mid = 2, we do this twice. We then add these together and divide by 2 to get the outer mean (the empirical approximation to the outer expectation).
 
-<img src="assets/Screenshot_2023-09-14_at_19.16.17.png" alt="Screenshot 2023-09-14 at 19.16.17.png" style="zoom: 33%;" />
+<img src="assets/architectures/Screenshot_2023-09-14_at_19.16.17.png" alt="Screenshot 2023-09-14 at 19.16.17.png" style="zoom: 33%;" />
 
 ### Score matching
 
@@ -373,7 +400,7 @@ The vector points in the direction in which log p(x) increases most rapidly.
 
 Learning the gradient field of \\(\log p_{\text{data} }\\) is one way to learn the structure of \\(p_{\text{data} }\\) itself. 
 
-A very important property of DAEs is that their training criterion (with conditionally Gaussian p(x | h)) makes the autoencoder learn a vector field (g(f(x)) − x) that estimates the score of the data distribution. (figure 14.4)
+A very important property of DAEs is that their training criterion (with conditionally Gaussian p(x \mid h)) makes the autoencoder learn a vector field (g(f(x)) − x) that estimates the score of the data distribution. (figure 14.4)
 
 ## Learning manifolds with Autoencoders
 
@@ -447,13 +474,13 @@ $$
 We have an inference step, that is finding the posterior distribution of \\(z\\) given an \\(x\\), which corresponds to reversing the conditionals using Bayes theorem:
 
 $$
-z \sim p(z|x)=\frac{p(x|z)p(z)}{p(x)}
+z \sim p(z\midx)=\frac{p(x\midz)p(z)}{p(x)}
 $$
 
 We have a likelihood step:
 
 $$
-p(x) = \int p(x|z)p(z)dz
+p(x) = \int p(x\midz)p(z)dz
 $$
 
 Learning: 
@@ -473,7 +500,7 @@ This leads to the Variational autoencoder;
 Decoder
 
 $$
-p_\theta(x|z)=\mathcal{N}\left(x|\underbrace{\mu_\theta(z)}_{\text {FFNN } }, \underbrace{\operatorname{diag}\left(\sigma_\theta^2(z)\right)}_{\text {FFNN} }\right)
+p_\theta(x\midz)=\mathcal{N}\left(x\mid\underbrace{\mu_\theta(z)}_{\text {FFNN } }, \underbrace{\operatorname{diag}\left(\sigma_\theta^2(z)\right)}_{\text {FFNN} }\right)
 $$
 
 Assume \\(x\\) is continuous, then we can model \\(x\\)’s distribution with a gaussian normal distribution, and we use neural networks to describe the mean and the variance.
@@ -485,7 +512,7 @@ So our NN is now used as a mapping from \\(z\\) to a mean value and a variance v
 Encoder:
 
 $$
-q_\phi(z|x)=\mathcal{N}\left(z|\underbrace{\mu_\phi(x)}_{\text{FFNN} }, \underbrace{\operatorname{diag}\left(\sigma^2_\phi(x)\right)}_{\text{FFNN} }\right)
+q_\phi(z\midx)=\mathcal{N}\left(z\mid\underbrace{\mu_\phi(x)}_{\text{FFNN} }, \underbrace{\operatorname{diag}\left(\sigma^2_\phi(x)\right)}_{\text{FFNN} }\right)
 $$
 
 The encoder goes the other way around, it maps input \\(x\\) to a mean and variance of \\(z\\).
@@ -501,7 +528,7 @@ $$
 $$
 
 $$
-\begin{align*}\log p_\theta(x) & \geq \mathcal{L}_{\theta, \phi}(x) = \color{red} \int q_{\theta}(z|x)\log \left(\frac{p_\theta(x|z)p(z)}{q_\phi(z|x)}\right)dz \\ & = \underbrace{\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]}_{\mathbb{E}_q \log\text{likelihood} }+ \underbrace{\mathbb{E}_{q_\phi(z|x)}\left[\log\frac{p(z)}{q_\phi (z|x)}\right]}_{\text{regularization} }\end{align*}
+\begin{align*}\log p_\theta(x) & \geq \mathcal{L}_{\theta, \phi}(x) = \color{red} \int q_{\theta}(z\midx)\log \left(\frac{p_\theta(x\midz)p(z)}{q_\phi(z\midx)}\right)dz \\ & = \underbrace{\mathbb{E}_{q_\phi(z\midx)}[\log p_\theta(x\midz)]}_{\mathbb{E}_q \log\text{likelihood} }+ \underbrace{\mathbb{E}_{q_\phi(z\midx)}\left[\log\frac{p(z)}{q_\phi (z\midx)}\right]}_{\text{regularization} }\end{align*}
 $$
 
 We can write a lower bound of the likelihood. It is still an integral over \\(z\\), but it turns out, it is much easier to evaluate than the original integral.
@@ -517,7 +544,7 @@ And then we have a regularization term, it has the log of the prior distribution
 
 
 The regularization term is essentially the KL divergence between the encoders distribution 
-\\( q_\phi(z|x) \\) and the prior \\( p(z) \\).
+\\( q_\phi(z\midx) \\) and the prior \\( p(z) \\).
 
 - The original \\(\log p_\theta(x)\\) is hard to compute but \\(\mathcal{L}_{\theta, \phi}(x)\\) is a 
 
@@ -533,13 +560,13 @@ The regularization term is essentially the KL divergence between the encoders di
 Remember:
 
 $$
-\log p_\theta(x) \geq \mathcal{L}_{\theta, \phi}(x) = \int q_{\theta}(z|x)\log \left(\frac{p_\theta(x|z)p(z)}{q_\phi(z|x)}\right)dz 
+\log p_\theta(x) \geq \mathcal{L}_{\theta, \phi}(x) = \int q_{\theta}(z\midx)\log \left(\frac{p_\theta(x\midz)p(z)}{q_\phi(z\midx)}\right)dz 
 $$
 
 We can approximate:
 
 $$
-\mathcal{L}_{\theta, \phi}(x) \approx \frac{1}{R}\sum_{r=1}^R\log \frac{p_\theta(x|z^r)p(z^r)}{q_\phi(z^r|x)}, \\z^r = \mu_\phi(x)+\sigma_\phi(x) \otimes \epsilon^r
+\mathcal{L}_{\theta, \phi}(x) \approx \frac{1}{R}\sum_{r=1}^R\log \frac{p_\theta(x\midz^r)p(z^r)}{q_\phi(z^r\midx)}, \\z^r = \mu_\phi(x)+\sigma_\phi(x) \otimes \epsilon^r
 $$
 
 Instead of using \\(z\\) as a stochastic variable, we can use $\epsilon$ which is a normally distributed variable with $0$ mean and unit variance. It has no parameters and we have replaced all occurrences in the integral by this deterministic mean functions times the standard deviation times this noise we draw from this simple normal distribution
@@ -552,7 +579,7 @@ The variational distribution is of course limited in a way, that we have taken a
 
 **Encoder**  \\(z = \mu_\phi(x) + \sigma(x) \otimes \epsilon\\)
 
-**Decoder**  \\(p_\theta(x|z) = \mathcal{N}\left(x|\mu_\theta(z),\operatorname{diag}(\sigma^2_\theta(z))\right)\\)
+**Decoder**  \\(p_\theta(x\midz) = \mathcal{N}\left(x\mid\mu_\theta(z),\operatorname{diag}(\sigma^2_\theta(z))\right)\\)
 
 - We allow us to compute the conditional density of our observed observation \\(x\\).
 
@@ -565,16 +592,16 @@ The variational distribution is of course limited in a way, that we have taken a
 
 How it works:
 
-To generate a sample from the model, VAE draws a sample \\(\boldsymbol{z}\\) from the coding distribution \\(p_{\text{model} }(\boldsymbol{z})\\). This sample then run through a differentiable generator network \\(g(\boldsymbol{z})\\). Finally \\(\boldsymbol{x}\\) is sampled from a distribution \\(p_{\text{model} }(\boldsymbol{x};g(\boldsymbol{z})) = p_{\text{model} }(\boldsymbol{x}|\boldsymbol{z})\\). 
+To generate a sample from the model, VAE draws a sample \\(\boldsymbol{z}\\) from the coding distribution \\(p_{\text{model} }(\boldsymbol{z})\\). This sample then run through a differentiable generator network \\(g(\boldsymbol{z})\\). Finally \\(\boldsymbol{x}\\) is sampled from a distribution \\(p_{\text{model} }(\boldsymbol{x};g(\boldsymbol{z})) = p_{\text{model} }(\boldsymbol{x}\mid\boldsymbol{z})\\). 
 
-However, during training, the approximate inference network (or encoder) \\(q(\boldsymbol{z}|\boldsymbol{x})\\) is used to obtain \\(\boldsymbol{z}\\) and \\(p_{\text{model} }(\boldsymbol{x}|\boldsymbol{z})\\) is then viewed as the decoder network.
+However, during training, the approximate inference network (or encoder) \\(q(\boldsymbol{z}\mid\boldsymbol{x})\\) is used to obtain \\(\boldsymbol{z}\\) and \\(p_{\text{model} }(\boldsymbol{x}\mid\boldsymbol{z})\\) is then viewed as the decoder network.
 
 The key insight behind VAEs is that they can be trained by maximizing the variational lower bound \\(\mathcal{L}(q)\\) associated with data point \\(\boldsymbol{x}\\):
 
  
 
 \[
-\begin{align} \mathcal{L}(q) & = \mathbb{E}_{\boldsymbol{z} \sim q(\boldsymbol{z} | \boldsymbol{x})\log p_{\text{model} } (\boldsymbol{z}|\boldsymbol{x}) + \mathcal{H}(q(\textbf{z}|\boldsymbol{x}))} \\ &= \mathbb{E}_{\boldsymbol{z} \sim q(\boldsymbol{z} | \boldsymbol{x})\log p_{\text{model} } (\boldsymbol{x}|\boldsymbol{z})} - D_{KL}(q(\textbf{z}|\boldsymbol{x})\|p_{\text{model} }(\textbf{z})) \\ & \leq \log p_{\text{model} }(\boldsymbol{x}). \end{align}
+\begin{align} \mathcal{L}(q) & = \mathbb{E}_{\boldsymbol{z} \sim q(\boldsymbol{z} \mid \boldsymbol{x})\log p_{\text{model} } (\boldsymbol{z}\mid\boldsymbol{x}) + \mathcal{H}(q(\textbf{z}\mid\boldsymbol{x}))} \\ &= \mathbb{E}_{\boldsymbol{z} \sim q(\boldsymbol{z} \mid \boldsymbol{x})\log p_{\text{model} } (\boldsymbol{x}\mid\boldsymbol{z})} - D_{KL}(q(\textbf{z}\mid\boldsymbol{x})\|p_{\text{model} }(\textbf{z})) \\ & \leq \log p_{\text{model} }(\boldsymbol{x}). \end{align}
 \]
 
 VAE Pytorch implementation:
