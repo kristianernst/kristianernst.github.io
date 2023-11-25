@@ -333,11 +333,11 @@ Corrupted versions:
 
 x1: 
 
-\\( \tilde{x}_{1,1} = 4, \tilde{x}_{1,2}=6 \\)
+$$\tilde{x}_{1,1} = 4, \tilde{x}_{1,2}=6$$
 
 x2: 
 
-\\(\tilde{x}_{2,1} = 9, \tilde{x}_{2,2}=11\\)
+$$\tilde{x}_{2,1} = 9, \tilde{x}_{2,2}=11$$
 
 Encoder-decoder gives:
 
