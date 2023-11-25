@@ -268,15 +268,27 @@ The denoising autoencoder (DAE) is an autoencoder that receives a corrupted data
 
 How does it work?
 
-We define a corruption process to corrupt X: \\(C(\tilde{\boldsymbol{x} } | \boldsymbol{x})\\), then we store both the corrupted and the non-corrupted data somewhere. 
+We define a corruption process to corrupt X: 
+\[
+	C(\tilde{\boldsymbol{x} } | \boldsymbol{x})
+\], then we store both the corrupted and the non-corrupted data somewhere. 
 
-We sample a training example \\(\boldsymbol{x}\\) from the training data, and \\(\tilde{\boldsymbol{x} }\\) from the corrupted version \\(C(\tilde{\textbf{x} }|\textbf{x} = \boldsymbol{x})\\).
+We sample a training example \\(\boldsymbol{x}\\) from the training data, and \\(\tilde{\boldsymbol{x} }\\) from the corrupted version 
+\[
+	C(\tilde{\textbf{x} }|\textbf{x} = \boldsymbol{x})
+\].
 
-We then use \\((\boldsymbol{x}, \tilde{\boldsymbol{x} })\\) as a training example for estimating the autoencoder reconstruction distribution: \\(p_{\text{reconstruct} }(\boldsymbol{x}|\tilde{\boldsymbol{x} }) = p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})\\), where the \\(\boldsymbol{h}\\) is the output of the encoder \\(f(\tilde{\boldsymbol{x} })\\).
+We then use \\((\boldsymbol{x}, \tilde{\boldsymbol{x} })\\) as a training example for estimating the autoencoder reconstruction distribution: 
+\[
+	p_{\text{reconstruct} }(\boldsymbol{x}|\tilde{\boldsymbol{x} }) = p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})
+\], where the \\(\boldsymbol{h}\\) is the output of the encoder \\(f(\tilde{\boldsymbol{x}})\\).
 
 Optimization: 
 
-We can perform gradient-based approximate minimization such as minibatch gradient descent on the negative log likelihood: \\(-\log p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})\\). So long as the encoder is deterministic, the denoising autoencoder is a feedforward network and may be trained with exactly the same techniques as any other feedforward network.
+We can perform gradient-based approximate minimization such as minibatch gradient descent on the negative log likelihood: 
+\[
+	-\log p_{\text{decoder} }(\boldsymbol{x}|\boldsymbol{h})
+\]. So long as the encoder is deterministic, the denoising autoencoder is a feedforward network and may be trained with exactly the same techniques as any other feedforward network.
 
 We can therefore view the DAE as performing stochastic gradient descent on the following expectation:
 
@@ -464,11 +476,11 @@ $$
 p_\theta(x|z)=\mathcal{N}\left(x|\underbrace{\mu_\theta(z)}_{\text {FFNN } }, \underbrace{\operatorname{diag}\left(\sigma_\theta^2(z)\right)}_{\text {FFNN} }\right)
 $$
 
-Assume $x$ is continuous, then we can model \\(x\\)’s distribution with a gaussian normal distribution, and we use neural networks to describe the mean and the variance.
+Assume \\(x\\) is continuous, then we can model \\(x\\)’s distribution with a gaussian normal distribution, and we use neural networks to describe the mean and the variance.
 
 The specific value of the mean and variance will depend on the specific value of the latent variable
 
-So our NN is now used as a mapping from $z$ to a mean value and a variance value.
+So our NN is now used as a mapping from \\(z\\) to a mean value and a variance value.
 
 Encoder:
 
@@ -476,7 +488,7 @@ $$
 q_\phi(z|x)=\mathcal{N}\left(z|\underbrace{\mu_\phi(x)}_{\text{FFNN} }, \underbrace{\operatorname{diag}\left(\sigma^2_\phi(x)\right)}_{\text{FFNN} }\right)
 $$
 
-The encoder goes the other way around, it maps input $x$ to a mean and variance of $z$.
+The encoder goes the other way around, it maps input \\(x\\) to a mean and variance of \\(z\\).
 
 The encoder and decoder are thus two different NNs, there are NO parameter sharing between them.
 
@@ -500,11 +512,16 @@ We can decompose the log into two terms, the first term here is the expected val
 
 And then we have a regularization term, it has the log of the prior distribution over the latent space divided by the encoder variational posterior distribution. This is like a KL divergence between $q$ and the prior. We know that that is minimum when the posterior is equal to the prior. This term would actually try to squeeze this q-distribution towards the prior distribution, and if it does that, then it has not learned anything about the data. 
 
-<aside>
-💡 So optimising the variational bound is a tradeoff between fitting the data and getting closer to the prior manifold!
-The regularization term is essentially the KL divergence between the encoders distribution \\(q_\phi(z|x)\\) and the prior \\(p(z)\\).
 
-- The original \\(\log p_\theta(x)\\) is hard to compute but \\(\mathcal{L}_{\theta, \phi}(x)\\) is a **tractable lower bound**
+> 💡 So optimising the variational bound is a tradeoff between fitting the data and getting closer to the prior manifold! 
+
+
+The regularization term is essentially the KL divergence between the encoders distribution 
+\\( q_\phi(z|x) \\) and the prior \\( p(z) \\).
+
+- The original \\(\log p_\theta(x)\\) is hard to compute but \\(\mathcal{L}_{\theta, \phi}(x)\\) is a 
+
+**tractable lower bound**
 
 1. **Two Neural Networks**: One for encoding x to z and another for decoding z to x, with no parameter sharing.
 2. **Gaussian Assumptions**: Both the encoder and decoder output Gaussian distributions, parameterized by neural networks.
@@ -525,7 +542,7 @@ $$
 \mathcal{L}_{\theta, \phi}(x) \approx \frac{1}{R}\sum_{r=1}^R\log \frac{p_\theta(x|z^r)p(z^r)}{q_\phi(z^r|x)}, \\z^r = \mu_\phi(x)+\sigma_\phi(x) \otimes \epsilon^r
 $$
 
-Instead of using $z$ as a stochastic variable, we can use $\epsilon$ which is a normally distributed variable with $0$ mean and unit variance. It has no parameters and we have replaced all occurrences in the integral by this deterministic mean functions times the standard deviation times this noise we draw from this simple normal distribution
+Instead of using \\(z\\) as a stochastic variable, we can use $\epsilon$ which is a normally distributed variable with $0$ mean and unit variance. It has no parameters and we have replaced all occurrences in the integral by this deterministic mean functions times the standard deviation times this noise we draw from this simple normal distribution
 
 Instead of having the integral, we replace it by a sample, usually we set $R$ equal to 1 to get the optimal tradeoff between speed and accuracy.
 
