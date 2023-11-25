@@ -510,11 +510,11 @@ vertical-align: middle;
 .content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.2s ease-out;
+  transition: max-height 0.25s ease-out;
 }
 
 .collapsible.active + .content {
-  max-height: 100vh; /* You can set this to a specific value that fits your content or to 100vh for full viewport height */
+  max-height: 10vh; /* You can set this to a specific value that fits your content or to 100vh for full viewport height */
   overflow: auto; /* Allows scrolling if the content is taller than the max-height */
 }
 

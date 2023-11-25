@@ -32,14 +32,24 @@ function toggleCategory(categoryId) {
   var content = document.getElementById(categoryId);
   var collapsible = content.previousElementSibling;
   
-  // Toggle the "active" class on the button
   collapsible.classList.toggle("active");
-  
-  // Set the max-height to allow the smooth transition effect
+
   if (content.style.maxHeight) {
+    // If collapsing, hide overflow immediately
+    content.style.overflow = 'hidden';
     content.style.maxHeight = null;
   } else {
+    // If expanding, set max-height and wait for transition to end to show overflow
     content.style.maxHeight = content.scrollHeight + "px";
+    content.addEventListener('transitionend', function () {
+      // Only set overflow to auto if the content is still expanded
+      if (content.style.maxHeight) {
+        content.style.overflow = 'auto';
+      }
+    }, {
+      once: true // Remove the event listener after it has been executed
+    });
   } 
 }
+
 </script>
