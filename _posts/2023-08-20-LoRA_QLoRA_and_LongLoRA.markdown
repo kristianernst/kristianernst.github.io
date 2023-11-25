@@ -30,7 +30,7 @@ So motivations?
 
 - It is inconvenient to spend a lot of resources on fine-tuning LLMs with the current rapid development of pre-trained LLMs
 
-[LoRA]([LoRA](https://ernst-hub.github.io/nlp/2023/08/20/LoRA/))
+[LoRA]([LoRA](https://ernst-hub.github.io/nlp/2023/08/20/LoRA/)
 
 [QLoRA] # todo, write
 
