@@ -514,8 +514,6 @@ vertical-align: middle;
 }
 
 .collapsible.active + .content {
-  max-height: 10vh; /* You can set this to a specific value that fits your content or to 100vh for full viewport height */
+  max-height: 25px; /* Adjust this value based on the actual height of your notes */
   overflow: auto; /* Allows scrolling if the content is taller than the max-height */
 }
-
-

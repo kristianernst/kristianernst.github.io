@@ -31,25 +31,31 @@ layout: default
 function toggleCategory(categoryId) {
   var content = document.getElementById(categoryId);
   var collapsible = content.previousElementSibling;
-  
+
+  // Function to run when transition ends
+  function onTransitionEnd() {
+    // Only set overflow to auto if content is expanded
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+      content.style.overflow = 'auto';
+    }
+    // Clean up by removing the event listener
+    content.removeEventListener('transitionend', onTransitionEnd);
+  }
+
+  // Toggle the "active" class on the button
   collapsible.classList.toggle("active");
 
-  if (content.style.maxHeight) {
-    // If collapsing, hide overflow immediately
+  // If collapsing, set overflow to hidden immediately
+  if (content.style.maxHeight && content.style.maxHeight !== '0px') {
     content.style.overflow = 'hidden';
     content.style.maxHeight = null;
   } else {
-    // If expanding, set max-height and wait for transition to end to show overflow
+    // Remove previous transitionend listener if it exists
+    content.removeEventListener('transitionend', onTransitionEnd);
+    // Set max-height to start the transition
     content.style.maxHeight = content.scrollHeight + "px";
-    content.addEventListener('transitionend', function () {
-      // Only set overflow to auto if the content is still expanded
-      if (content.style.maxHeight) {
-        content.style.overflow = 'auto';
-      }
-    }, {
-      once: true // Remove the event listener after it has been executed
-    });
-  } 
+    // Listen for the end of the transition
+    content.addEventListener('transitionend', onTransitionEnd);
+  }
 }
-
 </script>
