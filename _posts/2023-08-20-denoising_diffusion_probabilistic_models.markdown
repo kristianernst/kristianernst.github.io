@@ -33,8 +33,11 @@ $$
 
 The joint distribution \\(p_\theta\left(\mathbf{x}_{0: T}\right)\\) is called the reverse process, and it is defined as a Markov chain with learned Gaussian transitions starting at:
 
-
- \\(p\left(\mathbf{x}_T\right)=\mathcal{N}\left(\mathbf{x}_T ; \mathbf{0}, \mathbf{I}\right)\\) :
+$$
+\begin{align}
+ p\left(\mathbf{x}_T\right)=\mathcal{N}\left(\mathbf{x}_T ; \mathbf{0}, \mathbf{I}\right)
+\end{align}
+$$
 
 $$
 \begin{align}
