@@ -22,7 +22,7 @@ General usecase: text-to-image, image-to-image, etc.
 
 # Generative model
 
-A model that learns a probability distribution such that we can sample from the distribbution to create new instances of data.
+A model that learns a probability distribution such that we can sample from the distribution to create new instances of data.
 
 Example: If we have many samples of a cat, then we can train a generative model of it to sample from this distribution to create new images of the cat.
 
@@ -33,13 +33,13 @@ Example: If we have many samples of a cat, then we can train a generative model 
 Reverse process:
 image -> add noise -> add more noise -> until z_t, where we have complete noise.
 
-There are some overlap with the variational autoencoder ([Autoencoders](../architectures/autoencoders.md))
+There are some overlap with the variational autoencoder ([Autoencoders](https://ernst-hub.github.io/architectures/2023/09/07/autoencoders/))
 
 
 
 # Denoising diffusion
 
-[Link to notes](./denoising_diffusion_probabilistic_models.md)
+[Link to notes](https://ernst-hub.github.io/sd/2023/08/20/denoising_diffusion_probabilistic_models/)
 
 Basically we add noice to an image, and learn a neural net to reverse this noice. We condition this learning process by a given transition state \\(t\\) (noice level) of the image \\(\textbf{x}_t\\) and the original image \\(\textbf{x}_0\\).
 
@@ -50,10 +50,23 @@ Basically we add noice to an image, and learn a neural net to reverse this noice
 How do we do it on a practical level: 
 
 After we get the ELBO, we can parameterize the loss as the following. 
+
 $$
+\begin{align}
 \nabla\theta \left \| \boldsymbol\epsilon - \boldsymbol\epsilon_\theta \left( \sqrt{\bar{\alpha}_t}\textbf{x}_0 + \sqrt{1-\bar\alpha_t}\boldsymbol{\epsilon},t\right)\right \|^2
+\end{align}
 $$
-We need to train a network called \\(\boldsymbol\epsilon_\theta\\) , that, given a noisy image \\(\left( \sqrt{\bar{\alpha}_t}\textbf{x}_0 + \sqrt{1-\bar\alpha_t}\boldsymbol{\epsilon},t\right)\\) (this means that the noisy image at time-step \\(t\\) and the time-step at which the noice was added: \\(t\\)). The network has to predict how much noise is in the image. If we do gradient descent on (1) we will maximize the ELBO and correspndingly we will maximize the log-likelihood of our data: \\(\log p_\theta(\textbf{x}_0)\\).
+
+We need to train a network called \\(\boldsymbol\epsilon_\theta\\) , that, given a noisy image 
+
+
+$$
+\begin{align}
+\left( \sqrt{\bar{\alpha}_t}\textbf{x}_0 + \sqrt{1-\bar\alpha_t}\boldsymbol{\epsilon},t\right)
+\end{align}
+$$
+
+(this means that the noisy image at time-step \\(t\\) and the time-step at which the noice was added: \\(t\\)). The network has to predict how much noise is in the image. If we do gradient descent on (1) we will maximize the ELBO and correspndingly we will maximize the log-likelihood of our data: \\(\log p_\theta(\textbf{x}_0)\\).
 
 *How do we generate new data?*
 
@@ -89,7 +102,13 @@ How can we do this?
     2. Generate an image based on image 1 at noise level 3 without a prompt
     3. Then we combine these two outputs in such a way that we decide how much we want the image to be closer to the conditioning signal
   - This is called "Classifier free guidance"
-  - \\(\text{output} = w \cdot (\text{output}_{\text{conditioned} } - \text{output}_{\text{uonditioned} }) + \text{output}_{\text{conditioned} }\\)
+  
+  $$
+  \begin{align}
+  \text{output} = w \cdot (\text{output}_{\text{conditioned} } - \text{output}_{\text{uonditioned} }) + \text{output}_{\text{conditioned} }
+  \end{align}
+  $$
+
   - By controlling the power of \\(w\\), we can decide how we condition the final image on the prompt.
 
 - The model needs to understand the prompt. This is where CLIP comes in.
@@ -108,7 +127,8 @@ This prompt needs to be encoded by a text encoder.
 [CLIP](https://openai.com/research/clip) is a model developed by openAI that allows to connect text with images.
 
 How is it done: 
-![/assets/sd/overview-a.svg](//assets/sd/sd//assets/sd/overview-a.svg){:height="50%" width="50%"}
+
+<img src="/assets/sd/overview-a.svg" alt="image-2023106798" style="zoom:33%;" />
 
 Image 1 has a corresponding text (text 1). We train the model to be able to connect the text and image together, i.e. pick the right text for an image and vice versa. This is illustrated by the blue diagonal of the interaction matrix. Hence, the loss function is to maximize the values of \\(I_i T_i\\) and thereby minimize  \\(I_iT_j, i\neq j\\).
 
@@ -118,7 +138,7 @@ Image 1 has a corresponding text (text 1). We train the model to be able to conn
 
 ## Reversing the noisified image with the classifier-free guidance
 
-[VAE](../architectures/autoencoders.md)
+[VAE](https://ernst-hub.github.io/architectures/2023/09/07/autoencoders/)
 
 The reverse process means that we need to take many steps of denoisification. IF the image is very big, it means that every time we will have a very big matrix to work through at each step. This will take a very long time.  What IF we could compress this image into something smaller so each unit takes less time. Here we use the VAE.
 

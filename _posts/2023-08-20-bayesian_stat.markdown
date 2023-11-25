@@ -18,13 +18,13 @@ Bayesian statistics consider all possible values of \\(\boldsymbol{\theta}\\) wh
 
 > Generally, the machine learning practitioner selects a prior distribution that is quite broad (i.e. with high entropy) to reflect a high degree of uncertainty in the value of **θ** before observing any data. For example, one might assume a priori that **θ** lies in some finite range or volume, with a uniform distribution. Many priors instead reflect a preference for “simpler” solutions (such as smaller magnitude coefficients, or a function that is closer to being constant).
 
-We leverage bayes rule in bayesian statistics: [**Bayes Rule**](bayes_rule.md)
+We leverage bayes rule in bayesian statistics: [**Bayes Rule**](https://ernst-hub.github.io/math/2023/08/20/bayes_rule/)
 
-If we have a set of data samples: {x_1, … , x_m}, we can recover the effect of data on our belief about \\(\boldsymbol{\theta}\\) by combining the data likelihood \\(p(x^{(1)}, \dots,  x^{(m)} | \boldsymbol{\theta})\\) with the prior via bayes rule:
+If we have a set of data samples: {x_1, … , x_m}, we can recover the effect of data on our belief about \\(\boldsymbol{\theta}\\) by combining the data likelihood \\(p(x^{(1)}, \dots,  x^{(m)} \mid \boldsymbol{\theta})\\) with the prior via bayes rule:
 
 $$
 \begin{align}
-p\left(\boldsymbol{\theta} | x^{(1)}, \dots, x^{(m)}\right) = \frac{p\left(x^{(1)},\dots,x^{(m)} | \boldsymbol{\theta}\right)p(\boldsymbol{\theta})}{p\left(x^{(1)},\dots,x^{(m)}\right)}
+p\left(\boldsymbol{\theta} \mid x^{(1)}, \dots, x^{(m)}\right) = \frac{p\left(x^{(1)},\dots,x^{(m)} \mid \boldsymbol{\theta}\right)p(\boldsymbol{\theta})}{p\left(x^{(1)},\dots,x^{(m)}\right)}
 \end{align}
 $$
 
@@ -39,7 +39,7 @@ First, unlike the maximum likelihood approach that makes predictions using a poi
 For example, after observing \\(m\\) examples, the predicted distribution over the next data sample \\(x^{(m+1)}\\) is given by:
 
 $$
-p\left(x^{(m+1)} | x^{(1)},\dots,x^{(m)}\right) = \\  \int p\left(x^{(m+1)}|\boldsymbol{\theta} \right) p\left(\boldsymbol{\theta}|x^{(1)},\dots,x^{(m)}\right)d\boldsymbol{\theta}
+p\left(x^{(m+1)} \mid x^{(1)},\dots,x^{(m)}\right) = \\  \int p\left(x^{(m+1)}\mid\boldsymbol{\theta} \right) p\left(\boldsymbol{\theta}\midx^{(1)},\dots,x^{(m)}\right)d\boldsymbol{\theta}
 $$
 
 Here each value of **θ** with positive probability density contributes to the prediction of the next example, with the contribution weighted by the posterior density itself. After having observed {x(1), . . . , x(m)}, if we are still quite uncertain about the value of **θ**, then this uncertainty is incorporated directly into any predictions we might make.
@@ -69,7 +69,7 @@ Here each value of **θ** with positive probability density contributes to the p
 
 	*Likelihood for a single flip*
 
-	the likelihood \\(p(x | \theta)\\) for a single coin flip \\(x\\) is:
+	the likelihood \\(p(x \mid \theta)\\) for a single coin flip \\(x\\) is:
 
 	- \\(\theta\\) if heads
 	- \\(1-\theta\\) if tails
@@ -81,7 +81,7 @@ Assume each flip is independent of the others, we can calculate the joint likeli
 For our sequence: H, T, H, the likelihood would be:
 
 $$
-p(H,T,H|\theta) = p(H|\theta)\times p(T|\theta)\times p(H|\theta)
+p(H,T,H\mid\theta) = p(H\mid\theta)\times p(T\mid\theta)\times p(H\mid\theta)
 $$
 
 substituting the likelihood for each flip:
@@ -93,7 +93,7 @@ $$
 Posterior:
 
 $$
-\text{Posterior:} \ p(\theta | \text{data}) =  \frac{\theta^2(1-\theta)\times 1}{Z}=\frac{\theta^2(1-\theta)}{Z}
+\text{Posterior:} \ p(\theta \mid \text{data}) =  \frac{\theta^2(1-\theta)\times 1}{Z}=\frac{\theta^2(1-\theta)}{Z}
 $$
 
 we assume here that 
@@ -109,7 +109,7 @@ $$
 Which can be expanded to:
 
 $$
-Z = \int p\left(x^{(1)},\dots,x^{(m)}|\theta\right)p(\theta)d\theta
+Z = \int p\left(x^{(1)},\dots,x^{(m)}\mid\theta\right)p(\theta)d\theta
 $$
 
 For our example, we have that:
@@ -123,18 +123,18 @@ CALCULATION
 When we want to estimate the likelihood of Head, we can now run the calculations:
 
 $$
-p\left( x^{(4)} = H|\text{data}\right) = \int_0^1\theta\times \frac{\theta^2(1-\theta)}{\frac{1}{12} }d\theta \\= \int_0^1 \theta \times 12 \times \theta^2(1-\theta)d\theta = 12\int_0^1\theta^3(1-\theta)d\theta
+p\left( x^{(4)} = H\mid\text{data}\right) = \int_0^1\theta\times \frac{\theta^2(1-\theta)}{\frac{1}{12} }d\theta \\= \int_0^1 \theta \times 12 \times \theta^2(1-\theta)d\theta = 12\int_0^1\theta^3(1-\theta)d\theta
 $$
 
 We split up the integral using the rule: F(a-b) = F(a) - F(b)
 
 $$
-\begin{align*}p\left( x^{(4)} = H|\text{data}\right) & =  12\int_0^1\theta^3 - \theta^4d\theta \\ & = 12\int_0^1\theta^3d\theta - 12\int_0^1\theta^4d\theta \\ &= (12\times \frac{\theta^4}{4}\times 0 + 12 \times \frac{\theta^4}{4} \times 1) - (12\times \frac{\theta^5}{5}\times 0 + 12 \times \frac{\theta^5}{5} \times 1) \\ 
+\begin{align}p\left( x^{(4)} = H\mid\text{data}\right) & =  12\int_0^1\theta^3 - \theta^4d\theta \\ & = 12\int_0^1\theta^3d\theta - 12\int_0^1\theta^4d\theta \\ &= (12\times \frac{\theta^4}{4}\times 0 + 12 \times \frac{\theta^4}{4} \times 1) - (12\times \frac{\theta^5}{5}\times 0 + 12 \times \frac{\theta^5}{5} \times 1) \\ 
 & = 3 \theta^4 - \frac{12\theta^5} {5} \\ 
 & = 3 \times 1^4 - \frac{12}{5}\times 1^5 = 3 - \frac{12}{5} \\  
 & = \frac{15}{5} - \frac{12}{5} \\ 
 & = 3/5 = 0.6 = 60\%
-\end{align*}
+\end{align}
 $$
 
 The second important difference between the Bayesian approach to estimation and the maximum likelihood approach is due to the contribution of the Bayesian prior distribution The prior has an influence by shifting probability mass density towards regions of the parameter space that are preferred *a priori*.
@@ -149,8 +149,8 @@ MAP chooses the point of maximal posterior probability (or maximal density in th
 
 $$
 \begin{align}
-\boldsymbol{\theta}_{MAP} = \operatorname{arg max}_{\boldsymbol{\theta} } \log p(\boldsymbol{x} | \boldsymbol{\theta})+ \log p (\boldsymbol{\theta})
+\boldsymbol{\theta}_{MAP} = \operatorname{arg max}_{\boldsymbol{\theta} } \log p(\boldsymbol{x} \mid \boldsymbol{\theta})+ \log p (\boldsymbol{\theta})
 \end{align}
 $$
 
-We recognize, above on the right hand side, log p(x | θ), i.e. the standard log- likelihood term, and log p(θ), corresponding to the prior distribution.
+We recognize, above on the right hand side, log p(x \mid θ), i.e. the standard log- likelihood term, and log p(θ), corresponding to the prior distribution.
