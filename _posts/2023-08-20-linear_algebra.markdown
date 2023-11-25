@@ -62,25 +62,43 @@ Row vector:
 
 \\(\boldsymbol{A} \in \mathbb{R}^{m\times n}\\), is a matrix which is an element of the real set of m*n dimensionality.
 
-Matrix interpretation
+**Matrix interpretation**
 
 \\(\boldsymbol{A} = \begin{bmatrix} A_{11}, & A_{12}, & \dots, & A_{1,n} \\ A_{21}, & A_{22}, & \dots, & A_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ A_{m1}, & A_{m2}, & \dots, & A_{mn} \end{bmatrix}\\)
 
 Matrix as column vectors
 
-\\(\boldsymbol{A} = \begin{bmatrix} \boldsymbol{c}_{1}, \boldsymbol{c}_{2}, \dots,\boldsymbol{c}_{n} \end{bmatrix}\\)
+$$
+\begin{align}
+\boldsymbol{A} = \begin{bmatrix} \boldsymbol{c}_{1}, \boldsymbol{c}_{2}, \dots,\boldsymbol{c}_{n} \end{bmatrix}
+\end{align}
+$$
 
 Where:
 
-\\(\boldsymbol{c}_1 = \begin{bmatrix} \boldsymbol{A}_{11} \\ \boldsymbol{A}_{21} \\ \vdots \\ \boldsymbol{A}_{m1} \end{bmatrix}\\)
+$$
+\begin{align}
+\boldsymbol{c}_1 = \begin{bmatrix} \boldsymbol{A}_{11} \\ \boldsymbol{A}_{21} \\ \vdots \\ \boldsymbol{A}_{m1} \end{bmatrix}
+\end{align}
+$$
 
-Matrix as row vectors
+**Matrix as row vectors**
 
-\\(\boldsymbol{A} = \begin{bmatrix} \boldsymbol{r}_{1}\\ \boldsymbol{r}_{2}\\ \vdots \\ \boldsymbol{r}_{m} \end{bmatrix}\\)
+$$
+\begin{align}
+\boldsymbol{A} = \begin{bmatrix} \boldsymbol{r}_{1}\\ \boldsymbol{r}_{2}\\ \vdots \\ \boldsymbol{r}_{m} \end{bmatrix}
+\end{align}
+$$
+
 
 Where:
 
-\\(\boldsymbol{r}_1 = \begin{bmatrix} \boldsymbol{A}_{11}, \boldsymbol{A}_{12}, \dots, \boldsymbol{A}_{1n} \end{bmatrix}\\)
+$$
+\begin{align}
+\boldsymbol{r}_1 = \begin{bmatrix} \boldsymbol{A}_{11}, \boldsymbol{A}_{12}, \dots, \boldsymbol{A}_{1n} \end{bmatrix}
+\end{align}
+$$
+
 
 **The transpose of a matrix**
 
@@ -90,13 +108,21 @@ Given the matrix
 The transpose of \\(\boldsymbol{A}\\) is given by:
 \\(\boldsymbol{A}^T=\left[\begin{array}{cccc} A_{11}, & A_{21}, & \ldots, & A_{m 1} \\ A_{12}, & A_{22}, & \ldots, & A_{m 2} \\ \vdots, & \vdots, & \vdots, & \vdots \\ A_{1 n}, & A_{2 n}, & \ldots, & A_{m n} \end{array}\right]\\)
 
-Hence, \\(\boldsymbol{A}_{ij} = \boldsymbol{A}^T_{ji}\\), i.e., the rows and columns has been swapped. 
+Hence, 
+
+\\(\boldsymbol{A}_{ij} = \boldsymbol{A}^T_{ji}\\)
+
+, i.e., the rows and columns has been swapped. 
 
 ## The identity matrix and diagonal matrices
 
 The identity matrix has 1 along its diagonal and 0 elsewhere
 
-\\(\boldsymbol{I} = \begin{bmatrix} 1, &0, &\dots,& 0 \\ 0,& 1,& \dots, & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0, &0, & \dots, &1 \end{bmatrix}\\)
+$$
+\begin{align}
+\boldsymbol{I} = \begin{bmatrix} 1, &0, &\dots,& 0 \\ 0,& 1,& \dots, & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0, &0, & \dots, &1 \end{bmatrix}
+\end{align}
+$$
 
 Similarly, a diagonal matrix has non-zero values along the diagonal and 0 elsewhere.
 
@@ -106,7 +132,11 @@ A symmetric matrix: \\(\boldsymbol{A} = \boldsymbol{A}^T\\)
 
 In that sense, we can say that for symmetric matrices, its row vectors is equal to its column vectors!
 
-\\(\boldsymbol{A}=\left[\begin{array}{lll} a & b & c \\ b & d & e \\ c & e & f \end{array}\right] = \boldsymbol{A}^T\\)
+$$
+\begin{align}
+\boldsymbol{A}=\left[\begin{array}{lll} a & b & c \\ b & d & e \\ c & e & f \end{array}\right] = \boldsymbol{A}^T
+\end{align}
+$$
 
 **The trace of a matrix**
 
@@ -153,7 +183,7 @@ $$
 \| x\| _p = \left(\sum_{i=1}^n \mid x_i\mid ^p\right)^{\frac{1}{p} }
 $$
 
-<img src="assets/linalg/image-20231005155041378.png" alt="image-20231005155041378" style="zoom:33%;" />
+<img src="/assets/linalg/norm.png" alt="norm" style="zoom:33%;" />
 
 The image above provides a visual aid in understanding the functioning of the different types of norms. The lines in the x,y coordinate system indicates for what x,y combinations the resulting norm is equal to 1.
 
@@ -238,7 +268,7 @@ The value of the determinant  \\(\mid \boldsymbol{A}\mid  = -7\\).
 
 The area of the paralellogram is also \\(7\\). 
 
-<img src="assets/linalg/image-20231005155711707.png" alt="image-20231005155711707" style="zoom:50%;" />
+<img src="/assets/linalg/image-20231005155711707.png" alt="image-20231005155711707" style="zoom:50%;" />
 
 In three dimensions, the determinant of a matrix is usually a parallelepiped (box with parallelogram-shaped surfaces). 
 
@@ -253,20 +283,24 @@ Algebraically, the determinant follows these three properties (from which all ot
 2. Given a matrix \\(\boldsymbol{A}^{n\times n}\\), if we multiply a single row in \\(\boldsymbol{A}\\) by a scalar \\(t\\), then the determinant of the new matrix is \\(t\mid \boldsymbol{A}\mid \\) (geometrically, multiplying one of the sides of the set \\(S\\) by a factor of \\(t\\) causes the volume to increase by \\(t\\)
 
 	$$
+    \begin{align}
 	\left\mid \left[\begin{array}{ccc}- & t a_1^T & - \\- & a_2^T & - \\& \vdots & \\- & a_m^T & -\end{array}\right]\right\mid =t\mid A\mid  .
-	$$
+	\end{align}
+    $$
 
 3. If we exchange any two rows, the determinant of the new matrix is \\(-\mid \boldsymbol{A}\mid \\).
 
 	$$
+    \begin{align}
 	\left\mid \left[\begin{array}{ccc}- & a_2^T & - \\- & a_1^T & - \\& \vdots & \\- & a_m^T & -\end{array}\right]\right\mid =-\mid A\mid  .
+    \end{align}
 	$$
 
 Given these three properties, here’s other useful ones:
 
 - For \\(\boldsymbol{A} \in \mathbb{R}^{n\times n}, \mid \boldsymbol{A}\mid  = \boldsymbol{A^T}\\)
 - For \\(\boldsymbol{A}, \boldsymbol{B} \in \mathbb{R}^{n\times n}, \mid \boldsymbol{A}\boldsymbol{B}\mid  = \mid \boldsymbol{A}\mid  \mid \boldsymbol{B}\mid .\\)
-- For \\(\boldsymbol{A} \in mathbb{R}^{n\times n}, \mid \boldsymbol{A}\mid  = 0\\) iff \\(\boldsymbol{A}\\) is singular (If A is singular it does not have full rank and hence columns are linearly dependent. In this case, \\(S\\) corresponds to a “flat sheet” within the n-dimensional space and hence has zero volume).
+- For \\(\boldsymbol{A} \in \mathbb{R}^{n\times n}, \mid \boldsymbol{A}\mid  = 0\\) iff \\(\boldsymbol{A}\\) is singular (If A is singular it does not have full rank and hence columns are linearly dependent. In this case, \\(S\\) corresponds to a “flat sheet” within the n-dimensional space and hence has zero volume).
 - For \\(\boldsymbol{A} \in \mathbb{R}^{n\times n}\\) and \\(\boldsymbol{A}\\) is non-singular: \\(\mid \boldsymbol{A}^{-1}\mid  = 1/\mid \boldsymbol{A}\mid \\)
 
  
@@ -276,15 +310,15 @@ Before giving the general definition for the determinant, we define, for \\(\bol
 The general (recursive) formula for the determinant is
 
 $$
-\begin{aligned}
+\begin{align}
 \mid \boldsymbol{A}\mid  & =\sum_{i=1}^n(-1)^{i+j} a_{i j}\left\mid \boldsymbol{A}_{\backslash i, \backslash j}\right\mid  \quad(\text { for any } j \in 1, \ldots, n) \\
 & =\sum_{i=1}^n(-1)^{i+j} a_{i j}\left\mid \boldsymbol{A}_{\backslash i, \backslash j}\right\mid  \quad(\text { for any } i \in 1, \ldots, n)
-\end{aligned}
+\end{align}
 $$
 
 Example:
 
-<img src="assets/linalg/Untitled 1.png" alt="Untitled" style="zoom:50%;" />
+<img src="/assets/linalg/Untitled 1.png" alt="Untitled" style="zoom:50%;" />
 
 ## The classical adjoint of a matrix
 
@@ -296,29 +330,35 @@ $$
 
 It can be shown that for any non-singular \\(\boldsymbol{A} \in \mathbb{R}^{n \times n}\\), \\(\boldsymbol{A}^{-1} = \frac{1}{\mid \boldsymbol{A}\mid }\operatorname{adj}(\boldsymbol{A})\\).
 
-- Proof:
+*Proof:*
 
-	1. \\(\boldsymbol{A} \cdot  \operatorname{adj}(\boldsymbol{A}) = \mid \boldsymbol{A}\mid  \cdot \boldsymbol{I}\\)  (the matrix A multiplied with its adjugate, results in a diagonal matrix with values of the determinant of A)
+1. \\(\boldsymbol{A} \cdot  \operatorname{adj}(\boldsymbol{A}) = \mid \boldsymbol{A}\mid  \cdot \boldsymbol{I}\\)  (the matrix A multiplied with its adjugate, results in a diagonal matrix with values of the determinant of A)
 
-	2. Multiply both sides by \\(\frac{1}{\boldsymbol{A} }\\):  
+2. Multiply both sides by \\(\frac{1}{\boldsymbol{A} }\\):  
 
-		\\(\frac{1}{\boldsymbol{\mid A\mid } } \cdot \boldsymbol{A} \cdot \operatorname{adj}(\boldsymbol{A}) = \frac{1}{\boldsymbol{\mid A\mid } }\mid \boldsymbol{A}\mid  \cdot \boldsymbol{I} = \boldsymbol{I}\\)
+\\(\frac{1}{\boldsymbol{\mid A\mid } } \cdot \boldsymbol{A} \cdot \operatorname{adj}(\boldsymbol{A}) = \frac{1}{\boldsymbol{\mid A\mid } }\mid \boldsymbol{A}\mid  \cdot \boldsymbol{I} = \boldsymbol{I}\\)
 
-	3. Rearrange to find the inverse:
+3. Rearrange to find the inverse:
 
-		\\(\frac{1}{\boldsymbol{\mid A\mid } } \cdot \operatorname{adj}(\boldsymbol{A}) = \boldsymbol{I} \cdot \frac{\boldsymbol{1} }{\boldsymbol{A} } = \boldsymbol{A}^{-1}\\)
+\\(\frac{1}{\boldsymbol{\mid A\mid } } \cdot \operatorname{adj}(\boldsymbol{A}) = \boldsymbol{I} \cdot \frac{\boldsymbol{1} }{\boldsymbol{A} } = \boldsymbol{A}^{-1}\\)
 
-	I want to prove that \\(Z = A^T\operatorname{adj}(A) = \mid A\mid ^TI\\)
+I want to prove that \\(Z = A^T \operatorname{adj}(A) = \mid A\mid ^TI\\)
 
-	1. \\(Z_{ij} = \sum_{k=1}^n A_{ki} (\operatorname{adj}(A))_{kj} = \sum_{k=1}^n A_{ki} \left((-1)^{j+k} \mid A_{\setminus j \setminus k}\mid \right) = \sum_{k=1}^n (-1)^{j+k} A_{ki} \mid A_{\setminus j \setminus k}\mid \\)
+Step 1):
 
-	2. We observe that for \\(i = j\\) we actually have the formula for the determinant using the Laplace Expansion formula:
+$$
+\begin{align}
+Z_{ij} = \sum_{k=1}^n A_{ki} (\operatorname{adj}(A))_{kj} = \sum_{k=1}^n A_{ki} \left((-1)^{j+k} \mid A_{\setminus j \setminus k}\mid \right) = \sum_{k=1}^n (-1)^{j+k} A_{ki} \mid A_{\setminus j \setminus k}\mid
+\end{align}
+$$
 
-		\\(\mid A\mid  = \sum_{k=1}^n (-1)^{i+j} A_{ij} \mid A_{\setminus i \setminus j}\mid \\) for either: all \\(i\\) and one \\(j\\) OR all \\(j\\) and one \\(i\\).
+step 2) We observe that for \\(i = j\\) we actually have the formula for the determinant using the Laplace Expansion formula:
 
-	3. For \\(i \neq j\\), we replace the ith column of a with the kth one. This results in a matrix with two identical columns and so of rank < n. Therefore, the determinant is 0.
+\\(\mid A\mid  = \sum_{k=1}^n (-1)^{i+j} A_{ij} \mid A_{\setminus i \setminus j}\mid \\) for either: all \\(i\\) and one \\(j\\) OR all \\(j\\) and one \\(i\\).
 
-	4. It has therefore been shown that all diagonal elements of \\(Z\\) is equal to the determinant of \\(A\\) and non-diagonal elements \\(=0\\).
+For \\(i \neq j\\), we replace the ith column of a with the kth one. This results in a matrix with two identical columns and so of rank < n. Therefore, the determinant is 0.
+
+It has therefore been shown that all diagonal elements of \\(Z\\) is equal to the determinant of \\(A\\) and non-diagonal elements \\(=0\\).
 
 
 # Linear independence and rank

@@ -363,7 +363,7 @@ So really, the inner expectation calculates the expectation term for each sample
 
 Since \\(\|\boldsymbol{x}\|= 2\\), we do this twice. We then add these together and divide by 2 to get the outer mean (the empirical approximation to the outer expectation).
 
-<img src="assets/architectures/Screenshot_2023-09-14_at_19.16.17.png" alt="Screenshot 2023-09-14 at 19.16.17.png" style="zoom: 33%;" />
+<img src="/assets/architectures/Screenshot_2023-09-14_at_19.16.17.png" alt="Screenshot 2023-09-14 at 19.16.17.png" style="zoom: 33%;" />
 
 ### Score matching
 
