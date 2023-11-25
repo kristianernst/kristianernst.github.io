@@ -61,7 +61,15 @@ $$
 \end{align}
 $$
 
-The forward process variances \\(\beta_t\\) can be learned by reparameterization or held constant as hyperparameters, and expressiveness of the reverse process is ensured in part by the choice of Gaussian conditionals in \\(p_\theta\left(\mathbf{x}_{t-1} \mid  \mathbf{x}_t\right)\\), because both processes have the same functional form when \\(\beta_t\\) are small. A notable property of the forward process is that it admits sampling \\(\mathbf{x}_t\\) at an arbitrary timestep \\(t\\) in closed form: using the notation \\(\alpha_t:=1-\beta_t\\) and \\(\bar{\alpha}_t:=\prod_{s=1}^t \alpha_s\\), we have
+The forward process variances \\(\beta_t\\) can be learned by reparameterization or held constant as hyperparameters, and expressiveness of the reverse process is ensured in part by the choice of Gaussian conditionals in \\(p_\theta \left( \mathbf{x}_{t-1} \mid \mathbf{x}_t \right)\\), because both processes have the same functional form when \\(\beta_t\\) are small. A notable property of the forward process is that it admits sampling \\(\mathbf{x}_t\\) at an arbitrary timestep \\(t\\) in closed form: using the notation:
+
+$$
+\begin{align}
+ \alpha_t:=1-\beta_t \text{ and } \bar{\alpha}_t:=\prod_{s=1}^t \alpha_s
+\end{align}
+$$
+
+, we have:
 
 $$
 \begin{align}
