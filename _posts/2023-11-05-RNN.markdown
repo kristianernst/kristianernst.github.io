@@ -1,0 +1,25 @@
+---
+layout: post
+comments: true
+title:  "Recurrent neural networks"
+excerpt: "RNNS"
+date:   2023-11-05 22:00:00
+category: "Architectures"
+mathjax: true
+---
+
+
+# Recurrent neural networks
+
+
+TODO: write more
+
+
+RNNs combine the input vector with their state vector with a fixed function to produce a new state vector. This can in programming terms be interpreted as running a fixed program with certain inputs and some internal variables. Viewed this way, RNNs essentially describe programs. In fact, it is known that RNNs are Turing-Complete in the sense that they can stimulate arbitrary programs (with proper weights).
+
+**Sequential processing in absence of sequences**. You might be thinking that having sequences as inputs or outputs could be relatively rare, but an important point to realize is that even if your inputs/outputs are fixed vectors, it is still possible to use this powerful formalism to *process* them in a sequential manner. You’re learning stateful programs that process your fixed-sized data.
+
+
+
+
+
