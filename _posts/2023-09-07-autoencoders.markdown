@@ -5,6 +5,7 @@ title:  "Notes on Autoencoders"
 excerpt: "brief, an autoencoder is a neural network that attempts to “copy” its input to its output."
 date:   2023-09-07 22:00:00
 category: "Architectures"
+mathjax: true
 ---
 
 # Autoencoders
