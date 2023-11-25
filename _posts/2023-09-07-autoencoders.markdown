@@ -549,10 +549,10 @@ The key insight behind VAEs is that they can be trained by maximizing the variat
 
  
 
-$$
+\\[
 \begin{align} \mathcal{L}(q) & = \mathbb{E}_{\boldsymbol{z} \sim q(\boldsymbol{z} | \boldsymbol{x})\log p_{\text{model} } (\boldsymbol{z}|\boldsymbol{x}) + \mathcal{H}(q(\textbf{z}|\boldsymbol{x}))} \\ &= \mathbb{E}_{\boldsymbol{z} \sim q(\boldsymbol{z} | \boldsymbol{x})\log p_{\text{model} } (\boldsymbol{x}|\boldsymbol{z})} - D_{KL}(q(\textbf{z}|\boldsymbol{x})\|p_{\text{model} }(\textbf{z})) \\ & \leq \log p_{\text{model} }(\boldsymbol{x}). \end{align}
-$$
+\\]
 
 VAE Pytorch implementation:
 
-[https://colab.research.google.com/drive/1_yGmk8ahWhDs23U4mpplBFa-39fsEJoT?usp=sharing](https://colab.research.google.com/drive/1_yGmk8ahWhDs23U4mpplBFa-39fsEJoT?usp=sharing)
+[link](https://colab.research.google.com/drive/1_yGmk8ahWhDs23U4mpplBFa-39fsEJoT?usp=sharing)
