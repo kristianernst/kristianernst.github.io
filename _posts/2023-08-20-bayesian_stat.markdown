@@ -8,8 +8,6 @@ category: "Math"
 mathjax: true
 ---
 
-## Bayesian statistics
-
 Bayesian statistics consider all possible values of \\(\boldsymbol{\theta}\\) when making a prediction.
 
 > The Bayesian uses probability to reflect degrees of certainty of states of knowledge. The dataset is directly observed and so is not random. On the other hand, the true parameter **θ** is unknown or uncertain and thus is represented as a random variable.

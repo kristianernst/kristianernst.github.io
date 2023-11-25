@@ -8,11 +8,8 @@ category: "SD"
 mathjax: true
 ---
 
-## Building a stable diffusion from scratch in PyTorch
-
 These notes are taken from the video: [link](https://www.youtube.com/watch?v=ZBKpAp_6TGI) by Umar Jamil
 
-- [Building a stable diffusion from scratch in PyTorch](#building-a-stable-diffusion-from-scratch-in-pytorch)
 - [What is stable diffusion?](#what-is-stable-diffusion)
 - [Generative model](#generative-model)
 - [Denoising diffusion](#denoising-diffusion)

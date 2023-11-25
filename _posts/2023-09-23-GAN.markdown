@@ -9,10 +9,6 @@ mathjax: true
 ---
 
 
-## Generative adversarial networks
-
-
-
 Inspired by game theory: 
 
 We play a zero sum game (at least this is the simplest formulation) where a generator plays against an adversary (discriminator).

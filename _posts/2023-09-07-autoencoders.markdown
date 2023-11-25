@@ -8,8 +8,6 @@ category: "Architectures"
 mathjax: true
 ---
 
-## Autoencoders
-
 In brief, an autoencoder is a neural network that attempts to “copy” its input to its output.
 These notes are deeply inspired by the book [Deep Learning](https://www.deeplearningbook.org/contents/autoencoders.html) by Ian Goodfellow, Yoshua Bengio and Aaron Courville.
 

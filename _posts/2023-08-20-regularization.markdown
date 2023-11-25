@@ -7,7 +7,6 @@ date:   2023-08-20 22:00:00
 category: "DL"
 mathjax: true
 ---
-## Regularization
 
 ### Regularization (L2)
 

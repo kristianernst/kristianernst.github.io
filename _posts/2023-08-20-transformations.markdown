@@ -8,8 +8,6 @@ category: "Math"
 mathjax: true
 ---
 
-## Transformations
-
 ### **Linear Transformations**
 
 Linear transformations are "smart" for several reasons:

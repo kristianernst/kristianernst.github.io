@@ -8,13 +8,9 @@ category: "Math"
 mathjax: true
 ---
 
-## Multivariate calculus
-
-
-- [Multivariate calculus](#multivariate-calculus)
-	- [Gradients](#gradients)
-	- [Directional derivatives](#directional-derivatives)
-		- [Proof that the gradient vector point in the direction of steepest ascent](#proof-that-the-gradient-vector-point-in-the-direction-of-steepest-ascent)
+- [Gradients](#gradients)
+- [Directional derivatives](#directional-derivatives)
+	- [Proof that the gradient vector point in the direction of steepest ascent](#proof-that-the-gradient-vector-point-in-the-direction-of-steepest-ascent)
 
 
 ### Gradients

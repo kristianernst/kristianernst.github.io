@@ -8,24 +8,20 @@ category: "Math"
 mathjax: true
 ---
 
-
-# Linear algebra
-
 I took a lot of inspiration from the books: [mathematics for machine learning](https://mml-book.github.io/) and [deep learning](https://www.deeplearningbook.org/) and Kahn Academy when writing these notes. 
 
-# Table of contents
-- [Linear algebra](#linear-algebra)
+## Table of contents
 - [Table of contents](#table-of-contents)
 - [Notation of linear algebra](#notation-of-linear-algebra)
   - [Vectors](#vectors)
   - [Matrix](#matrix)
-  - [The identity matrix and diagonal matrices](#the-identity-matrix-and-diagonal-matrices)
+- [The identity matrix and diagonal matrices](#the-identity-matrix-and-diagonal-matrices)
 - [Norms](#norms)
-- [The Manhattan norm (\\(L\_1\\)):](#the-manhattan-norm-l_1)
-- [The Euclidian norm (\\(L\_2\\)):](#the-euclidian-norm-l_2)
-- [Generalization (what is a norm?)](#generalization-what-is-a-norm)
-  - [Norms for matrices](#norms-for-matrices)
-- [Norms and their use in regularization](#norms-and-their-use-in-regularization)
+  - [The Manhattan norm (\\(L\_1\\)):](#the-manhattan-norm-l_1)
+  - [The Euclidian norm (\\(L\_2\\)):](#the-euclidian-norm-l_2)
+  - [Generalization (what is a norm?)](#generalization-what-is-a-norm)
+    - [Norms for matrices](#norms-for-matrices)
+  - [Norms and their use in regularization](#norms-and-their-use-in-regularization)
   - [What is regularization?](#what-is-regularization)
   - [Norms in regularization](#norms-in-regularization)
 - [The determinant](#the-determinant)
@@ -33,7 +29,7 @@ I took a lot of inspiration from the books: [mathematics for machine learning](h
   - [The classical adjoint of a matrix](#the-classical-adjoint-of-a-matrix)
 - [Linear independence and rank](#linear-independence-and-rank)
 - [Inverse of a square matrix](#inverse-of-a-square-matrix)
-  - [Matrix multiplication properties](#matrix-multiplication-properties)
+- [Matrix multiplication properties](#matrix-multiplication-properties)
   - [The identity matrix](#the-identity-matrix)
   - [Diagonal matrix:](#diagonal-matrix)
   - [Symmetric and antisymmetric matrices](#symmetric-and-antisymmetric-matrices)
@@ -41,9 +37,9 @@ I took a lot of inspiration from the books: [mathematics for machine learning](h
 
 
 
-# Notation of linear algebra
+## Notation of linear algebra
 
-## Vectors
+### Vectors
 
 \\(\boldsymbol{v} \in \mathbb{R}^d\\), the vector v is an element in a set. The set is a d-dimensional real set.
 
@@ -57,7 +53,7 @@ Row vector:
 
 \\(\boldsymbol{v}^T = [v_1, v_2, \dots v_d]\\)
 
-## Matrix
+### Matrix
 
 \\(\boldsymbol{A} \in \mathbb{R}^{m\times n}\\), is a matrix which is an element of the real set of m*n dimensionality.
 
@@ -145,11 +141,11 @@ $$
 
 The trace of a matrix is the sum of its diagonal: \\(\operatorname{tr}(\boldsymbol{A}) = \sum_i A_{ii}\\)
 
-# Norms
+## Norms
 
 Norms are used to measure the length of a vector in some way. There exists many types of norms. We will cover two types: \\(L_1\\) and \\(L_2\\) norms. 
 
-# The Manhattan norm (\\(L_1\\)):
+### The Manhattan norm (\\(L_1\\)):
 
 Formula:
 
@@ -159,7 +155,7 @@ $$
 
 The manhattan norm is simply obtained by summing the absolute values of each vector component. 
 
-# The Euclidian norm (\\(L_2\\)):
+### The Euclidian norm (\\(L_2\\)):
 
 Formula:
 
@@ -171,7 +167,7 @@ The euclidian norm is obtained by taking the square root of the summation of the
 
 Note that \\(\boldsymbol{x}^T\boldsymbol{x} = \| \boldsymbol{x}\| _2^2\\)
 
-# Generalization (what is a norm?)
+### Generalization (what is a norm?)
 
 A norm is any function \\(f: \mathbb{R}^n \rightarrow \mathbb{R}\\) that satisfies these 4 properties:
 
@@ -195,7 +191,7 @@ The image above provides a visual aid in understanding the functioning of the di
 - For the L2 norm, we get a circular form. hence when x and y are apprx. = .706 we get L2 = 1.
 	- In this light, we view the norm as the distance travelled from origo to a point  vector constructed by the component trav
 
-## Norms for matrices
+#### Norms for matrices
 
 An example of a matrix norm is the *Frobenius* norm:
 
@@ -203,13 +199,13 @@ $$
 \| \boldsymbol{A}\| _F = \sqrt{\sum_{i=1}^m\sum_{j = 1}^n A_{ij}^2} =\sqrt{\operatorname{tr}(\boldsymbol{A}^T\boldsymbol{A})}  \ .
 $$
 
-# Norms and their use in regularization
+### Norms and their use in regularization
 
 Both the L1 and L2 norms are used frequently for regularization in machine learning. 
 
 There are many great sources that explains use cases for both norms. Therefore, I provide links to these along the way.
 
-## What is regularization?
+### What is regularization?
 
 Ian Goodfellow et. al. coins the use of regularization as: 
 
@@ -224,7 +220,7 @@ Many types of regularization techniques exists. Generally, we can group regulari
 
 source: [wikipedia](https://en.wikipedia.org/wiki/Regularization_(mathematics))
 
-## Norms in regularization
+### Norms in regularization
 
 The usage of norms in regularization falls under the category *explicit* regularization.
 
@@ -249,7 +245,7 @@ This term adds the sum og squared values of coefficients as a penalty term to th
 In contrast to using L1 norm as regularization term, the L2 norm keeps a dense model where all features are given some importance.
 
 
-# The determinant
+## The determinant
 
 The determinant of a square matrix is a function that returns a scalar.
 
@@ -277,7 +273,7 @@ In three dimensions, the determinant of a matrix is usually a parallelepiped (bo
 
 In this light, the determinant tells us something about the “volume” of the set \\(S\\). 
 
-## **Properties of the determinant**
+### **Properties of the determinant**
 
 Algebraically, the determinant follows these three properties (from which all other properties follow)
 
@@ -326,7 +322,7 @@ Example:
 
 <img src="/assets/linalg/Untitled 1.png" alt="Untitled" style="zoom:50%;" />
 
-## The classical adjoint of a matrix
+### The classical adjoint of a matrix
 
 The adjoint of a matrix \\(\boldsymbol{A} \in \mathbb{R}^{n \times n}\\) is denoted: \\(\operatorname{adj}(\boldsymbol{A})\\)
 
@@ -367,7 +363,7 @@ For \\(i \neq j\\), we replace the ith column of a with the kth one. This result
 It has therefore been shown that all diagonal elements of \\(Z\\) is equal to the determinant of \\(A\\) and non-diagonal elements \\(=0\\).
 
 
-# Linear independence and rank
+## Linear independence and rank
 
 A set of vectors \\(\{\boldsymbol{x}_1, \boldsymbol{x}_2, \dots, \boldsymbol{x}_n\} \subset \mathbb{R}^m\\) is said to be linearly independent if no vector can be represented as a linear combination of the remaining vectors. Conversely, if one vector is linearly dependent, it can be construed by a linear combination of some of the remaining vectors.
 
@@ -407,7 +403,7 @@ $$
 2. For \\(A\in \mathbb{R}^{m\times n }, \ B \in \mathbb{R}^{n\times p},  \ \operatorname{rank}(AB) \leq \operatorname{min}(\operatorname{rank}(A), \ \operatorname{rank}(B)) \ .\\)
 3. \\(A, B\in \mathbb{R}^{m\times n }, \ \operatorname{rank}(A + B) \leq \operatorname{rank}(A) + \operatorname{rank}(B) \ .\\)
 
-# Inverse of a square matrix
+## Inverse of a square matrix
 
 The inverse of a square matrix \\(A \in \mathbb{R}^{n \times n}\\) is denoted \\(A^{-1}\\) and is a unique matrix. 
 
@@ -442,7 +438,7 @@ Matrix multiplication is
 
 In general, NOT `commutative` : it is not always true that \\(AB = AC\\).
 
-## The identity matrix
+### The identity matrix
 
 \\(I \in \mathbb{R}^{n \times n}\\), where \\(I_{ij} = \begin{cases} 1 \quad i = j \\ 0 \quad i \neq j \end{cases}\\)
 
@@ -450,7 +446,7 @@ For all \\(A \in \mathbb{R}^{m \times n}\\): \\(AI = A = IA\\)
 
 Note that in some sense, the notation for the identity matrix is ambiguous, since it does not specify the dimension of I.
 
-## Diagonal matrix:
+### Diagonal matrix:
 
 \\(D \in \mathbb{R}^{m\times n}\\), where \\(D_{ij} = \begin{cases} d_i & & i = j \\ 0 & & i \neq j \end{cases}\\)
 
@@ -458,7 +454,7 @@ Note that in some sense, the notation for the identity matrix is ambiguous, sinc
 
 Therefore, \\(I = \operatorname{diag}(1, 1, \dots, 1)\\).
 
-## Symmetric and antisymmetric matrices
+### Symmetric and antisymmetric matrices
 
 \\(A \in \mathbb{R}^{m \times m}\\) is symmetric if \\(A^T = A\\). 
 
@@ -470,7 +466,7 @@ By these conditions, a matrix \\(A\\) is viewed as a composite of a symmetric an
 
 \\(A \in \mathbb{S}^n\\) means that \\(A\\) is a symmetric \\(n \times n\\) matrix.
 
-## Trace
+### Trace
 
 The trace of a square matrix is the sum of the diagonal:
 

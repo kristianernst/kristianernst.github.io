@@ -8,8 +8,6 @@ category: "Math"
 mathjax: true
 ---
 
-## Bayes Rule
-
 $$
 p(a\mid  b) = \frac{p(b\mid  a)\cdot p(a)}{p(b)}
 $$

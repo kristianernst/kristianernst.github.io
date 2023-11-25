@@ -8,8 +8,6 @@ category: "NLP"
 mathjax: true
 ---
 
-## OG positional encoding
-
 As presented in “Attention is all you need”, the positional encodings are introduced to the token embeddings via addition. 
 
 Here’s a not optimized code for encoding position, but it clearly show what is happening with each token vector:

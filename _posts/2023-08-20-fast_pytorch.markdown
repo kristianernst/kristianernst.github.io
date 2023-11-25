@@ -8,9 +8,6 @@ category: "PyTorch"
 mathjax: true
 ---
 
-## Make Pytorch fast
-
-
 ### Data loading
 
 #### Batches

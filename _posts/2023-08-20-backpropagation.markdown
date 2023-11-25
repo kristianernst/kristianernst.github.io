@@ -10,6 +10,18 @@ mathjax: true
 
 ## The four fundamental formulas
 
+- [The four fundamental formulas](#the-four-fundamental-formulas)
+  - [Equation of error in the output layer L](#equation-of-error-in-the-output-layer-l)
+  - [Equation of error in terms of the error in the next layer](#equation-of-error-in-terms-of-the-error-in-the-next-layer)
+  - [Equation for rate of change of the cost w.r.t. any bias in the network](#equation-for-rate-of-change-of-the-cost-wrt-any-bias-in-the-network)
+  - [Equation for rate of change of cost w.r.t. any weight in the network](#equation-for-rate-of-change-of-cost-wrt-any-weight-in-the-network)
+- [Proofs of the four fundamental formulas](#proofs-of-the-four-fundamental-formulas)
+  - [EQ 1: Error in terms of last layer](#eq-1-error-in-terms-of-last-layer)
+  - [EQ 2: Error in terms of layers prior to last layer](#eq-2-error-in-terms-of-layers-prior-to-last-layer)
+  - [EQ 3: Error w.r.t. bias](#eq-3-error-wrt-bias)
+  - [EQ 4: Error w.r.t. weights](#eq-4-error-wrt-weights)
+
+
 ### Equation of error in the output layer L
 
 $$

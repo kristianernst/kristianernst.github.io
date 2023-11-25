@@ -8,8 +8,6 @@ category: "NLP"
 mathjax: true
 ---
 
-## GPT-Fathom
-
 [https://arxiv.org/pdf/2309.16583.pdf](https://arxiv.org/pdf/2309.16583.pdf)
 
 - Many existing LLM leaderboards reference scores from other papers without consistent settings and prompts, which may inadvertently encourage cherry-picking favored settings and prompts for better results. To achieve reliable conclusions, it is crucial to make apples-to-apples LLM comparisons with consistent settings and prompts.

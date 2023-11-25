@@ -9,9 +9,6 @@ mathjax: true
 ---
 
 
-## Recurrent neural networks
-
-
 TODO: write more
 
 

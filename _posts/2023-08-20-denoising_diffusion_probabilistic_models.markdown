@@ -8,8 +8,6 @@ category: "SD"
 mathjax: true
 ---
 
-## Denoising diffusion probabilistic models
-
 ### Background
 
 <img src="/assets/sd/image-20231005224728442.png" alt="image-20231005224728442" style="zoom:40%;" />

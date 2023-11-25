@@ -8,8 +8,6 @@ category: "Math"
 mathjax: true
 ---
 
-## Kullback-Liebler Divergence
-
 The KL divergence is a measure of how one probability distribution diverges from a second expected probability distribution.
 
 The divergence of two probability distributions \\(p(x)\\) and \\(q(x)\\) can be expressed as:

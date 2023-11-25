@@ -8,8 +8,6 @@ category: "Math"
 mathjax: true
 ---
 
-## Maximum likelihood estimation
-
 MLE is about estimating the parameters of a statistical model given some observed data.
 
 We have \\(m\\) examples \\(\mathbb{X} = \{ \boldsymbol{x}^{(1)}, \dots \boldsymbol{x}^{(m)}, \}\\) drawn independently from the true but unknown data generating distribution \\(p_{data}(\textbf{x})\\).

@@ -8,9 +8,7 @@ category: "NLP"
 mathjax: true
 ---
 
-## LoRA, QLoRA, and LongLoRA
-
-These two papers have been applied to make the fine-tuning of LLMs cheap in memory and compute. 
+These papers have been applied to make the fine-tuning of LLMs cheap in memory and compute. 
 
 Snippet of [LoRA](https://arxiv.org/pdf/2106.09685.pdf) abstract:
 

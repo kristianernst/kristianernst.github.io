@@ -8,8 +8,6 @@ category: "NLP"
 mathjax: true
 ---
 
-## Rotary Positional Embeddings
-
 Rotary positional embeddings are a re-design of the architecture that is fed into the transformer blocks. Here’s a link to the original paper: [https://arxiv.org/abs/2104.09864](https://arxiv.org/abs/2104.09864)
 
 As we know, the attention mechanism has no natural “awareness” tokens’ position in a sequence. Therefore, we must somehow introduce this via positional encoding in the embedding layer.

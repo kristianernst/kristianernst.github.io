@@ -8,7 +8,17 @@ category: "NLP"
 mathjax: true
 ---
 
-## LoRA
+- [Background](#background)
+- [How exactly does LoRA work?](#how-exactly-does-lora-work)
+	- [Reference to manifold theory](#reference-to-manifold-theory)
+	- [Low-Rank decomposition matrices](#low-rank-decomposition-matrices)
+		- [How LoRA uses these matrices:](#how-lora-uses-these-matrices)
+- [Benefits:](#benefits)
+- [Extended research questions](#extended-research-questions)
+	- [**1) which weight matrices to use under budget constraint?**](#1-which-weight-matrices-to-use-under-budget-constraint)
+	- [**2) the optimal rank \\(r\\)?**](#2-the-optimal-rank-r)
+	- [**3) How does the adaptation matrix compare to the pre-trained weight matrix?**](#3-how-does-the-adaptation-matrix-compare-to-the-pre-trained-weight-matrix)
+
 
 ### Background
 
