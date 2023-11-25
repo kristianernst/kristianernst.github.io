@@ -1,0 +1,117 @@
+---
+layout: post
+comments: true
+title:  "Maximum likelihood estimation"
+excerpt: "MLE is about estimating the parameters of a statistical model given some observed data."
+date:   2023-08-20 22:00:00
+category: "Math"
+mathjax: true
+---
+
+# Maximum likelihood estimation
+
+MLE is about estimating the parameters of a statistical model given some observed data.
+
+We have \\(m\\) examples \\(\mathbb{X} = \{ \boldsymbol{x}^{(1)}, \dots \boldsymbol{x}^{(m)}, \}\\) drawn independently from the true but unknown data generating distribution \\(p_{data}(\textbf{x})\\).
+
+Let \\(p_{model}(\boldsymbol{x}; \boldsymbol{\theta})\\) be a `parametric` family of probability distributions over the same space indexed by \\(\boldsymbol{\theta}\\).  In other words, \\(p_{model}(\boldsymbol{x}; \boldsymbol{\theta})\\) maps any configuration \\(\boldsymbol{x}\\) to a real number estimating the true probability \\(p_{data}(\boldsymbol{x})\\).
+
+**A parametric model:**
+
+\\(\boldsymbol{\theta}\\) denotes a fixed set of parameters which is used to fit the model to the true data-generating process
+
+Examples of parametric models are: 
+
+- Gaussian distributions: \\(\boldsymbol{\theta} = \{ \mu, \sigma^2 \}\\),
+
+	$$
+	p_{model}(\boldsymbol{x}; \boldsymbol{\theta}) = \frac{1}{\sqrt{2\pi\sigma^2} }e^{-\frac{(x-\mu)^2}{2\sigma^2} }
+	$$
+
+- Bernoulli distributions: \\(\boldsymbol{\theta} = \{ \boldsymbol{p}\}\\)
+
+	$$
+	p_{model}(\boldsymbol{x}; \boldsymbol{\theta}) = \boldsymbol{p}^{\boldsymbol{x} }(1-\boldsymbol{p})^{1-\boldsymbol{x} }
+	$$
+
+- Linear regression:
+
+	$$
+	p_{model}(y|\textbf{x}; \boldsymbol{\theta}) = \mathcal{N}(y; \textbf{x}^T\boldsymbol{\theta},\sigma^2)
+	$$
+
+In each case, we have a fixed set of parameters which we tune to fit the data.
+
+**A non-parametric model:**
+
+These models do not assumed any fixed form for distribution and can inf number of parameters.
+
+Examples are: kernel density estimators and Gaussian processes.
+
+## The objective
+
+Find \\(\boldsymbol{\theta}\\) that maximises the likelihood of observing the given data \\(\mathbb{X}\\) under the model \\(p_{model}(\boldsymbol{x}; \boldsymbol{\theta})\\). 
+
+**Likelihood function**
+$$
+\mathcal{L}(\boldsymbol{\theta}; \mathbb{X}) = \prod_{i=1}^m p_{model}(\boldsymbol{x}^{(i)}; \boldsymbol{\theta})
+$$
+
+**The log-likelihood function**
+
+Taking the product of so many probabilities can lead to numerical instability, so we use the log rules: \\(\log(a \cdot b) = \log(a) + \log(b)\\)
+
+$$
+\log\mathcal{L}(\boldsymbol{\theta};\mathbb{X})=\sum_{i=1}^m \log p_{model}(\boldsymbol{x}^{(i)}; \boldsymbol{\theta})
+$$
+
+**Maximizing the log-likelihood**
+$$
+\boldsymbol{\theta}^* = \operatorname{arg max}_{\boldsymbol{\theta} } \log \mathcal{L}(\boldsymbol{\theta};\mathbb{X}) = \operatorname{arg max}_{\boldsymbol{\theta} } \sum_{i=1}^m \log p_{model}(\boldsymbol{x}^{(i)} ;\boldsymbol{\theta})
+$$
+
+To find \\(\boldsymbol{\theta}^*\\), one can use various optimization algorithms like gradient descent.
+
+The intuition is that by maximizing the likelihood (or log-likelihood), you're finding the parameter ***θ*** that makes the observed data X most probable under the model
+
+pmodel. In other words, you're finding the model that best "fits" your data.
+
+**Dividing by** \\(m\\)
+
+ \\(\boldsymbol{\theta}^*\\) can be further defined as an fitting the parameters according to an expectation with respect to the empirical distribution \\(\hat{p}_{data}\\) defined by the training data:
+
+$$
+\begin{align}\boldsymbol{\theta}^* & = \operatorname{arg max}_{\boldsymbol{\theta} } \frac{1}{m}\sum_{i=1}^m \log p_{model}(\boldsymbol{x}^{(i)} ;\boldsymbol{\theta})\\ & =\operatorname{arg max}_{\boldsymbol{\theta} }\mathbb{E}_{\textbf{x} \sim \hat{p}_{data} } \log p_{model}(\boldsymbol{x};\boldsymbol{\theta})\end{align}
+$$
+
+*Short on Expectation:* 
+
+[Expectation vs average](expectation_vs_avg.md)
+
+### The connection to KL divergence:
+
+One way to interpret maximum likelihood estimation is to view it as minimizing the dissimilarity between the empirical distribution \\(\hat{p}_{data}\\) defined by the training set and the model distribution, with the degree of dissimilarity between the two measured by the KL divergence.
+
+KL divergence:
+
+[Kullback-Liebler Divergence](kl_divergence.md)
+$$
+D_{KL}(\hat{p}_{data} \| p_{model})=\mathbb{E}_{\textbf{x} \sim \hat{p}_{data} } \left[\log \hat{p}_{data}(\boldsymbol{x}) - \log p_{model}(\boldsymbol{x})\right]
+$$
+
+The term on the left (\\(\log \hat{p}_{data}(\boldsymbol{x})\\)) is a function only of the data generating process, not the model. I.e. this term remains constant with respect to the model so it does not affect the optimization process. This means when we train the model to minimize the KL divergence, we need only minimize
+
+$$
+-\mathbb{E}_{\textbf{x} \sim \hat{p}_{data} }[\log p_{model}(\boldsymbol{x})]
+$$
+
+Which is equivalent to the maximization in equation 2 
+
+Minimizing this KL divergence corresponds exactly to minimizing the cross- entropy between the distributions.
+
+
+💡 We can thus see maximum likelihood as an attempt to make the model distribution match the empirical distribution \\(\hat{p}_{data}\\). Ideally, we would like to match the true data generating distribution \\(p_{data}\\), but we have no direct access to this distribution.
+
+
+
+> While the optimal **θ** is the same regardless of whether we are maximizing the likelihood or minimizing the KL divergence, the values of the objective functions are different. In software, we often phrase both as minimizing a cost function. Maximum likelihood thus becomes minimization of the negative log-likelihood(NLL), or equivalently, minimization of the cross entropy. The perspective of maximum likelihood as minimum KL divergence becomes helpful in this case because the KL divergence has a known minimum value of zero. The negative log-likelihood can actually become negative when x is real-valued.

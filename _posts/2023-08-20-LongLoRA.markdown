@@ -1,0 +1,79 @@
+---
+layout: post
+comments: true
+title: "Efficient Context Extension in Large Language Models Using LongLoRA"
+excerpt: "Exploring LongLoRA, an innovative approach for extending the context length of LLMs efficiently."
+date: 2023-08-20 22:00:00
+category: "NLP"
+mathjax: true
+---
+
+# LongLoRA
+
+Shift short attention is designed to handle longer contexts lengths efficiently by altering the way self-attention is applied, without increasing the computational cost.
+
+How it is done:
+
+1. grouping and shifting tokens:
+
+	- The sequence of tokens is divided into groups, with each group having a size of *G* tokens.
+	- In half of the attention heads, the tokens are shifted by half the group size (*G*/2) to ensure information flow between neighboring groups. This is achieved by using the **`roll`** function in PyTorch in the first key line of the pseudocode.
+
+	```python
+	qkv = cat((qkv.chunk(2, 3)[0], qkv.chunk(2, 3)[1].roll(-G/2, 1)), 3).view(B*N/G,G,3,H,D)
+	```
+
+2. Self-attention execution:
+
+	- Standard self-attention is executed within each group individually, using the altered queries, keys, and values from the previous step.
+
+	```python
+	out = self_attn(qkv)
+	```
+
+3. Rolling tokens back:
+
+	- After the self-attention computation, the tokens in half of the attention heads are rolled back to their original positions, reversing the initial shift. This is done in the second key line of the pseudocode.
+
+	```python
+	out = cat((out.chunk(2, 2)[0], out.chunk(2, 2)[1].roll(G/2, 1)), 2)
+	```
+
+The original attention architecture is retained during inference, ensuring compatibility with existing optimizations and infrastructures.
+
+**So features are split in half along the head dimension, what does this mean?**
+
+In the context of the provided pseudocode and the Shift Short Attention (S²-Attn) mechanism, splitting the features in half along the head dimension means dividing the set of attention heads into two equal parts. Each part will then operate on the queries, keys, and values (QKV) slightly differently as per the S²-Attn mechanism.
+
+In a self-attention mechanism, the number of attention heads (H) usually denotes parallel attention computations. Each attention head operates on the QKV vectors independently to compute its own set of attention scores and output values. This parallelism helps in capturing different types of relationships in the data.
+
+Here’s what happens in the provided pseudocode:
+
+```python
+qkv = cat((qkv.chunk(2, 3)[0], qkv.chunk(2, 3)[1].roll(-G/2, 1)), 3).view(B*N/G,G,3,H,D)
+
+```
+
+1. **Chunking**: **`qkv.chunk(2, 3)`** splits the **`qkv`** tensor into two equal chunks along the head dimension (dimension 3), essentially dividing the attention heads into two sets, each with H/2heads. This operation generates two new tensors, each with dimensions (B,N,3,H/2,D).
+2. **Shifting**: The tokens in one of the chunks (the second chunk in this case) are then shifted by G/2 positions along the sequence length (token) dimension using **`.roll(-G/2, 1)`**. This shift ensures that the attention heads in this chunk see a different set of tokens compared to the attention heads in the first chunk, enabling interaction between neighboring groups of tokens.
+3. **Concatenation**: The two chunks are then concatenated back together along the head dimension using **`cat`**, resulting in a tensor with the original number of attention heads (H) but with the tokens in one set of heads shifted as per the S²-Attn mechanism
+
+## Paper Snippets
+
+\\(S^2\\) attention: shift short attention:
+
+![zoomed image](/assets/nlp/assets/image-20231005164105473.png){: .zoomed}
+
+We present shift short attention (S2-Attn) as an efficient substitute for standard self-attention. As shown in Figure 2, we split context length into several groups and conduct attention in each group individually. In half attention heads, we shift the tokens by half group size, which ensures the information flow between neighbouring groups. For example, we use S2-Attn with group size 2048 to approximate the total 8192 context length training.
+
+Models fine-tuned via S2-Attn retain the original attention architecture during inference. This facilitates most existing optimization and infrastructure.
+
+We empirically show that learnable embedding and normalization layers are the key to unlocking long context LoRA fine-tuning,
+
+![zoomed image](/assets/nlp/assets/image-20231005164056529.png){: .zoomed}
+
+We shift the group partition by half group size in half attention heads. Taking the overall 8192 context length for example, in pattern 1, the first group conducts self-attention from 1st to 2048th tokens. In Pattern 2, the group partition is shifted by 1024. The first attention group begins from 1025th and ends at 3072th tokens, while the first and the last 1024 tokens belong to the same group. We use patterns 1 and 2 in each half self-attention heads respectively. This manner does not increase additional computation cost but enables the the information flow between different groups. We show that it gets close to the standard attention baseline in Table 1.
+
+**Easy Implementation.** Shift short attention is easy to implement. It involves only two steps: (1) shifting tokens in half attention heads, and (2) transposing features from token dimension to batch dimension. Two lines of code are enough. We provide a PyTorch-style code in Algorithm 1. In the following, we make a pilot study and clarify the reasons for our design step by step.
+
+![zoomed image](/assets/nlp/assets/image-20231005164124428.png){: .zoomed}

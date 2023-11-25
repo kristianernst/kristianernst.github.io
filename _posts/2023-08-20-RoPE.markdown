@@ -1,0 +1,33 @@
+---
+layout: post
+comments: true
+title:  "Rotary Positional Embeddings"
+excerpt: "A detailed look into Rotary Positional Embeddings"
+date:   2023-08-20 22:00:00
+category: "NLP"
+mathjax: true
+---
+
+# Rotary Positional Embeddings
+
+Rotary positional embeddings are a re-design of the architecture that is fed into the transformer blocks. Here’s a link to the original paper: [https://arxiv.org/abs/2104.09864](https://arxiv.org/abs/2104.09864)
+
+As we know, the attention mechanism has no natural “awareness” tokens’ position in a sequence. Therefore, we must somehow introduce this via positional encoding in the embedding layer.
+
+The original solution as described in these notes: 
+
+[OG positional encoding](og_positional_encoding.md)
+
+Rotary embeddings have shown to increase performance of transformer models, and has therefore been widely adopted since then. 
+
+Here’s a good video explaining the concept: [https://www.youtube.com/watch?v=o29P0Kpobz0](https://www.youtube.com/watch?v=o29P0Kpobz0)
+
+The main takeaways of Rotary positional embeddings is that they succeed in:
+
+1. Make positional encodings linearly dependent (this is good, because it means the model can “learn” relationships between any two positions.)
+	1. It thereby includes relative position information!
+2. Make the model “length invariant”, meaning that one can input any arbitratily large sequence length and the encoding will still work. (unlike earlier positional encoding techniques).
+
+So, how is this achieved?
+
+The way it is achieved is by rotating “the word embedding vector by amount of angle multiples of its position index.”
