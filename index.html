@@ -32,30 +32,32 @@ function toggleCategory(categoryId) {
   var content = document.getElementById(categoryId);
   var collapsible = content.previousElementSibling;
 
-  // Function to run when transition ends
-  function onTransitionEnd() {
-    // Only set overflow to auto if content is expanded
-    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-      content.style.overflow = 'auto';
+  // Toggle the "active" class on the button
+  collapsible.classList.toggle("active");
+
+  if (collapsible.classList.contains("active")) {
+    // If expanding, calculate the total height for the first 5 notes (or all if fewer)
+    let totalHeight = 0;
+    let postItems = content.querySelectorAll('li');
+    for (let i = 0; i < postItems.length && i < 5; i++) {
+      totalHeight += postItems[i].scrollHeight;
     }
+    content.style.maxHeight = totalHeight + "px";
+  } else {
+    // If collapsing, reset max-height
+    content.style.maxHeight = null;
+  }
+
+  // Handle the end of the transition
+  function onTransitionEnd() {
+    // Apply overflow auto if content is expanded, otherwise hide the overflow
+    content.style.overflow = collapsible.classList.contains("active") ? 'auto' : 'hidden';
     // Clean up by removing the event listener
     content.removeEventListener('transitionend', onTransitionEnd);
   }
 
-  // Toggle the "active" class on the button
-  collapsible.classList.toggle("active");
-
-  // If collapsing, set overflow to hidden immediately
-  if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-    content.style.overflow = 'hidden';
-    content.style.maxHeight = null;
-  } else {
-    // Remove previous transitionend listener if it exists
-    content.removeEventListener('transitionend', onTransitionEnd);
-    // Set max-height to start the transition
-    content.style.maxHeight = content.scrollHeight + "px";
-    // Listen for the end of the transition
-    content.addEventListener('transitionend', onTransitionEnd);
-  }
+  // Ensure any previous listeners are removed before adding a new one
+  content.removeEventListener('transitionend', onTransitionEnd);
+  content.addEventListener('transitionend', onTransitionEnd);
 }
 </script>

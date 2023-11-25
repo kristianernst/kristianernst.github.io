@@ -510,10 +510,10 @@ vertical-align: middle;
 .content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.25s ease-out;
+  transition: max-height 0.15s ease-out;
 }
 
 .collapsible.active + .content {
-  max-height: 25px; /* Adjust this value based on the actual height of your notes */
+  max-height: 250px; /* Adjust this value based on the actual height of your notes */
   overflow: auto; /* Allows scrolling if the content is taller than the max-height */
 }
