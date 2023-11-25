@@ -482,7 +482,9 @@ vertical-align: middle;
   background-color: transparent; /* Remove the background */
   color: #333; /* Match the text color to your site's style */
   cursor: pointer;
-  padding: 0.5em 0; /* Reduce padding */
+  padding: 0; /* Reduce padding */
+  margin: 10px 0 30px;
+  position: relative;
   width: 100%;
   border: none;
   text-align: left;
@@ -496,6 +498,10 @@ vertical-align: middle;
 }
 
 .collapsible:after {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   content: '+';
   color: #333;
   float: right;
