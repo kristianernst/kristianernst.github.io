@@ -1,4 +1,3 @@
 # My blog
-
-This is my blog, uses [Jekyll](http://jekyllrb.com/). I was tired of bloated, slow Wordpress that locked up all my content.
-
+I copied this template from [Andrej Karpathy](https://github.com/karpathy/karpathy.github.io). Big thanks to him for the simple and clean layout.
+This is my blog, uses [Jekyll](http://jekyllrb.com/).
