@@ -292,12 +292,12 @@ Algebraically, the determinant follows these three properties (from which all ot
 
 $$
 \begin{align}
-\left\mid \left[\begin{array}{c}
+\left\mid \left[\begin{matrix}
 a_2^T \\
 a_1^T \\
 \vdots \\
 a_m^T
-\end{array}\right]\right\mid = -\mid A \mid .
+\end{matrix}\right]\right\mid = -\mid A \mid .
 \end{align}
 $$
 
