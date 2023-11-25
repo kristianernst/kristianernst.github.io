@@ -39,7 +39,7 @@ $$
 \end{align*}
 $$
 
-The gradient of $f$ is just a vector containing all the partial derivatives of its function:
+The gradient of $$f$$ is just a vector containing all the partial derivatives of its function:
 
 $$
 \nabla f = \begin{bmatrix}\frac{\partial f}{\partial x } = cos(x)y^2 \\ 
@@ -48,7 +48,7 @@ $$
 
 Example 2: 
 
-Say we have the function: $f(x,y)=x^2+y^2$ 
+Say we have the function: $$f(x,y)=x^2+y^2$$ 
 
 It looks like this:
 
@@ -74,7 +74,7 @@ We can plot the gradients at different positions in the xy-plane, the direction 
 
 - Knowledge check: what is the relationship between the vectors and contour lines?
 
-	Contour lines are a topological mapping of a function. We could draw curves of $f(x,y)= x^2 + y^2$,  where each line results in $f = 1,2,3,4,5,...$ etc.
+	Contour lines are a topological mapping of a function. We could draw curves of $$f(x,y)= x^2 + y^2$$, where each line results in $$f = 1,2,3,4,5,...$$ etc.
 
 	Now imagine the contour lines are drawn with very small intervals. We would expect that the contour lines were almost parallel to each other. Because of this property, if we were to ascend the function as fast as possible, we would do it by finding the shortest path between each contour line. 
 
@@ -95,7 +95,7 @@ $$
 
 **Intuition:**
 
-If the gradient is a vector that tells us the direction of the steepest ascent, and we want to know how much of this change is in the direction of a vector $\boldsymbol{w}$. 
+If the gradient is a vector that tells us the direction of the steepest ascent, and we want to know how much of this change is in the direction of a vector $$\boldsymbol{w}$$. 
 
 Therefore, if we first compute the gradient of $f$, we can then se how much each vector component influence the function by minor changes.
 
@@ -105,9 +105,9 @@ $$
 
 Important!
 
-Some use the constraint that $\boldsymbol{w}$ be a unit vector, this ensures that it is only the directions we are comparing when comparing the directional derivatives. 
+Some use the constraint that $$\boldsymbol{w}$$ be a unit vector, this ensures that it is only the directions we are comparing when comparing the directional derivatives. 
 
-In this light, directional derivatives are basically scalar projections between a gradient vector and a unit vector. In any case, if we want to interpret the resulting directional derivative as a slope, we need to convert $\boldsymbol{w}$ to a unit vector!
+In this light, directional derivatives are basically scalar projections between a gradient vector and a unit vector. In any case, if we want to interpret the resulting directional derivative as a slope, we need to convert $$\boldsymbol{w}$$ to a unit vector!
 
 To this end, we need to use the concepts of 1) scalar projection 
 
@@ -123,21 +123,21 @@ $$
 \end{align}
 $$
 
-By the same token, we know that $\boldsymbol{a} \cdot \boldsymbol{b} = |\boldsymbol{a}\|\boldsymbol{b}| \operatorname{cos}(\theta)$, and hence 
+By the same token, we know that $$\boldsymbol{a} \cdot \boldsymbol{b} = |\boldsymbol{a}\|\boldsymbol{b}| \operatorname{cos}(\theta)$$, and hence 
 
-$\operatorname{cos}(\theta)=\frac{\boldsymbol{a}\cdot\boldsymbol{b} }{\|\boldsymbol{a}\|\boldsymbol{b}\|}$
+$$\operatorname{cos}(\theta)=\frac{\boldsymbol{a}\cdot\boldsymbol{b} }{\|\boldsymbol{a}\|\boldsymbol{b}\|}$$
 
 Scalar projection
 
-We know that $\|\boldsymbol{a}\| \operatorname{cos}(\theta) = \text{adj} = \boldsymbol{a}\cdot \frac{\boldsymbol{b} }{\|\boldsymbol{b}\|} = \boldsymbol{a} \cdot \hat{\boldsymbol{b} }$
+We know that $$\|\boldsymbol{a}\| \operatorname{cos}(\theta) = \text{adj} = \boldsymbol{a}\cdot \frac{\boldsymbol{b} }{\|\boldsymbol{b}\|} = \boldsymbol{a} \cdot \hat{\boldsymbol{b} }$$
 
 This gives us the scalar projection, it provides the magnitude, or the length of the given vector.
 
 Vector projection (bonus)
 
-Now, a vector consist of both a magnitude and a direction. Therefore, to move from a scalar to a vector, we need to multiply this magnitude (i.e. the scalar projection) onto a vector in the same direction of $\boldsymbol{b}$. To keep the magnitude intact however, it must be the unit vector, i.e. a vector with the length one. The unit vector of b: $\hat{\boldsymbol{b} } = \frac{\boldsymbol{b} }{|\boldsymbol{b}|}$.
+Now, a vector consist of both a magnitude and a direction. Therefore, to move from a scalar to a vector, we need to multiply this magnitude (i.e. the scalar projection) onto a vector in the same direction of $$\boldsymbol{b}$$. To keep the magnitude intact however, it must be the unit vector, i.e. a vector with the length one. The unit vector of b: $$\hat{\boldsymbol{b} } = \frac{\boldsymbol{b} }{|\boldsymbol{b}|}$$.
 
-Therefore, the vector projection is given by: $(\boldsymbol{a} \cdot \hat{\boldsymbol{b} })\hat{\boldsymbol{b} } = \frac{\boldsymbol{a}\boldsymbol{b} }{\|\boldsymbol{b}\|} \frac{\boldsymbol{b} }{\|\boldsymbol{b}\|} = \frac{\boldsymbol{a}\boldsymbol{b} }{\|\boldsymbol{b}\|^2}\boldsymbol{b} = \frac{\boldsymbol{a}\boldsymbol{b} }{\boldsymbol{b}\boldsymbol{b} }\boldsymbol{b}$ .
+Therefore, the vector projection is given by: $$(\boldsymbol{a} \cdot \hat{\boldsymbol{b} })\hat{\boldsymbol{b} } = \frac{\boldsymbol{a}\boldsymbol{b} }{\|\boldsymbol{b}\|} \frac{\boldsymbol{b} }{\|\boldsymbol{b}\|} = \frac{\boldsymbol{a}\boldsymbol{b} }{\|\boldsymbol{b}\|^2}\boldsymbol{b} = \frac{\boldsymbol{a}\boldsymbol{b} }{\boldsymbol{b}\boldsymbol{b} }\boldsymbol{b}$$ .
 
 **The connection to partial derivatives:**
 
@@ -165,25 +165,25 @@ We can use directional derivatives to prove that the gradient vector point in th
 
 ### Proof that the gradient vector point in the direction of steepest ascent
 
-Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a differentiable function, and let $\boldsymbol{u} \in \mathbb{R}^n$ be a unit vector. The directional derivative of $f$ in the direction of $\boldsymbol{u}$ at a point $x$ is given by:
+Let $$f: \mathbb{R}^n \rightarrow \mathbb{R}$$ be a differentiable function, and let $$\boldsymbol{u} \in \mathbb{R}^n$$ be a unit vector. The directional derivative of $$f$$ in the direction of $$\boldsymbol{u}$$ at a point $$x$$ is given by:
 
 $$
 D_{\mathbf{u} }f(\mathbf{x}) = \nabla f(\mathbf{x}) \cdot \mathbf{u}
 $$
 
-Where $\nabla f(x)$ is the gradient of $f$ at $x$ and $\cdot$ denotes the dot product. 
+Where $$\nabla f(x)$$ is the gradient of $$f$$ at $$x$$ and $$\cdot$$ denotes the dot product. 
 
 *Goal:* 
 
-We want to find the direction $\boldsymbol{u}$ that maximises $D_{\mathbf{u} }f(\mathbf{x})$.
+We want to find the direction $$\boldsymbol{u}$$ that maximises $$D_{\mathbf{u} }f(\mathbf{x})$$.
 
 Using the properties of the dot product, we have: 
 
-$\nabla f(\mathbf{x}) \cdot \mathbf{u} = \lVert \nabla f(\mathbf{x}) \rVert \lVert \mathbf{u} \rVert \cos(\theta)$ where $\lVert \cdot \rVert$ denotes the magnitude and $\theta$ is the angle between $\nabla f(\mathbf{x})$ and $\mathbf{u}$.
-Since $\mathbf{u}$ is a unit vector, $\lVert \mathbf{u} \rVert = 1$. Thus, the expression becomes: $\nabla f(\mathbf{x}) \cdot \mathbf{u} = \lVert \nabla f(\mathbf{x}) \rVert \cos(\theta)$
+$$\nabla f(\mathbf{x}) \cdot \mathbf{u} = \lVert \nabla f(\mathbf{x}) \rVert \lVert \mathbf{u} \rVert \cos(\theta)$$ where $$\lVert \cdot \rVert$$ denotes the magnitude and $$\theta$$ is the angle between $$\nabla f(\mathbf{x})$$ and $$\mathbf{u}$$.
+Since $$\mathbf{u}$$ is a unit vector, $$\lVert \mathbf{u} \rVert = 1$$. Thus, the expression becomes: $$\nabla f(\mathbf{x}) \cdot \mathbf{u} = \lVert \nabla f(\mathbf{x}) \rVert \cos(\theta)$$
 
-To maximize $D_{\mathbf{u} }f(\mathbf{x})$, we need to maximize $\cos(\theta)$. The maximum value of $\cos(\theta)$ is 1, which occurs when $\theta = 0$. This means that $\mathbf{u}$ and $\nabla f(\mathbf{x})$ are in the same direction. This ends the proof   $\blacksquare$
+To maximize $$D_{\mathbf{u} }f(\mathbf{x})$$, we need to maximize $$\cos(\theta)$$. The maximum value of $$\cos(\theta)$$ is 1, which occurs when $$\theta = 0$$. This means that $$\mathbf{u}$$ and $$\nabla f(\mathbf{x})$$ are in the same direction. This ends the proof $$\blacksquare$$
 
 *Conclusion:*
 
-The directional derivative $D_{\mathbf{u} }f(\mathbf{x})$ is maximized when $\mathbf{u}$ is in the direction of the gradient $\nabla f(\mathbf{x})$. Hence, the gradient vector $\nabla f(\mathbf{x})$ points in the direction of steepest ascent of the function $f$ at the point $\mathbf{x}$.
+The directional derivative $$D_{\mathbf{u} }f(\mathbf{x})$$ is maximized when $$\mathbf{u}$$ is in the direction of the gradient $$\nabla f(\mathbf{x})$$. Hence, the gradient vector $$\nabla f(\mathbf{x})$$ points in the direction of steepest ascent of the function $$f$$ at the point $$\mathbf{x}$$.
