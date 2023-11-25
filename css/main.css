@@ -482,7 +482,7 @@ vertical-align: middle;
   background-color: transparent; /* Remove the background */
   color: #333; /* Match the text color to your site's style */
   cursor: pointer;
-  padding: 0; /* Reduce padding */
+  padding: 10px; /* Reduce padding */
   margin: 10px 0 30px;
   position: relative;
   width: 100%;
