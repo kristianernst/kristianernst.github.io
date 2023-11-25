@@ -483,6 +483,7 @@ vertical-align: middle;
   color: #333; /* Match the text color to your site's style */
   cursor: pointer;
   padding-left: 13px; /* Reduce padding */
+  padding-right: 13px; /* Reduce padding */
   position: relative;
   width: 100%;
   border: none;
@@ -507,6 +508,7 @@ vertical-align: middle;
   font-size: 1.1em; /* Keep the plus sign proportional */
   margin-right: 1em; /* Ensure space on the right */
   padding-left: 13px; /* Reduce padding */
+  padding-right: 13px; /* Reduce padding */
 }
 
 .collapsible.active:after {
@@ -518,10 +520,12 @@ vertical-align: middle;
   overflow: hidden;
   transition: max-height 0.15s ease-out;
   padding-left: 13px; /* Reduce padding */
+  padding-right: 13px; /* Reduce padding */
 }
 
 .collapsible.active + .content {
   max-height: 250px; /* Adjust this value based on the actual height of your notes */
   overflow: auto; /* Allows scrolling if the content is taller than the max-height */
   padding-left: 13px; /* Reduce padding */
+  padding-right: 13px; /* Reduce padding */
 }
