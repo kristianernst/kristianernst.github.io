@@ -487,6 +487,5 @@ We can prove that the following properties hold:
 2. For \\(A, B \in \mathbb{R}^{n\times n}, \operatorname{tr}(A+B) = \operatorname{tr} A + \operatorname{tr} B\\)
 3. For \\(A \in \mathbb{R}^{n\times n}, t\ \in \mathbb{R}, \operatorname{tr}(t A) = t \operatorname{tr}A\\).
 4. For \\(A, B\\) s.t. \\(AB\\) is square, \\(\operatorname{tr} AB = \operatorname{tr} BA\\).
-5. For \\(A, B, C\\) s.t. \\(ABC\\) is square, \\(\operatorname{tr} ABC = \operatorname{tr} BAC = \operatorname{tr} CAB, \dots\\) and son for the product of more matrices.
-
+5. For \\(A, B, C\\) s.t. \\(ABC\\) is square, \\(\operatorname{tr} ABC = \operatorname{tr} BAC = \operatorname{tr} CAB, \dots\\)
 
