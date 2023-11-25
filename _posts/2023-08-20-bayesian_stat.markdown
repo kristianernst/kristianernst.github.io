@@ -8,7 +8,7 @@ category: "Math"
 mathjax: true
 ---
 
-# Bayesian statistics
+## Bayesian statistics
 
 Bayesian statistics consider all possible values of \\(\boldsymbol{\theta}\\) when making a prediction.
 
@@ -30,7 +30,7 @@ $$
 
 In the scenarios where Bayesian estimation is typically used, the prior begins as a relatively uniform or Gaussian distribution with high entropy, and the observation of the data usually causes the posterior to lose entropy and concentrate around a few highly likely values of the parameters.
 
-## Relating to MLE
+### Relating to MLE
 
 Relative to maximum likelihood estimation, Bayesian estimation offers two important differences. 
 
@@ -139,7 +139,7 @@ $$
 
 The second important difference between the Bayesian approach to estimation and the maximum likelihood approach is due to the contribution of the Bayesian prior distribution The prior has an influence by shifting probability mass density towards regions of the parameter space that are preferred *a priori*.
 
-## Maximum A **Posteriori** (MAP) Estimation
+### Maximum A **Posteriori** (MAP) Estimation
 
 While we can get the whole probability distribution of \\(\theta\\), most operations involving the Bayesian posterior are intractable, i.e. they are computationally expensive! Therefore single-point estimates are preferred in many cases. 
 

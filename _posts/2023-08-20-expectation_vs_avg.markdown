@@ -8,7 +8,7 @@ category: "Math"
 mathjax: true
 ---
 
-# Expectation vs average
+## Expectation vs average
 
 Average: 
 

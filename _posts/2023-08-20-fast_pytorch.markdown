@@ -8,23 +8,22 @@ category: "PyTorch"
 mathjax: true
 ---
 
-# Make Pytorch fast
+## Make Pytorch fast
 
-# What processes can be made faster?
 
-## Data loading
+### Data loading
 
-### Batches
+#### Batches
 
-### Multiprocessing
-
----
-
-## Model training
+#### Multiprocessing
 
 ---
 
-### Data parallelization techniques
+### Model training
+
+---
+
+#### Data parallelization techniques
 
 All techniques generally follow the PyTorch documentation [Distributed](https://pytorch.org/tutorials/beginner/dist_overview.html)
 
@@ -64,9 +63,9 @@ There are generally three steps which a model iterates over while training:
 
 	Read this [article](https://towardsdatascience.com/sharded-a-new-technique-to-double-the-size-of-pytorch-models-3af057466dba) about sharding and a pytorch-lighting implementation 
 
-## Inference
+### Inference
 
-### Quantization
+#### Quantization
 
 Quantization means that we perform all ops on integers instead of floating point values. By doing this, we discretize continous signals, which free up memory consumption and also increase transfer speed. 
 
@@ -87,9 +86,9 @@ Where \\(s\\) is a scale and \\(z\\) is the zero point.
 
 This function is called a “Linear affine quantization”. 
 
-![image-20231005162335159](assets/pytorch/image-20231005162335159.png){: .zoom50% }
+<img src="/assets/pytorch/image-20231005162335159.png" alt="image-20231005224728442" style="zoom:40%;" />
 
-[https://devblog.pytorchlightning.ai/how-to-train-edge-optimized-speech-recognition-models-with-pytorch-lightning-part-2-quantization-2eaa676b1512](https://devblog.pytorchlightning.ai/how-to-train-edge-optimized-speech-recognition-models-with-pytorch-lightning-part-2-quantization-2eaa676b1512)
+[devblog.pytorchlightning.ai](https://devblog.pytorchlightning.ai/how-to-train-edge-optimized-speech-recognition-models-with-pytorch-lightning-part-2-quantization-2eaa676b1512)
 
 Here is a quick script that demonstrates how the quantization is done:
 
@@ -171,7 +170,7 @@ tensor([[-6.4860,  7.5900,  7.4520, -2.5530,  5.1750],
 
 	Therefore, the scaling parameter takes the maximum spread in the tensor and scales it to a (lower) representation, in this case we use downscale from 32 bit to 8 bit. 
 
-### Model distillation (knowledge distillation)
+#### Model distillation (knowledge distillation)
 
 Here, we train a model (teacher) which is then used to train another model (student).
 

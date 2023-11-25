@@ -7,9 +7,8 @@ date:   2023-08-20 22:00:00
 category: "DL"
 mathjax: true
 ---
-# Cross entropy loss
+## Cross entropy loss
 
-# **Cross-entropy**
 
 **How to address learning slowdown**
 

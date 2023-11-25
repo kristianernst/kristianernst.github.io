@@ -7,13 +7,6 @@ date:   2023-08-20 22:00:00
 category: "DL"
 mathjax: true
 ---
-# Backpropagation
-
-## The four fundamental formulas
-
-### Equation of error in the output layer L
-
-# Fundamental equations and their proofs
 
 ## The four fundamental formulas
 
@@ -96,8 +89,8 @@ We can write the expression in short:
 $$
 \begin{align*}
 \frac{\partial C}{\partial w}=&a_\text{in} \delta_\text{out} \\ \\
-\text{where} \\  & a_\text{in}: \text{is the activation of the neuron input to the weight} \\(w \\) \\
-& \delta_\text{out}: \text{is the error of the neuron output from the weight.} \\( w \\)
+\text{where} \\  & a_\text{in}: \text{is the activation of the neuron input to the weight} \\
+& \delta_\text{out}: \text{is the error of the neuron output from the weight.} 
 \end{align*}
 $$
 

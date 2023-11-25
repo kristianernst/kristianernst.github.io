@@ -8,9 +8,9 @@ category: "SD"
 mathjax: true
 ---
 
-# Denoising diffusion probabilistic models
+## Denoising diffusion probabilistic models
 
-## Background
+### Background
 
 <img src="/assets/sd/image-20231005224728442.png" alt="image-20231005224728442" style="zoom:40%;" />
 
@@ -81,7 +81,7 @@ $$
 
 Consequently, all KL divergences in Eq. (5) are comparisons between Gaussians, so they can be calculated in a Rao-Blackwellized fashion with closed form expressions instead of high variance Monte Carlo estimates.
 
-### Notes to background
+#### Notes to background
 
 -  \\( p_\theta \\) is the probability distribution parameterised by \\( \theta \\) (the parms we are going to learn)
 
@@ -140,9 +140,9 @@ Consequently, all KL divergences in Eq. (5) are comparisons between Gaussians, s
 
 💡 While we theoretically can calculate $$p_\theta\left(\mathbf{x}0\right):=\int p_\theta\left(\mathbf{x}_{0: T}\right) d \mathbf{x}_{1: T}$$, the problem becomes *intractable* for large data (which we have, so we need an approximate estimate). This estimate is achieved with (5)
 
-## Training and sampling
+### Training and sampling
 
-### <img src="/assets/sd/image-20231007134048374.png" alt="image-20231007134048374" style="zoom:50%;" />
+ <img src="/assets/sd/image-20231007134048374.png" alt="image-20231007134048374" style="zoom:50%;" />
 
 To represent the mean $$\boldsymbol{\mu}_\theta(\textbf{x}_t,t )$$, we propose a specific parameterization motivated by the following analysis of \\( L_t \\). With $$p_\theta(\textbf{x}_{t-1}\mid \textbf{x}_t) = \mathcal{N}(\textbf{x}_{t-1};\boldsymbol{\mu}_\theta(\textbf{x}_{t}, t), \sigma^2_t\boldsymbol{I} )$$ we can write the loss:
 
