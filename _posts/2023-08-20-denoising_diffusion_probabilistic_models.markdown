@@ -110,13 +110,7 @@ Consequently, all KL divergences in Eq. (5) are comparisons between Gaussians, s
 
 -  \\( \textbf{x}_{1:T} \\) are the latent variables, they are hidden factors that help generate \\( \textbf{x}_0 \\). \\( \textbf{x}_t \\) represents the state of the data at time t as it undergoes a diffusion process.
 
-$$
-\begin{align}
-\int \dots d \textbf{x}_{1:T}
-\end{align}
-$$ 
-
-is the integral over all possible values of \\( \textbf{x}_{1:T} \\) . We are summing up contributions from all possible latent variables to get the final model.
+- $$\int \dots d \textbf{x}_{1:T} $$ is the integral over all possible values of \\( \textbf{x}_{1:T} \\) . We are summing up contributions from all possible latent variables to get the final model.
 
 -  \\( \textbf{x}_0 \sim q(\textbf{x}_0 ) \\) says that the observed data \\( \textbf{x}_0 \\) comes from some distribution q. 
 
