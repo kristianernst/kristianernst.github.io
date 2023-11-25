@@ -15,22 +15,6 @@ layout: default
   <!-- mathjax -->
   {% if page.mathjax %}
   <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']], // For inline math
-        displayMath: [['$$', '$$']], // For display math
-      },
-      startup: {
-        ready: () => {
-          MathJax.startup.defaultReady();
-          MathJax.startup.promise.then(() => {
-            // Optional: Code to run after MathJax is fully loaded and operational
-          });
-        }
-      }
-    };
-  </script>
   {% endif %}
     
 </div>

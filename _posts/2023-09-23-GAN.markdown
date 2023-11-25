@@ -27,7 +27,7 @@ $$
 $$
 
 
-The discriminator distinguished between samples drawn from the training data and samples drawn from the generator indicating the probability that $\boldsymbol{x}$ is drawn from the training data:
+The discriminator distinguished between samples drawn from the training data and samples drawn from the generator indicating the probability that \\(\boldsymbol{x}\\) is drawn from the training data:
 $$
 d(\boldsymbol{x};\boldsymbol{\theta}^{(d)})
 $$
@@ -35,13 +35,16 @@ $$
 
 The zero sum game:
 
-The function $v\left(\boldsymbol{\theta}^{(g)}, \boldsymbol{\theta}^{(d)}\right)$  determines the payoff for the discriminator and $-v\left(\boldsymbol{\theta}^{(g)}, \boldsymbol{\theta}^{(d)}\right)$ is the payoff for the generator.
+The function \\(v\left(\boldsymbol{\theta}^{(g)}, \boldsymbol{\theta}^{(d)}\right)\\)  determines the payoff for the discriminator and \\(-v\left(\boldsymbol{\theta}^{(g)}, \boldsymbol{\theta}^{(d)}\right)\\) is the payoff for the generator.
 
 While learning, each player seeks to maximise its payoff:
+
 $$
 g^* = \arg \min_g \max_d v(g,d)
 $$
-The default choice for $v$ is:
+
+The default choice for \\(v\\) is:
+
 $$
 v\left(\boldsymbol{\theta}^{(g)}, \boldsymbol{\theta}^{(d)}\right) = \mathbb{E}_{\textbf{x} \sim p_{\text{data} }} \log d(\boldsymbol{x}) + \mathbb{E}_{\textbf{x}\sim p_{\text{model} }}\log(1-d(\boldsymbol{x}))
 $$
@@ -74,19 +77,19 @@ With GANs, you don't need to do either of those things. This is a big deal!
 
 ---
 
-**Sentence**: "In the case where $\max_d v(g,d)$ is convex in $\boldsymbol{\theta}^{(g)}$ (such as the case where optimisation is performed directly in the space of the probability density functions) the procedure is guaranteed to converge and is asymptotically consistent."
+**Sentence**: "In the case where \\(\max_d v(g,d)\\) is convex in \\(\boldsymbol{\theta}^{(g)}\\) (such as the case where optimisation is performed directly in the space of the probability density functions) the procedure is guaranteed to converge and is asymptotically consistent."
 
 **Explanation**: A function is convex if, broadly speaking, it's shaped like a bowl (or valley). The property of convexity means that you are trying to find the lowest point (like in optimization), there is only one, and you are guaranteed to find it. Asymptotic consistency is a property that ensures the model's estimates become closer and closer to the true values as more data is observed.
 
 ---
 
-**Sentence**: Unfortunately, learning GANs can be difficult in practice when $g$ and $d$ are represented by neural networks and $\max _d v(g,d)$ is not convex.
+**Sentence**: Unfortunately, learning GANs can be difficult in practice when \\(g\\) and \\(d\\) are represented by neural networks and \\(\max _d v(g,d)\\) is not convex.
 
 **Explanation**: When our generator (g) and discriminator (d) in GANs are modeled using neural networks, things get trickier. Neural networks, being complex beasts, don't necessarily guarantee this lovely "bowl-shaped" convexity. Without this guarantee, training can become unstable or even fail to converge.
 
 ## Game theory on convergence
 
-Imagine the scenario where $v(g,d) = a b$ and $g$ can control $a$ and $d$ can control $b$, and it is a turn based game. What we will see is that if each agent can only change their value infinitesimally, we draw a perfect circle around the origo, but will never reach it (unless it is our starting point). This is a case where convergence is never possible. 
+Imagine the scenario where \\(v(g,d) = a b\\) and \\(g\\) can control \\(a\\) and \\(d\\) can control \\(b\\), and it is a turn based game. What we will see is that if each agent can only change their value infinitesimally, we draw a perfect circle around the origo, but will never reach it (unless it is our starting point). This is a case where convergence is never possible. 
 
 ## Reality check
 

@@ -333,7 +333,7 @@ Corrupted versions:
 
 x1: 
 
-\\(\tilde{x}_{1,1} = 4, \tilde{x}_{1,2}=6\\)
+\\( \tilde{x}_{1,1} = 4, \tilde{x}_{1,2}=6 \\)
 
 x2: 
 
