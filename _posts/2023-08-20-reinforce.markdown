@@ -256,7 +256,7 @@ $$
 **Taking the Gradient with Respect to θ** $$\quad$$ The objective in many reinforcement learning algorithms is to maximize the expected reward. If we take the gradient with respect to $$\theta$$, we can use:
 
 $$
-\grad _\theta p_\theta(\textbf{a}\mid \textbf{s}) = p_\theta(\textbf{a}\mid \textbf{s})\grad _\theta\log p_\theta(\textbf{a}\mid \textbf{s})
+\nabla _\theta p_\theta(\textbf{a}\mid \textbf{s}) = p_\theta(\textbf{a}\mid \textbf{s})\nabla _\theta\log p_\theta(\textbf{a}\mid \textbf{s})
 $$
 
 The above identity is quite crucial and can be derived from the properties of the gradient and the logarithm. Without going too deep into the proof, this identity basically relates the gradient of the policy itself to the gradient of the logarithm of the policy. The logarithm helps because it can transform products into sums, which are often easier to handle, especially when dealing with probabilities. 
@@ -266,7 +266,7 @@ The above identity is quite crucial and can be derived from the properties of th
 By replacing the integral by an average over $$S$$ roll-outs:
 
 $$
-\grad _\theta \mathbb{E}[R\mid \theta]\approx \frac{1}{S}\sum_{s = 1}^S R(\textbf{a}^{(s)})\grad _{\theta}\log p_\theta(\textbf{a}^{(s)}\mid \textbf{s}^{(s)})
+\nabla _\theta \mathbb{E}[R\mid \theta]\approx \frac{1}{S}\sum_{s = 1}^S R(\textbf{a}^{(s)})\nabla _{\theta}\log p_\theta(\textbf{a}^{(s)}\mid \textbf{s}^{(s)})
 $$
 
 This equation essentially says that to estimate the gradient of our expected reward, we'll sample $$S$$ trajectories and for each trajextory we compute the reward $$R(\textbf{a}^{(s)})$$ and multiply it with the gradient of the log probability of the action taken given the state under our current policy.

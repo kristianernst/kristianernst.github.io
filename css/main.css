@@ -276,11 +276,6 @@ a:visited { color: #205caa; }
   text-align: center;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
 .svgdiv {
   width: 100%;
   text-align: center;
@@ -446,7 +441,7 @@ letter-spacing: 0.02em;
 color: #333;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
-
+max-width: 100%;
 }
 
 /* Block-level MathJax Styles */
@@ -533,4 +528,9 @@ vertical-align: middle;
   overflow: auto; /* Allows scrolling if the content is taller than the max-height */
   padding-left: 11px; /* Reduce padding */
   padding-right: 11px; /* Reduce padding */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
