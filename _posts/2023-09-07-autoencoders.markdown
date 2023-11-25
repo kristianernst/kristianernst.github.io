@@ -387,9 +387,9 @@ Like many other machine learning algorithms, autoencoders exploit the idea that 
 
 An important characterization of a manifold is the set of its tangent planes. At a point x on a d-dimensional manifold, the tangent plane is given by d basis vectors that span the local directions of variation allowed on the manifold. As illustrated in **figure** **14.6**, these local directions specify how one can change x infinitesimally while staying on the manifold.
 
-<img src="../assets/architectures/Screenshot_2023-09-14_at_23.52.40.png" alt="Screenshot 2023-09-14 at 23.52.40.png" style="zoom: 33%;" />
+<img src="/assets/architectures/Screenshot_2023-09-14_at_23.52.40.png" alt="Screenshot 2023-09-14 at 23.52.40.png" style="zoom: 33%;" />
 
-<img src="../assets/architectures/Screenshot_2023-09-14_at_23.58.43.png" alt="Screenshot 2023-09-14 at 23.58.43.png" style="zoom:33%;" />
+<img src="/assets/architectures/Screenshot_2023-09-14_at_23.58.43.png" alt="Screenshot 2023-09-14 at 23.58.43.png" style="zoom:33%;" />
 
 All autoencoder training procedures involve a compromise between two forces:
 

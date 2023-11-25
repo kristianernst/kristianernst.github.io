@@ -14,7 +14,7 @@ mathjax: true
 
 [TOC]
 
-![image-20230729211418372](../assets/compute/image-20230729211418372.png)
+![image-20230729211418372](/assets/compute/image-20230729211418372.png)
 
 # Chapter 1
 
@@ -78,7 +78,7 @@ The five components that allow the computer to perform these tasks:
 
 
 
-![image-20230729214456850](../assets/compute/image-20230729214456850.png)
+![image-20230729214456850](/assets/compute/image-20230729214456850.png)
 
 
 
@@ -145,11 +145,11 @@ A very large  `integrated circuit` is a conglomerate of these three features.
 
 #### How a chip is made:
 
-![image-20230802224849099](../assets/compute/image-20230802224849099.png)
+![image-20230802224849099](/assets/compute/image-20230802224849099.png)
 
 During the process of creating the patterned wafers, it is almost impossible to secure no defects. For that reason, to cope with this circumstance, we place many independent components on a single wafer. the patterned wafer is then diced into these components called dies (also known as `chips`). Dicing enables you to discard only those dies that were unlucky enough to contain the flaws, rather than the whole wafer.
 
-![image-20230802225922168](../assets/compute/image-20230802225922168.png)
+![image-20230802225922168](/assets/compute/image-20230802225922168.png)
 
 ### Performance
 

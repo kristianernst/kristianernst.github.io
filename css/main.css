@@ -1,7 +1,7 @@
 /* Base */
 /* ----------------------------------------------------------*/
-@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=block');
 
 
 
@@ -13,7 +13,7 @@
 html, body { height: 100%; }
 
 body {
-  font-family: "Fira Sans Extra Condensed", serif !important;
+  font-family: "Inter", sans-serif !important;
   font-size: 16px;
   line-height: 1.5;
   font-weight: 300;
