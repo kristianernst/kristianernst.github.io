@@ -87,7 +87,7 @@ Where \\(s\\) is a scale and \\(z\\) is the zero point.
 
 This function is called a “Linear affine quantization”. 
 
-![image-20231005162335159](/assets/pytorch/assets/image-20231005162335159.png){: .zoom50% }
+![image-20231005162335159](assets/pytorch/image-20231005162335159.png){: .zoom50% }
 
 [https://devblog.pytorchlightning.ai/how-to-train-edge-optimized-speech-recognition-models-with-pytorch-lightning-part-2-quantization-2eaa676b1512](https://devblog.pytorchlightning.ai/how-to-train-edge-optimized-speech-recognition-models-with-pytorch-lightning-part-2-quantization-2eaa676b1512)
 
