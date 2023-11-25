@@ -14,12 +14,24 @@ These notes was based on the youtube video [series](https://www.youtube.com/watc
 
 
 
+- [General note:](#general-note)
+- [Topology](#topology)
+  - [What is an open set?](#what-is-an-open-set)
+  - [What is a closed set?](#what-is-a-closed-set)
+  - [The notion of limit points](#the-notion-of-limit-points)
+    - [Open neighbourhood](#open-neighbourhood)
+    - [Limit points](#limit-points)
+  - [Closure](#closure)
+  - [Interior](#interior)
+  - [Exterior](#exterior)
+  - [The Boundary](#the-boundary)
+  - [Density](#density)
 - [Separability](#separability)
   - [The Base of the topology](#the-base-of-the-topology)
   - [Separability](#separability-1)
 - [Topological manifolds](#topological-manifolds)
-    - [Example: Sphere](#example-sphere)
-    - [Counter example: Line with an orthogonal line](#counter-example-line-with-an-orthogonal-line)
+  - [Example: Sphere](#example-sphere)
+  - [Counter example: Line with an orthogonal line](#counter-example-line-with-an-orthogonal-line)
 - [Compactness, Connectedness and Topological properties](#compactness-connectedness-and-topological-properties)
   - [Compactness](#compactness)
     - [Covers, closed and open sets](#covers-closed-and-open-sets)
@@ -34,7 +46,8 @@ These notes was based on the youtube video [series](https://www.youtube.com/watc
   - [The curve](#the-curve)
   - [Coordinate functions](#coordinate-functions)
   - [General relativity reference](#general-relativity-reference)
-  - [Functions from one manifold to another](#functions-from-one-manifold-to-another)
+- [Functions from one manifold to another](#functions-from-one-manifold-to-another)
+- [Differentiable manifolds](#differentiable-manifolds)
   - [Transition functions](#transition-functions)
   - [Example of transition functions: Coordinates](#example-of-transition-functions-coordinates)
 - [Recap 1: Constructing manifolds?](#recap-1-constructing-manifolds)
@@ -163,14 +176,14 @@ What is not in the exterior nor in the interior.
 
 <img src="/assets/manifold/Untitled.png" alt="Screenang" style="zoom: 33%;" />
 
-## Density
+### Density
 
 \\(S\\) is dense in \\(X\\), if every point in \\(X\\) (\\(P \in X\\))  is either also a point in \\(S\\) or a limit point of \\(S\\). Hence we can simplify it to say that \\(P \in \bar{S}\\) where \\(\bar{S}\\) is the closure of \\(S\\)
 
 
-# Separability
+## Separability
 
-## The Base of the topology
+### The Base of the topology
 
 We use a Line as examples:
 
@@ -183,7 +196,7 @@ Different options:
 - closed interval topology: X is the set (-1, 1)
 	- base constituted of half open intervals: [-1, a) (b,1] where a > 0 and b < 0.
 
-## Separability
+### Separability
 
 \\(T_0\\) separability:
 
@@ -211,7 +224,7 @@ Here is the complete separability axiom ranking:
 \\(T_4 \Rightarrow T_3  \Rightarrow T_2  \Rightarrow T_1  \Rightarrow T_0\\)
 
 
-# Topological manifolds
+## Topological manifolds
 
 Definition: 
 
@@ -318,7 +331,7 @@ And X is essentially two lines, where one begins from a point on the other line 
 It is impossible to construct a homeomorphic relationship between these two topological spaces. It is possible to map from the higher dimensional space to the lower dimensional one, but not the other way around. Therefore \\(f^{-1}\\) is not onto and one to one (and is thus not invertible).
 
 
-# Compactness, Connectedness and Topological properties
+## Compactness, Connectedness and Topological properties
 
 <img src="/assets/manifold/Untitled-6515326.png" alt="555" style="zoom: 33%;" />
 
@@ -343,7 +356,7 @@ Properties:
 - Compactness:
 - Connectedness:
 
-## Compactness
+### Compactness
 
 Definition: A subset \\(S\\) of a topological space \\(X\\) is compact if for every open cover, there exists a finite subcover of \\(S\\).
 
@@ -351,7 +364,7 @@ Is the topological space \\((X, J_X)\\) compact?
 
 First, let us ask about a subset. let the open set \\(A \subset (X, J_X)\\), is \\(A\\) compact?
 
-### Covers, closed and open sets
+#### Covers, closed and open sets
 
 An open cover of a subset \\(S\\) of \\(X\\) is a collection \\(\mathcal{C} = \{ U_\alpha \}\\) of open sets in \\(X\\) such that 
 
@@ -370,7 +383,7 @@ A closed set in a topological space \\(X\\) is a set \\(C\\) such that its compl
 1. **Open Sets and Compactness**: Open sets don't contain their boundary points. When you try to cover an open set with smaller open sets (an open cover), you'll find that you can't pin down the boundary with a finite number of them. You'll always need "just one more" to get closer to the boundary, leading to an infinite subcover.
 2. **Closed Sets and Compactness**: Closed sets do contain their boundary points. When you cover a closed (and bounded) set with open sets, you can always find a finite subcover that includes the boundary. This makes the set compact, at least in Euclidean spaces.
 
-### Back to the example
+#### Back to the example
 
 The number of open sets we need to cover \\(A\\) is 1. Obviously we can cover \\(A\\) with \\(1, \dots, \infty\\)
 
@@ -385,7 +398,7 @@ The video uses an example of a rectangle in the usual topology of the plane. It 
 
 Contrary, the closed rectangle. By a similar fashion we can begin to cover the rectangle by an infinite amount of open sets. Here we get infinitely close to the border of the rectangle. However, by this token, we cannot reach the border and thus we need an additional cover to cover the rectangle. Because of this, there will exist a finite sub-cover for the open cover. 
 
-## Connectedness
+### Connectedness
 
 Definition: A connected set is a set that cannot be partitioned into two non-empty subsets which are open in the relative topology induced on the set. Equivalently, it is a set which cannot be partitioned into two non-empty subsets such that each subset has no points in common with the set closure of the other.
 
@@ -415,7 +428,7 @@ If you are path connected, you are connected.
 <img src="/assets/manifold/Untitled 3.png" alt="526" style="zoom: 33%;" />
 
 
-## Homotopy
+### Homotopy
 
 Definition: A continuous transformation from one function to another. A homotopy between functions \\(f\\) and \\(g\\) from a space \\(X\\) to a space \\(Y\\) is a continuous map \\(G\\) from \\(X \times [0,1] \rightarrow Y\\) such that \\(G(x,0)=f(x)\\) and \\(G(x,1)=g(x)\\) where \\(\times\\) denotes set pairing. another way of saying this is that a homotopy is a path in the mapping space \\(\operatorname{Map}(X,Y)\\) from the first function to the second. Two mathematical objects are said to be [homotopic](https://mathworld.wolfram.com/Homotopic.html) if one can be continuously deformed into the other.
 
@@ -434,13 +447,13 @@ Are all part of the topological space. That are carried over via homeomorphism, 
 
 We do not have notions of shape, distance and other measurements.
 
-# Countability and continuity
+## Countability and continuity
 
 This relates very much to my previous notes on countability in set theory:
 
 [Countability](https://ernst-hub.github.io/math/2023/08/20/set_theory/)
 
-## Countability
+### Countability
 
 We have an open set in the topology \\(J\\)
 
@@ -488,7 +501,7 @@ We want to have second countable properties when working with manifolds.
 
 Ultimately, we are looking for coordinates we can do calculus on, we can take derivatives. We need these properties to be able to do this.
 
-## Continuity
+### Continuity
 
 We have a function between the domain and the range. In this case, the domains are not just sets, but topological spaces. In this sense, the domain is endowed with the topology and the range is enowed with the topology. This is what allows us to define continuity. Otherwise, if the sets were not endowed in a topology, it was simply a list of points from the domain corresponding to points in the range.
 
@@ -534,7 +547,7 @@ The euclidian line, 34:00 in [https://www.youtube.com/watch?v=L1MC5GvlxPI&list=P
 
 When you are dealing with manifolds, you are dealing with continuous functions from one manifold to another. The topologies in the manifolds are not the weird topologies shown in the video, they are all much more like the Euclidian topology. They are robust to capture everything we need, they are continuous and we are not dealing with mapping from one weird topology to another.
 
-## Homeomorphisms
+### Homeomorphisms
 
 [Wolfram](https://mathworld.wolfram.com/Homeomorphism.html)
 
@@ -555,9 +568,9 @@ Properties of topological spaces:
 The homeomorphism ensures that the properties are “carried over” from the domain to the range and vice versa.
 
 
-# Diffeomorphisms
+## Diffeomorphisms
 
-## The curve
+### The curve
 
 We define the curve as a mapping of \\(\lambda\\) to the differential manifold \\(X\\). 
 
@@ -572,7 +585,7 @@ This picture tells that to construct curves and use them  for calculus, we can m
 
 Remember a chart is \\((U_i, \gamma_i)\\) (an open set / neighborhood around a point i and a continuous function mapping to the euclidean space.)
 
-## Coordinate functions
+### Coordinate functions
 
 If we have a chart \\((U, \gamma)\in \mathcal{A}\\), and a topological manifold: \\((X, \mathcal{T}_X, \mathcal{A})\\). 
 
@@ -584,7 +597,7 @@ We could also view \\(\gamma(p) = \left(\alpha^1(p), \alpha^2(p)\right)\\), here
 
 \\(\gamma\\) is then the functions that collects these coordinate functions together and construct a higher dimensional euclidian space.
 
-## General relativity reference
+### General relativity reference
 
 <img src="/assets/manifold/Untitled 1-6515584.png" alt="12" style="zoom: 33%;" />
 
@@ -621,8 +634,8 @@ Just because \\(f\\) is differentiable, it does not necessarily mean that it is 
 💡 However, IF this is the case that \\(f\\) is all of these things (basically everything in a homeomorphism and differentiability) then the two spaces are `diffeomorphic`.
 
 > “Diffeomorphisms is the homeomorphisms for differentiable manifolds”
->
-> # Differentiable manifolds
+
+## Differentiable manifolds
 
 TS → TM → DM
 
@@ -650,7 +663,7 @@ If we take a single point \\(p\\), which \\(U_1\\) centers around, it is essenti
 
 We need to understand transition functions, those transition functions are going to be maps to the different charts (when appropriate!).
 
-## Transition functions
+### Transition functions
 
 If we have an atlas \\(\mathcal{A} = \{ (U_1, \gamma_1), (U_2, \gamma_2), \dots \}\\) then we can look at the two open sets as \\(U_{1,2} = U_1 \cap U_2\\). \\(U_{1,2}\\) is a [simply connected](https://mathworld.wolfram.com/SimplyConnected.html) space and \\(\gamma\\)’s are homeomorphisms: 1-1, onto, continuous, the inverse is continuous. This means, they will preserve topological properties which means that the images keep these properties.
 
@@ -713,7 +726,7 @@ All these derivatives exist and are continuous, making \\(f(x)=ax+b\\) a \\(C^{\
 
 This is the perferct differentiable manifold, however some loosen the criteria and says that it is a \\(C^k\\)-differentiable manifold for \\(k \geq 1\\).
 
-## Example of transition functions: Coordinates
+### Example of transition functions: Coordinates
 
 We go back to the sphere and we want to map it to \\(\mathbb{R}^2\\) with the usual topology.
 
@@ -724,9 +737,9 @@ In principle, the R2 is different from \\(\gamma_1(p)\\) and  \\(\gamma_2(p)\\),
 So it is clear that the composite function maps directly from the coordinate plane R2 to another coordinate plane R2.
 
 
-# Recap 1: Constructing manifolds?
+## Recap 1: Constructing manifolds?
 
-## Quick on topological manifolds
+### Quick on topological manifolds
 
 So a manifold is a topological space, which can be charted. These charts are part of an Atlas. 
 
@@ -738,7 +751,7 @@ We remember the atlas was composed of charts \\((U, \gamma)\\), where U is an op
 
 the mapping from the manifold to the euclidean space. The \\(\gamma\\)’s must be homeomorphic.
 
-## Quick on differentiable manifolds
+### Quick on differentiable manifolds
 For a manifold to be differentiable, for any open set \\(U\\), we must be able to find a smooth transition function. \\(\gamma_i \circ \gamma_j^{-1} (\gamma_j(U_j))\\)
 
 We know from the fact \\(\gamma\\)’s are homeomorphic that they are continuous, therefore, the composition of the two functions \\(\gamma\\) are continuous, \\(\gamma_i \circ \gamma_j^{-1}\\) is also continuous.
@@ -749,7 +762,7 @@ It goes from \\(C^0\\) which is not differentiable but continuous to \\(C^{\inft
 
 Differentiable manifolds are therefore \\(C^1\\) and beyond. If nothing is stated, we assume that the transition functions are \\(C^{\infty}\\).
 
-## Manifold learning?
+### Manifold learning?
 
 So for my purpose, I am interested in how manifolds are used in machine and deep learning. 
 

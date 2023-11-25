@@ -8,7 +8,7 @@ category: "Math"
 mathjax: true
 ---
 
-# Maximum likelihood estimation
+## Maximum likelihood estimation
 
 MLE is about estimating the parameters of a statistical model given some observed data.
 
@@ -110,7 +110,7 @@ Which is equivalent to the maximization in equation 2
 Minimizing this KL divergence corresponds exactly to minimizing the cross- entropy between the distributions.
 
 
-💡 We can thus see maximum likelihood as an attempt to make the model distribution match the empirical distribution \\(\hat{p}_{data}\\). Ideally, we would like to match the true data generating distribution \\(p_{data}\\), but we have no direct access to this distribution.
+💡 We can thus see maximum likelihood as an attempt to make the model distribution match the empirical distribution $$\hat{p}_{data}$$. Ideally, we would like to match the true data generating distribution $$p_{data}$$, but we have no direct access to this distribution.
 
 
 
