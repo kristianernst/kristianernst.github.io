@@ -1,0 +1,100 @@
+---
+layout: post
+comments: true
+title:  "Generative adversarial network"
+excerpt: "Generative adversarial networks are a class of artificial intelligence algorithms used in unsupervised machine learning, implemented by a system of two neural networks contesting with each other in a game."
+date:   2023-09-23 22:00:00
+category: "Architectures"
+mathjax: true
+---
+
+
+# Generative adversarial networks
+
+
+
+Inspired by game theory: 
+
+We play a zero sum game (at least this is the simplest formulation) where a generator plays against an adversary (discriminator).
+
+The generator has to generate an image/sound/etc (asset). and the discriminator has to predict whether the generator's asset is *true* or *fake* (generated).
+
+
+
+The generator produces samples:
+$$
+\boldsymbol{x} = g(\boldsymbol{z};\boldsymbol{\theta}^{(g)})
+$$
+
+
+The discriminator distinguished between samples drawn from the training data and samples drawn from the generator indicating the probability that $\boldsymbol{x}$ is drawn from the training data:
+$$
+d(\boldsymbol{x};\boldsymbol{\theta}^{(d)})
+$$
+
+
+The zero sum game:
+
+The function $v\left(\boldsymbol{\theta}^{(g)}, \boldsymbol{\theta}^{(d)}\right)$  determines the payoff for the discriminator and $-v\left(\boldsymbol{\theta}^{(g)}, \boldsymbol{\theta}^{(d)}\right)$ is the payoff for the generator.
+
+While learning, each player seeks to maximise its payoff:
+$$
+g^* = \arg \min_g \max_d v(g,d)
+$$
+The default choice for $v$ is:
+$$
+v\left(\boldsymbol{\theta}^{(g)}, \boldsymbol{\theta}^{(d)}\right) = \mathbb{E}_{\textbf{x} \sim p_{\text{data} }} \log d(\boldsymbol{x}) + \mathbb{E}_{\textbf{x}\sim p_{\text{model} }}\log(1-d(\boldsymbol{x}))
+$$
+
+
+> Note: 
+>
+> - For all data points in the training data set, the discriminator tries to assign a high probability (which will result in the expectation, or the empirical mean, to be closer to 0 (due to the logarithm) 
+> - AND for all the generated data by the generator model, the discriminator ought to assign a very low probability, thereby getting closer to log(1) which also drives the expectation, or the empirical mean, closer to 0.  
+> - For the generator, the loss function or objective function is exactly the opposite, given we are in a zero-sum game
+
+
+
+At convergence, the generators samples are indistinguishable from the real data and the discriminator will not perform any better than deciding your fate by the flip of a coin.
+
+Once we have reached convergence, we discard the discriminator and have the final generator.
+
+
+
+## Hard sentences
+
+**Sentence:** "The main motivation for the design of GANs is that the learning process requires neither approximate inference nor approximation of a partition function gradient."
+
+**Explanation:** GANs were designed to overcome some limitations in traditional machine learning models. Specifically, many models required either:
+
+- "approximate inference", meaning they had to guess or make simplifying assumptions about some process, or
+- "approximation of a partition function gradient", which is a technical way of saying they had to estimate changes in a complex mathematical function.
+
+With GANs, you don't need to do either of those things. This is a big deal!
+
+---
+
+**Sentence**: "In the case where $\max_d v(g,d)$ is convex in $\boldsymbol{\theta}^{(g)}$ (such as the case where optimisation is performed directly in the space of the probability density functions) the procedure is guaranteed to converge and is asymptotically consistent."
+
+**Explanation**: A function is convex if, broadly speaking, it's shaped like a bowl (or valley). The property of convexity means that you are trying to find the lowest point (like in optimization), there is only one, and you are guaranteed to find it. Asymptotic consistency is a property that ensures the model's estimates become closer and closer to the true values as more data is observed.
+
+---
+
+**Sentence**: Unfortunately, learning GANs can be difficult in practice when $g$ and $d$ are represented by neural networks and $\max _d v(g,d)$ is not convex.
+
+**Explanation**: When our generator (g) and discriminator (d) in GANs are modeled using neural networks, things get trickier. Neural networks, being complex beasts, don't necessarily guarantee this lovely "bowl-shaped" convexity. Without this guarantee, training can become unstable or even fail to converge.
+
+## Game theory on convergence
+
+Imagine the scenario where $v(g,d) = a b$ and $g$ can control $a$ and $d$ can control $b$, and it is a turn based game. What we will see is that if each agent can only change their value infinitesimally, we draw a perfect circle around the origo, but will never reach it (unless it is our starting point). This is a case where convergence is never possible. 
+
+## Reality check
+
+In experiments, the best performing GAN game is neither a zero sum game nor equivalent to maximum likelihood (which theoretically always results in convergence given an optimal discriminator).
+
+In the *empirically* best setting, the generator seeks to increase the log probability that the discriminator makes a mistake, rather than aiming at decreasing the log probability that the discriminator makes the correct prediction.
+
+Why?
+
+- Because this reformulation is motivated by the observation that it causes the derivative of the generator to remain large, even in the situation where the discriminator confidently rejects all generator samples.
+
