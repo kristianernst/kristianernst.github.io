@@ -25,17 +25,17 @@ mathjax: true
 
 ## Vocabulary
 
+| **Symbol**       | **Name**                         | **Definition**                                     |
+| ------------ | ---------------------------- | ---------------------------------------------- |
+| $$s$$        | state                        | environment state: $$s \in S$$                 |
+| $$a$$        | action                       | action: $$a \in A$$                            |
+| $$s_{t+1}$$  | transition                   | transition function: $$\operatorname{Env}(s_t, a_t)$$ |
+| $$r_{t+1}$$  | reward                       | reward function: $$\operatorname{Reward}(s_t, a_t, s_{t+1})$$ |
+| $$o_t$$      | observation                  | observation: $$o_t = (r_t, s_t)$$              |
+| $$\pi$$      | policy                       | policy: distribution over $$a$$ given a history |
+| $$R$$        | cumulative discounted reward | cumulative reward: $$R = \sum_{t=1}^\infty \gamma^{t-1} r_t$$ |
+| $$\rho^\pi$$ | expected cumulative reward   | expected reward: $$\rho^{\pi} = \mathbb{E}[R \mid  \pi]$$ |
 
-| Symbol     | Name                         | Definition                                 |
-| ---------- | ---------------------------- | ------------------------------------------ |
-| $$s$$        | state                        | environment state: $$s \in S$$               |
-| $$a$$        | action                       | $$a \in A$$                                  |
-| $$s_{t+1}$$  | transition                   | $$\operatorname{Env}(s_t, a_t)$$             |
-| $$r_{t+1}$$  | reward                       | $$\operatorname{Reward}(s_t, a_t, s_{t+1})$$ |
-| $$o_t$$      | observation                  | $$o_t = (r_t, s_t)$$                         |
-| $$\pi$$      | policy                       | distribution over $$a$$ given a history      |
-| $$R$$        | cumulative discounted reward | $$R = \sum_{t=1}^\infty \gamma^{t-1} r_t$$   |
-| $$\rho^\pi$$ | expected cumulative reward   | $$\rho^{\pi} = \mathbb{E}[R \mid  \pi]$$ .             |
 
 
 Different approaches to reinforcement learning:
