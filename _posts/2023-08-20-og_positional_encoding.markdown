@@ -8,7 +8,7 @@ category: "NLP"
 mathjax: true
 ---
 
-# OG positional encoding
+## OG positional encoding
 
 As presented in “Attention is all you need”, the positional encodings are introduced to the token embeddings via addition. 
 
@@ -91,9 +91,9 @@ This could really be done using only sine or cosine, not necessarily both.
 		- It is nice, because it means that a model can generalize well to new sequence lenghts, because it can grasp this linear relationship.
 		- We therefore increase the model’s generalization capabilities.
 
-## Simple intuition behind the claim: Linearity of Positional Encoding
+### Simple intuition behind the claim: Linearity of Positional Encoding
 
-### Definitions
+#### Definitions
 
 First, let's define the positional encoding \\(PE\\) as given in the original "Attention Is All You Need" paper:
 
@@ -105,18 +105,18 @@ For odd \\(i\\):
 
 \\(PE(p, i) = \cos\left(\frac{p}{10000^{\frac{2i}{d} } }\right)\\)
 
-### Goal
+#### Goal
 
 Our goal is to show that  \\(PE(p+k)\\) can be represented as a linear function of \\(PE(p)\\) for any fixed offset \\(k\\).
 
-### Proof for Even  \\(i\\)
+#### Proof for Even  \\(i\\)
 
-### Step 1: Define \\(PE(p+k, i)\\)
+#### Step 1: Define \\(PE(p+k, i)\\)
 
 First, let's define the positional encoding at \\(p+k\\) for an even \\(i\\):
 \\(PE(p+k, i) = \sin\left(\frac{p+k}{10000^{\frac{2i}{d} } }\right) = \sin \left( \frac{p}{ {10000^{\frac{2i}{d} } } } + \frac{k}{ {10000^{\frac{2i}{d} } } } \right)\\)
 
-### Step 2: Use the Angle Addition Formula for Sine
+#### Step 2: Use the Angle Addition Formula for Sine
 
 We can rewrite \\(PE(p+k, i)\\) using the angle addition formula for sine:
 
@@ -126,16 +126,16 @@ Applying this to \\(PE(p+k, i)\\), we get:
 
 \\(PE(p+k, i) = \sin\left(\frac{p}{10000^{\frac{2i}{d} } }\right)\cos\left(\frac{k}{10000^{\frac{2i}{d} } }\right) + \cos\left(\frac{p}{10000^{\frac{2i}{d} } }\right)\sin\left(\frac{k}{10000^{\frac{2i}{d} } }\right)\\)
 
-### Step 3: Relate to \\(PE(p, i)\\)
+#### Step 3: Relate to \\(PE(p, i)\\)
 
 Notice that this expression is a linear combination of \\(PE(p, i)\\) and \\(PE(p, i+1)\\):
 \\(PE(p+k, i) = PE(p, i)\cos\left(\frac{k}{10000^{\frac{2i}{d} } }\right) + PE(p, i+1)\sin\left(\frac{k}{10000^{\frac{2i}{d} } }\right)\\)
 
-### Proof for Odd \\(i\\)
+#### Proof for Odd \\(i\\)
 
 The proof for odd \\(i\\) is similar and uses the angle addition formula for cosine:
 \\(\cos(a + b) = \cos(a)\cos(b) - \sin(a)\sin(b)\\)
 
-### Conclusion
+#### Conclusion
 
 Thus, for any fixed offset \\(k\\),  \\(PE(p+k)\\) can be represented as a linear function of \\(PE(p)\\). This property is crucial for the model's ability to generalize to sequence lengths it hasn't seen during training.

@@ -8,7 +8,7 @@ category: "Math"
 mathjax: true
 ---
 
-# Transformations
+## Transformations
 
 ### **Linear Transformations**
 

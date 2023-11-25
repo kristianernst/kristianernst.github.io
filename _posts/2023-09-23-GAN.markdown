@@ -9,7 +9,7 @@ mathjax: true
 ---
 
 
-# Generative adversarial networks
+## Generative adversarial networks
 
 
 

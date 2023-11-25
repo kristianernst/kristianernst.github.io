@@ -15,24 +15,22 @@ mathjax: true
 
 <img src="/assets/compute/image-20230729211418372.png" alt="image-20230729211418372" style="zoom:22%;" />
 
-
+- [Recent trends](#recent-trends)
 - [Chapter 1](#chapter-1)
-	- [Recent trends](#recent-trends)
-	- [Chapter 1](#chapter-1-1)
-		- [Great ideas in computer architecture](#great-ideas-in-computer-architecture)
-		- [Basic functions of the underlying hardware:](#basic-functions-of-the-underlying-hardware)
-			- [The processor:](#the-processor)
-			- [Memory:](#memory)
-			- [Language](#language)
-		- [Big pictures](#big-pictures)
-		- [Safe place for data (how it is stored when we shut the pc down)](#safe-place-for-data-how-it-is-stored-when-we-shut-the-pc-down)
-		- [Tech for building processors](#tech-for-building-processors)
-			- [How a chip is made:](#how-a-chip-is-made)
-		- [Performance](#performance)
+	- [Great ideas in computer architecture](#great-ideas-in-computer-architecture)
+	- [Basic functions of the underlying hardware:](#basic-functions-of-the-underlying-hardware)
+		- [The processor:](#the-processor)
+		- [Memory:](#memory)
+		- [Language](#language)
+	- [Big pictures](#big-pictures)
+	- [Safe place for data (how it is stored when we shut the pc down)](#safe-place-for-data-how-it-is-stored-when-we-shut-the-pc-down)
+	- [Tech for building processors](#tech-for-building-processors)
+		- [How a chip is made:](#how-a-chip-is-made)
+	- [Performance](#performance)
 
 
 
-# Chapter 1
+
 
 ## Recent trends
 

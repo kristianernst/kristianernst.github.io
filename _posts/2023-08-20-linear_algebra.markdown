@@ -33,12 +33,11 @@ I took a lot of inspiration from the books: [mathematics for machine learning](h
   - [The classical adjoint of a matrix](#the-classical-adjoint-of-a-matrix)
 - [Linear independence and rank](#linear-independence-and-rank)
 - [Inverse of a square matrix](#inverse-of-a-square-matrix)
-- [Matrix multiplication properties](#matrix-multiplication-properties)
-- [Matrix multiplication is](#matrix-multiplication-is)
-- [The identity matrix](#the-identity-matrix)
-- [Diagonal matrix:](#diagonal-matrix)
-- [Symmetric and antisymmetric matrices](#symmetric-and-antisymmetric-matrices)
-- [Trace](#trace)
+  - [Matrix multiplication properties](#matrix-multiplication-properties)
+  - [The identity matrix](#the-identity-matrix)
+  - [Diagonal matrix:](#diagonal-matrix)
+  - [Symmetric and antisymmetric matrices](#symmetric-and-antisymmetric-matrices)
+  - [Trace](#trace)
 
 
 
@@ -433,9 +432,9 @@ Properties of non-singular matrices:
 3. \\((A^{-1})^T = (A^T)^{-1}\\), (for this reason, this matrix is often denoted \\(A^{-T}\\).
 
 
-# Matrix multiplication properties
+## Matrix multiplication properties
 
-# Matrix multiplication is
+Matrix multiplication is
 
 `Associative` : \\((AB)C = A(BC)\\)
 
@@ -443,7 +442,7 @@ Properties of non-singular matrices:
 
 In general, NOT `commutative` : it is not always true that \\(AB = AC\\).
 
-# The identity matrix
+## The identity matrix
 
 \\(I \in \mathbb{R}^{n \times n}\\), where \\(I_{ij} = \begin{cases} 1 \quad i = j \\ 0 \quad i \neq j \end{cases}\\)
 
@@ -451,7 +450,7 @@ For all \\(A \in \mathbb{R}^{m \times n}\\): \\(AI = A = IA\\)
 
 Note that in some sense, the notation for the identity matrix is ambiguous, since it does not specify the dimension of I.
 
-# Diagonal matrix:
+## Diagonal matrix:
 
 \\(D \in \mathbb{R}^{m\times n}\\), where \\(D_{ij} = \begin{cases} d_i & & i = j \\ 0 & & i \neq j \end{cases}\\)
 
@@ -459,7 +458,7 @@ Note that in some sense, the notation for the identity matrix is ambiguous, sinc
 
 Therefore, \\(I = \operatorname{diag}(1, 1, \dots, 1)\\).
 
-# Symmetric and antisymmetric matrices
+## Symmetric and antisymmetric matrices
 
 \\(A \in \mathbb{R}^{m \times m}\\) is symmetric if \\(A^T = A\\). 
 
@@ -471,7 +470,7 @@ By these conditions, a matrix \\(A\\) is viewed as a composite of a symmetric an
 
 \\(A \in \mathbb{S}^n\\) means that \\(A\\) is a symmetric \\(n \times n\\) matrix.
 
-# Trace
+## Trace
 
 The trace of a square matrix is the sum of the diagonal:
 

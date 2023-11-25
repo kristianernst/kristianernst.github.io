@@ -8,7 +8,7 @@ category: "NLP"
 mathjax: true
 ---
 
-# GPT-Fathom
+## GPT-Fathom
 
 [https://arxiv.org/pdf/2309.16583.pdf](https://arxiv.org/pdf/2309.16583.pdf)
 

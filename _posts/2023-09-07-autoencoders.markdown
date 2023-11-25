@@ -8,22 +8,12 @@ category: "Architectures"
 mathjax: true
 ---
 
-# Autoencoders
+## Autoencoders
 
 In brief, an autoencoder is a neural network that attempts to “copy” its input to its output.
 These notes are deeply inspired by the book [Deep Learning](https://www.deeplearningbook.org/contents/autoencoders.html) by Ian Goodfellow, Yoshua Bengio and Aaron Courville.
 
 
-- [Autoencoders](#autoencoders)
-	- [Undercomplete Autoencoders](#undercomplete-autoencoders)
-	- [Regularized autoencoders](#regularized-autoencoders)
-		- [Sparse autoencoders](#sparse-autoencoders)
-	- [Stochastic Encoders and decoders](#stochastic-encoders-and-decoders)
-	- [Denoising Autoencoders (DAEs)](#denoising-autoencoders-daes)
-		- [Score matching](#score-matching)
-	- [Learning manifolds with Autoencoders](#learning-manifolds-with-autoencoders)
-		- [Manifolds:](#manifolds)
-	- [Contractive autoencoder](#contractive-autoencoder)
 - [Probabilistic approach to latent variable models](#probabilistic-approach-to-latent-variable-models)
 - [Variational Autoencoders](#variational-autoencoders)
 	- [Handle integration by sampling](#handle-integration-by-sampling)

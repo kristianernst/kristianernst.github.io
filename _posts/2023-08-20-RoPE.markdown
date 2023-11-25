@@ -8,7 +8,7 @@ category: "NLP"
 mathjax: true
 ---
 
-# Rotary Positional Embeddings
+## Rotary Positional Embeddings
 
 Rotary positional embeddings are a re-design of the architecture that is fed into the transformer blocks. Here’s a link to the original paper: [https://arxiv.org/abs/2104.09864](https://arxiv.org/abs/2104.09864)
 

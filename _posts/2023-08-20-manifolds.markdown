@@ -12,8 +12,6 @@ mathjax: true
 
 These notes was based on the youtube video [series](https://www.youtube.com/watch?v=CEXSSz0gZI4&list=PLRlVmXqzHjUQHEx63ZFxV-0Ortgf-rpJo) by XylyXylyX
 
-
-
 - [General note:](#general-note)
 - [Topology](#topology)
   - [What is an open set?](#what-is-an-open-set)
@@ -54,6 +52,7 @@ These notes was based on the youtube video [series](https://www.youtube.com/watc
   - [Quick on topological manifolds](#quick-on-topological-manifolds)
   - [Quick on differentiable manifolds](#quick-on-differentiable-manifolds)
   - [Manifold learning?](#manifold-learning)
+
 
 
 

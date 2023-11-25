@@ -8,7 +8,7 @@ category: "Math"
 mathjax: true
 ---
 
-# Kullback-Liebler Divergence
+## Kullback-Liebler Divergence
 
 The KL divergence is a measure of how one probability distribution diverges from a second expected probability distribution.
 

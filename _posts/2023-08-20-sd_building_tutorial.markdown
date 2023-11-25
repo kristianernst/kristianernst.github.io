@@ -8,11 +8,23 @@ category: "SD"
 mathjax: true
 ---
 
-# Building a stable diffusion from scratch in PyTorch
+## Building a stable diffusion from scratch in PyTorch
 
 These notes are taken from the video: [link](https://www.youtube.com/watch?v=ZBKpAp_6TGI) by Umar Jamil
 
-# What is stable diffusion?
+- [Building a stable diffusion from scratch in PyTorch](#building-a-stable-diffusion-from-scratch-in-pytorch)
+- [What is stable diffusion?](#what-is-stable-diffusion)
+- [Generative model](#generative-model)
+- [Denoising diffusion](#denoising-diffusion)
+- [CLIP](#clip)
+  - [Reversing the noisified image with the classifier-free guidance](#reversing-the-noisified-image-with-the-classifier-free-guidance)
+- [The complete architecture: text to image](#the-complete-architecture-text-to-image)
+- [Image-to-Image](#image-to-image)
+- [In-painting](#in-painting)
+- [Implementation; reflections](#implementation-reflections)
+
+
+## What is stable diffusion?
 
 A model introduced in 2022, by stabilityAI
 
@@ -20,7 +32,7 @@ General usecase: text-to-image, image-to-image, etc.
 
 
 
-# Generative model
+## Generative model
 
 A model that learns a probability distribution such that we can sample from the distribution to create new instances of data.
 
@@ -37,7 +49,7 @@ There are some overlap with the variational autoencoder ([Autoencoders](https://
 
 
 
-# Denoising diffusion
+## Denoising diffusion
 
 [Link to notes](https://ernst-hub.github.io/sd/2023/08/20/denoising_diffusion_probabilistic_models/)
 
@@ -115,7 +127,7 @@ How can we do this?
 
   
 
-# CLIP
+## CLIP
 
 Clip is short for contrastive language-image pre-training. 
 
@@ -136,7 +148,7 @@ Image 1 has a corresponding text (text 1). We train the model to be able to conn
 
 
 
-## Reversing the noisified image with the classifier-free guidance
+### Reversing the noisified image with the classifier-free guidance
 
 [VAE](https://ernst-hub.github.io/architectures/2023/09/07/autoencoders/)
 
@@ -152,7 +164,7 @@ We learn to compress the data, but at the same time the data is distributed acco
 
 
 
-# The complete architecture: text to image
+## The complete architecture: text to image
 
 <img src="/assets/sd/image-20231007165306153.png" alt="image-20231007165306153" style="zoom:33%;" />
 
@@ -168,7 +180,7 @@ We learn to compress the data, but at the same time the data is distributed acco
 
    
 
-# Image-to-Image
+## Image-to-Image
 
 <img src="/assets/sd/image-20231007165954166.png" alt="image-20231007165954166" style="zoom:33%;" />
 
@@ -176,13 +188,13 @@ The more noise we add to the latent, the more freedom we give the model to gener
 
 
 
-# In-painting
+## In-painting
 
 <img src="/assets/sd/image-20231007170157939.png" alt="image-20231007170157939" style="zoom:33%;" />
 
 If we want to make some new legs for the dog, we can use in-painting.
 
-# Implementation; reflections
+## Implementation; reflections
 
 After having built the attention mechanism, the VAE, and the CLIP there are some general insights:
 

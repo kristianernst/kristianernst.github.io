@@ -48,7 +48,7 @@ These models do not assumed any fixed form for distribution and can inf number o
 
 Examples are: kernel density estimators and Gaussian processes.
 
-## The objective
+### The objective
 
 Find \\(\boldsymbol{\theta}\\) that maximises the likelihood of observing the given data \\(\mathbb{X}\\) under the model \\(p_{model}(\boldsymbol{x}; \boldsymbol{\theta})\\). 
 
@@ -88,7 +88,7 @@ $$
 
 [Expectation vs average](https://ernst-hub.github.io/math/2023/08/20/expectation_vs_avg/)
 
-### The connection to KL divergence:
+#### The connection to KL divergence:
 
 One way to interpret maximum likelihood estimation is to view it as minimizing the dissimilarity between the empirical distribution \\(\hat{p}_{data}\\) defined by the training set and the model distribution, with the degree of dissimilarity between the two measured by the KL divergence.
 

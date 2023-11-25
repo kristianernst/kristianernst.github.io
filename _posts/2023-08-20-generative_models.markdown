@@ -8,7 +8,7 @@ category: "Architectures"
 mathjax: true
 ---
 
-# Generative models
+## Generative models
 
 ### **What are Generative Models?**
 

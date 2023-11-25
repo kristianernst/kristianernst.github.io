@@ -8,9 +8,9 @@ category: "NLP"
 mathjax: true
 ---
 
-# LoRA
+## LoRA
 
-# Background
+### Background
 
 LoRA takes inspiration from a previous paper that shows that extremely large “overparameterized” models reside on a low intrinsic dimension. 
 
@@ -18,7 +18,7 @@ Even though a neural network might have millions of parameters, the actual "degr
 
 LoRA takes this a step further, by hypothesising that it is not just the pertained model itself, but also the change in weights during model adaptation for down stream tasks that has a low intrinsic rank. 
 
-# How exactly does LoRA work?
+### How exactly does LoRA work?
 
 1. LoRA starts with a pre-trained NN, it then freezes the weights of the model.
 2. Instead of updating the weights of some dense layers, LoRA optimises rank decomposition matrices that represent the change in these dense layers.
@@ -28,7 +28,7 @@ The benefit here is that you can make meaningful adaptations to the model withou
 
 So, in a nutshell, LoRA is like a savvy hacker who knows exactly where to inject a few lines of code to make the whole program run better, without messing up the existing architecture.
 
-## Reference to manifold theory
+#### Reference to manifold theory
 
 Some of my previous notes touched upon the notion of manifolds:
 
@@ -36,7 +36,7 @@ Some of my previous notes touched upon the notion of manifolds:
 
 It is conceptually rewarding to understand the possible parameter space of the model as vast and high-dimensional. The pre-trained model has then approximated a manifold in this space. This manifold is of course based on the training input. For downstream tasks, there need to be some adaptation, i.e. fine-tuning. LoRA is essentially approximating the manifold and making efficient adaptations to the model without straying far from this manifold. LoRA is like a navigator that already has a good map (the pre-trained model) and is making precise, efficient updates to reach a new destination (adaptation) without getting lost in the high-dimensional wilderness.
 
-## Low-Rank decomposition matrices
+#### Low-Rank decomposition matrices
 
 A fully connected layer can be represented as a weight matrix \\(W \in \mathbb{R}^{d\times h}\\), where \\(d\\) is the input dimension and \\(h\\) the output dimension.
 
@@ -44,7 +44,7 @@ A low rank approximation:
 
 \\(W \approx U \times V\\), where \\(U \in \mathbb{R}^{d \times r}\\) and \\(V \in \mathbb{R}^{r \times h}\\), here \\(r\\) is the rank and is much smaller than \\(d\\) and \\(h\\).
 
-### How LoRA uses these matrices:
+##### How LoRA uses these matrices:
 
 1. Take pre-trained model
 2. Identify dense layers to adapt for downstream task
@@ -58,7 +58,7 @@ A low rank approximation:
 3. Step the optimizer, but only update \\(U\\) and \\(V\\)
 4. Once training is complete, deploy the model with the effective weight matrices \\(W + U \times V\\)
 
-# Benefits:
+### Benefits:
 
 - A pre-trained model can be shared and used to build many small LoRA modules for dif- ferent tasks. We can freeze the shared model and efficiently switch tasks by replacing the matrices A and B in Figure 1, reducing the storage requirement and task-switching over- head significantly.
 - LoRA makes training more efficient and lowers the hardware barrier to entry by up to 3 times when using adaptive optimizers since we do not need to calculate the gradients or maintain the optimizer states for most parameters. Instead, we only optimize the injected, much smaller low-rank matrices.
@@ -71,11 +71,11 @@ The paper turns to answer the following RELEVANT questions:
 	1. IF SO what is a good rank \\(r\\) to use in practice?
 3. What is the connection between \\(W\\) and \\(\nabla W\\)? Does \\(\nabla W\\) highly correlate with \\(W\\)? how large is \\(\nabla W\\) compared to \\(W\\)
 
-# Extended research questions
+### Extended research questions
 
 All answers are founded empirically, not theoretically proven. The results are derived from an analysis on GPT-3-175B.
 
-## **1) which weight matrices to use under budget constraint?**
+#### **1) which weight matrices to use under budget constraint?**
 
 <img src="/assets/nlp/Untitled.png" alt="Screenas.png" style="zoom: 33%;" />
 
@@ -83,9 +83,10 @@ Generally, using both Wq and Wv is better than only using one of them.
 
 That means, lower rank \\(r\\) but more matrices are better than one matrix with a high rank. 
 
-## **2) the optimal rank \\(r\\)?**
+#### **2) the optimal rank \\(r\\)?**
 
-![zoomed image](assets/nlp/Untitled 1.png){: .zoomed}
+
+<img src="/assets/nlp/Untitled 1.png" alt="Screenasss.png" style="zoom: 33%;" />
 
 We see that the \\(\nabla W\\) already performs super well on a very low rank. This indicates that \\(\nabla W\\) might have a very small intrinsic rank. 
 
@@ -128,7 +129,7 @@ Across different random seeds:
 
 \\(\nabla W_q\\) appears to have a higher intrinsic rank than \\(\nabla W_v\\), since more common singular value directions are learned by both runs for \\(\nabla W_q\\)
 
-## **3) How does the adaptation matrix compare to the pre-trained weight matrix?**
+#### **3) How does the adaptation matrix compare to the pre-trained weight matrix?**
 
 TO answer these questions we project \\(W\\) onto the \\(r\\)-dimensional subspace of \\(\nabla W\\). This is done by computing:
 

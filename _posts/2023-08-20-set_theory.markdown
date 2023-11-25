@@ -8,7 +8,7 @@ category: "Math"
 mathjax: true
 ---
 
-# Countability
+## Countability
 
 In set theory, a set is said to be countable if its elements can be put into a one-to-one correspondence with the set of natural numbers N={0,1,2,3,…} or a subset of N. In simpler terms, if you can "count" the elements of a set using natural numbers, then the set is countable.
 

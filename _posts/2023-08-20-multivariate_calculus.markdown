@@ -8,7 +8,7 @@ category: "Math"
 mathjax: true
 ---
 
-# Multivariate calculus
+## Multivariate calculus
 
 
 - [Multivariate calculus](#multivariate-calculus)
@@ -17,7 +17,7 @@ mathjax: true
 		- [Proof that the gradient vector point in the direction of steepest ascent](#proof-that-the-gradient-vector-point-in-the-direction-of-steepest-ascent)
 
 
-## Gradients
+### Gradients
 
 The gradient is the key of multivariate calculus.
 
@@ -85,7 +85,7 @@ We can plot the gradients at different positions in the xy-plane, the direction 
 	
 	<img src="/assets/multical/image-20231005154554850.png" alt="image-rl" style="zoom:50%;" />
 
-## Directional derivatives
+### Directional derivatives
 
 Directional derivatives are used to measure the rate a function changes as we transgress along a certain direction. 
 
@@ -163,7 +163,7 @@ $$
 
 We can use directional derivatives to prove that the gradient vector point in the direction of steepest ascent.
 
-### Proof that the gradient vector point in the direction of steepest ascent
+#### Proof that the gradient vector point in the direction of steepest ascent
 
 Let $$f: \mathbb{R}^n \rightarrow \mathbb{R}$$ be a differentiable function, and let $$\boldsymbol{u} \in \mathbb{R}^n$$ be a unit vector. The directional derivative of $$f$$ in the direction of $$\boldsymbol{u}$$ at a point $$x$$ is given by:
 
