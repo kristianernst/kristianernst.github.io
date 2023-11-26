@@ -76,7 +76,7 @@ Quantization means that we perform all ops on integers instead of floating point
 **How do we quantize a model?**
 
 $$
-x_\textsf{int} = \operatorname{round}\left(\frac{x_\textsf{float} }{\text{scale} }+\text{zero\_point}\right)
+x_\textsf{int} = \operatorname{round}\left(\frac{x_\textsf{float} }{\text{scale} }+\text{zero-point}\right)
 $$
 
 Where \\(s\\) is a scale and \\(z\\) is the zero point.
