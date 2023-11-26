@@ -4,10 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=block');
 
 
-
-
-
-
 * {
   margin: 0;
   padding: 0;
@@ -296,6 +292,7 @@ a:visited { color: #205caa; }
 .highlight code, .highlight pre {
   color:#fdce93;
   background-color:#3f3f3f;
+  border-radius: 4px;
   }
   
   .highlight .hll {
