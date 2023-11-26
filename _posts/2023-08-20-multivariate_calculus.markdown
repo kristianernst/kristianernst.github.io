@@ -147,7 +147,7 @@ $$
 \frac{df}{dx}f(\boldsymbol{a}) = lim_{h\rightarrow 0} \frac{f(\boldsymbol{a}+h\hat{\boldsymbol{i}_1})- f(\boldsymbol{a})}{h} \ ,
 $$
 
-where $\hat{\boldsymbol{i}_1} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, i.e. the unit vector in the x direction.
+where $$\hat{\boldsymbol{i}_1} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$, i.e. the unit vector in the x direction.
 
 The formal definition of the directional derivative:
 
