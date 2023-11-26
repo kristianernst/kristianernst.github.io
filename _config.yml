@@ -1,7 +1,7 @@
 # Site settings
-title: Kristian Ernst's blog
+title: Kristian Ernst's notes
 email: kristian.ernst@yahoo.com
-description: "simple blog about my notes and stuff"
+description: "simple page containing my notes"
 baseurl: ""
 url: "http://ernst-hub.github.io"
 twitter_username: _kristianernst
