@@ -79,8 +79,8 @@ $$
 
 *How do we generate new data?*
 
-- We start from complete noise \\(\textbf{x}_T\\) and ask how much noise is there? then we remove it and move to \\(\textbf{x}_{T-1}\\)
-- We iteratively do this until we get to \\(\textbf{x}_{0}\\)
+- We start from complete noise $$\textbf{x}_T$$ and ask how much noise is there? then we remove it and move to $$\textbf{x}_{T-1}$$
+- We iteratively do this until we get to $$\textbf{x}_{0}$$
 - Therefore, IF we start from pure noise, we can generate new images.
 
 We want to control the notification process: if we want to generate a picture of a cat, we cant really start from completely pure noise.
@@ -114,7 +114,7 @@ How can we do this?
   
   $$
   \begin{align}
-  \text{output} = w \cdot (\text{output}_{\text{conditioned} } - \text{output}_{\text{uonditioned} }) + \text{output}_{\text{conditioned} }
+  \text{output} = w \cdot (\text{output}_{\text{conditioned} } - \text{output}_{\text{unconditioned} }) + \text{output}_{\text{conditioned} }
   \end{align}
   $$
 
