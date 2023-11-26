@@ -1,7 +1,10 @@
 /* Base */
 /* ----------------------------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=block');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=block'); */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&family=Fira+Code:wght@300;400;500;600&display=block');
+
 
 
 * {
@@ -235,14 +238,14 @@ a:visited { color: #205caa; }
   /* border: 1px solid #d5d5e9;
   background-color: #eef; */
 
-  
+  font-family: "Fira Code", monospace;
   background-color:#3f3f3f;
   color:#fdce93;
   padding: 8px 12px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  font-size: 15px;
+  font-size: 14px;
   overflow:auto;
 }
 
@@ -293,6 +296,8 @@ a:visited { color: #205caa; }
   color:#fdce93;
   background-color:#3f3f3f;
   border-radius: 4px;
+  font-family: "Fira Code", monospace;
+  font-size: 14px;
   }
   
   .highlight .hll {
