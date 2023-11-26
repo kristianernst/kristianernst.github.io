@@ -93,7 +93,7 @@ $$
 
 If the gradient is a vector that tells us the direction of the steepest ascent, and we want to know how much of this change is in the direction of a vector $$\boldsymbol{w}$$. 
 
-Therefore, if we first compute the gradient of $f$, we can then se how much each vector component influence the function by minor changes.
+Therefore, if we first compute the gradient of $$f$$, we can then se how much each vector component influence the function by minor changes.
 
 $$
 \nabla_{\boldsymbol{w} }f(x,y)= w_1 \frac{\partial f}{\partial x} + w_2 \frac{\partial f}{\partial y} = \nabla f \cdot \boldsymbol{w}
@@ -115,25 +115,23 @@ We know from math about rectangular triangles, that:
 
 $$
 \begin{align}
-\operatorname{cos}(\theta)=\frac{\text{adj} }{\text{hyp} } = \frac{\text{adj} }{\|\boldsymbol{a}\|}
+\operatorname{cos}(\theta)=\frac{\text{adj} }{\text{hyp} } = \frac{\text{adj} }{\| \boldsymbol{a}\| }
 \end{align}
 $$
 
-By the same token, we know that $$\boldsymbol{a} \cdot \boldsymbol{b} = |\boldsymbol{a}\|\boldsymbol{b}| \operatorname{cos}(\theta)$$, and hence 
-
-$$\operatorname{cos}(\theta)=\frac{\boldsymbol{a}\cdot\boldsymbol{b} }{\|\boldsymbol{a}\|\boldsymbol{b}\|}$$
+By the same token, we know that $$\boldsymbol{a} \cdot \boldsymbol{b} = \mid \boldsymbol{a}\| \boldsymbol{b}\mid  \operatorname{cos}(\theta)$$ , and hence: $$\operatorname{cos}(\theta)=\frac{\boldsymbol{a}\cdot\boldsymbol{b} }{\| \boldsymbol{a}\| \boldsymbol{b}\| }$$
 
 Scalar projection
 
-We know that $$\|\boldsymbol{a}\| \operatorname{cos}(\theta) = \text{adj} = \boldsymbol{a}\cdot \frac{\boldsymbol{b} }{\|\boldsymbol{b}\|} = \boldsymbol{a} \cdot \hat{\boldsymbol{b} }$$
+We know that $$\| \boldsymbol{a}\|  \operatorname{cos}(\theta) = \text{adj} = \boldsymbol{a}\cdot \frac{\boldsymbol{b} }{\| \boldsymbol{b}\| } = \boldsymbol{a} \cdot \hat{\boldsymbol{b} }$$
 
 This gives us the scalar projection, it provides the magnitude, or the length of the given vector.
 
 Vector projection (bonus)
 
-Now, a vector consist of both a magnitude and a direction. Therefore, to move from a scalar to a vector, we need to multiply this magnitude (i.e. the scalar projection) onto a vector in the same direction of $$\boldsymbol{b}$$. To keep the magnitude intact however, it must be the unit vector, i.e. a vector with the length one. The unit vector of b: $$\hat{\boldsymbol{b} } = \frac{\boldsymbol{b} }{|\boldsymbol{b}|}$$.
+Now, a vector consist of both a magnitude and a direction. Therefore, to move from a scalar to a vector, we need to multiply this magnitude (i.e. the scalar projection) onto a vector in the same direction of $$\boldsymbol{b}$$. To keep the magnitude intact however, it must be the unit vector, i.e. a vector with the length one. The unit vector of b: $$\hat{\boldsymbol{b} } = \frac{\boldsymbol{b} }{\mid \boldsymbol{b}\mid }$$.
 
-Therefore, the vector projection is given by: $$(\boldsymbol{a} \cdot \hat{\boldsymbol{b} })\hat{\boldsymbol{b} } = \frac{\boldsymbol{a}\boldsymbol{b} }{\|\boldsymbol{b}\|} \frac{\boldsymbol{b} }{\|\boldsymbol{b}\|} = \frac{\boldsymbol{a}\boldsymbol{b} }{\|\boldsymbol{b}\|^2}\boldsymbol{b} = \frac{\boldsymbol{a}\boldsymbol{b} }{\boldsymbol{b}\boldsymbol{b} }\boldsymbol{b}$$ .
+Therefore, the vector projection is given by: $$(\boldsymbol{a} \cdot \hat{\boldsymbol{b} })\hat{\boldsymbol{b} } = \frac{\boldsymbol{a}\boldsymbol{b} }{\| \boldsymbol{b}\| } \frac{\boldsymbol{b} }{\| \boldsymbol{b}\| } = \frac{\boldsymbol{a}\boldsymbol{b} }{\| \boldsymbol{b}\| ^2}\boldsymbol{b} = \frac{\boldsymbol{a}\boldsymbol{b} }{\boldsymbol{b}\boldsymbol{b} }\boldsymbol{b}$$ .
 
 **The connection to partial derivatives:**
 
