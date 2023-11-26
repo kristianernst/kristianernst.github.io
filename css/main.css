@@ -3,6 +3,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=block');
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&display=swap');
+
+
 
 
 * {
@@ -13,8 +16,8 @@
 html, body { height: 100%; }
 
 body {
-  font-family: "Inter", sans-serif !important;
-  font-size: 16px;
+  font-family: "DM Sans", "Inter", sans-serif !important;
+  font-size: 14px;
   line-height: 1.5;
   font-weight: 300;
   background-color: #fdfdfd;
