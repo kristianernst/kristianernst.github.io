@@ -9,7 +9,9 @@ mathjax: true
 ---
 
 
-TODO: write more
+``TODO: write more``
+
+From a great [blog post](https://karpathy.github.io/2015/05/21/rnn-effectiveness/) by Karpathy. 
 
 
 RNNs combine the input vector with their state vector with a fixed function to produce a new state vector. This can in programming terms be interpreted as running a fixed program with certain inputs and some internal variables. Viewed this way, RNNs essentially describe programs. In fact, it is known that RNNs are Turing-Complete in the sense that they can stimulate arbitrary programs (with proper weights).
