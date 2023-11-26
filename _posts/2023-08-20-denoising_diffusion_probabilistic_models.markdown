@@ -116,7 +116,15 @@ Consequently, all KL divergences in Eq. (5) are comparisons between Gaussians, s
 -  The loss term: KL-divergence essentially tells us how far the approximate posterior \\( q \\) are from the true posterior \\( p_\theta \\) at different transitions \\( t \\). 
 
      -  Rao-Blackwell theorem is often used to improve the efficiency of an estimator by reducing its variance.  Basically, because both posteriors are Gaussian, their KL divergence can be calculated with a closed-form expression rather than Monte Carlo estimates, which is more computationally efficient.
-     -  Formula:  \\( D_{KL}(p \| q) = \frac{1}{2} \left[ \text{Tr}(\Sigma_q^{-1} \Sigma_p) + (\mu_q - \mu_p)^T \Sigma_q^{-1} (\mu_q - \mu_p) - k + \log \left( \frac{\det \Sigma_q}{\det \Sigma_p} \right) \right] \\), where \\( \mu \\) are means and \\( \Sigma \\) are covariances.
+     -  Formula:  
+  
+  $$
+  \begin{align}
+  D_{KL}(p \| q) = \frac{1}{2} \left[ \text{Tr}(\Sigma_q^{-1} \Sigma_p) + (\mu_q - \mu_p)^T \Sigma_q^{-1} (\mu_q - \mu_p) - k + \log \left( \frac{\det \Sigma_q}{\det \Sigma_p} \right) \right]
+  \end{align}
+  $$
+  
+  where \\( \mu \\) are means and \\( \Sigma \\) are covariances.
 
 -  Conditioning \\( q(\textbf{x}_{t-1}\mid \textbf{x}_t, \textbf{x}_0 ) \\) on both the current state t and the original data. 
 
