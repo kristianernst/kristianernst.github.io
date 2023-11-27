@@ -335,9 +335,14 @@ Encoder-decoder gives:
 
 Assume log likelihood constructions are:
 
-\\(\log p_{\text{decoder} }(5\mid h_{1,1}) = -0.1, \log p_{\text{decoder} }(5\mid h_{1,2}) = -0.2\\)
+$$
+\log p_{\text{decoder} }(5\mid h_{1,1}) = -0.1, \log p_{\text{decoder} }(5\mid h_{1,2}) = -0.2
+$$
 
-\\(\log p_{\text{decoder} }(10\mid h_{2,1}) = -0.3, \log p_{\text{decoder} }(10\mid h_{2,2}) = -0.4\\)
+$$
+\log p_{\text{decoder} }(10\mid h_{2,1}) = -0.3, \log p_{\text{decoder} }(10\mid h_{2,2}) = -0.4
+$$
+
 
 Calculate objective:
 
