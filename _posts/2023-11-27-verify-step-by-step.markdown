@@ -46,6 +46,8 @@ How the verifier is trained:
 *Auxiliary Objective for the Verifier*: Here, the verifier model, which is primarily designed to assess the correctness of solutions, is also trained with a language modeling objective. This means that in addition to its main task of verifying solutions, the verifier is also trained to predict the next word in a sequence, which is a typical language modeling task. This secondary task serves as an auxiliary objective. Training the verifier on this auxiliary language modeling objective helps improve its understanding of language and context, which in turn can enhance its primary function of verifying solutions.
 
 *Auxiliary Signal in Token-Level Verifying*: In the second instance, the token-level verifier (which assesses the value or correctness of individual tokens in a sequence, rather than the entire solution) is said to benefit from the "full value function" as an auxiliary signal. This implies that by evaluating each part of a solution (each token), the model receives additional, helpful information that aids in its overall task. This more granular approach to verification provides the model with a richer set of data to learn from, encouraging it to understand the reasoning process throughout a solution, rather than just focusing on the end result. This auxiliary signal, therefore, helps the model to avoid overfitting and to maintain its ability to generalize, as it must consider the entire reasoning process, not just the final answer.
+
+
 **Back to the paper at hand**
 
 Lets verify step by step uses a fixed generator model, which is a finetuned GPT 4 base model, without RLHF. 
