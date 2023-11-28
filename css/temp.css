@@ -1,0 +1,625 @@
+/* Base */
+/* ----------------------------------------------------------*/
+
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=block'); */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&family=Fira+Code:wght@300;400;500;600&display=block');
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: "Inter", sans-serif !important;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
+  background-color: #fdfdfd;
+}
+
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 400; }
+
+a         { color: #2a7ae2; text-decoration: none; }
+a:hover   { color: #000; text-decoration: underline; }
+a:visited { color: #205caa; }
+
+/* Utility */
+
+.wrap:before,
+.wrap:after { content:""; display:table; }
+.wrap:after { clear: both; }
+.wrap {
+  max-width: 800px;
+  padding: 0 30px;
+  margin: 0 auto;
+  zoom: 1;
+}
+
+
+/* Layout Styles */
+/* ----------------------------------------------------------*/
+
+/* Site header */
+
+.site-header {
+  border-top: 5px solid #333;
+  border-bottom: 1px solid #e8e8e8;
+  min-height: 56px;
+  background-color: white;
+}
+
+.site-title,
+.site-title:hover,
+.site-title:visited {
+  display: block;
+  color: #333;
+  font-size: 26px;
+  letter-spacing: -1px;
+  float: left;
+  line-height: 56px;
+  position: relative;
+  z-index: 1;
+}
+
+.site-nav {
+  float: right;
+  line-height: 56px;
+}
+
+.site-nav .menu-icon { display: none; }
+
+.site-nav .page-link {
+  margin-left: 20px;
+  color: #727272;
+  letter-spacing: -.5px;
+}
+
+/* Site footer */
+
+.site-footer {
+  border-top: 1px solid #e8e8e8;
+  padding: 30px 0;
+}
+
+.footer-heading {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -.5px;
+  margin-bottom: 15px;
+}
+
+.site-footer .column { float: left; margin-bottom: 15px; }
+
+.footer-col-1 {
+  width: 270px; /*fallback*/
+  width: -webkit-calc(35% - 10px);
+  width: -moz-calc(35% - 10px);
+  width: -o-calc(35% - 10px);
+  width: calc(35% - 10px);
+  margin-right: 10px
+}
+.footer-col-2 {
+  width: 175px; /*fallback*/
+  width: -webkit-calc(23.125% - 10px);
+  width: -moz-calc(23.125% - 10px);
+  width: -o-calc(23.125% - 10px);
+  width: calc(23.125% - 10px);
+  margin-right: 10px
+}
+.footer-col-3 {
+  width: 335px; /*fallback*/
+  width: -webkit-calc(41.875%);
+  width: -moz-calc(41.875%);
+  width: -o-calc(41.875%);
+  width: calc(41.875%);
+}
+
+.site-footer ul { list-style: none; }
+
+.site-footer li,
+.site-footer p {
+  font-size: 15px;
+  letter-spacing: -.3px;
+  color: #828282;
+}
+
+.github-icon-svg,
+.twitter-icon-svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 3px;
+}
+
+
+/* Page Content styles */
+/* ----------------------------------------------------------*/
+
+.page-content {
+  padding: 30px 0;
+  background-color: #fff;
+}
+
+
+/* Home styles */
+/* ----------------------------------------------------------*/
+
+.home h1 { margin-bottom: 25px; }
+
+.posts { list-style-type: none; }
+
+.posts li { margin-bottom: 30px; }
+
+.posts .post-link {
+  font-size: 20px;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.posts .post-date {
+  display: block;
+  font-size: 15px;
+  color: #818181;
+}
+
+
+/* Post styles */
+/* ----------------------------------------------------------*/
+
+.post-header { margin: 10px 0 30px; }
+
+.post-header h1 {
+  font-size: 36px;
+  letter-spacing: -1.75px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.post-header .meta {
+  font-size: 15px;
+  color: #818181;
+  margin-top: 5px;
+}
+
+.post-content { margin: 0 0 30px; }
+
+.post-content > * { margin: 20px 0; }
+
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  line-height: 1;
+  font-weight: 300;
+  margin: 40px 0 20px;
+}
+
+.post-content h2 {
+  font-size: 32px;
+  letter-spacing: -1.25px;
+}
+
+.post-content h3 {
+  font-size: 26px;
+  letter-spacing: -1px;
+}
+
+.post-content h4 {
+  font-size: 20px;
+  letter-spacing: -1px;
+}
+
+.post-content blockquote {
+  border-left: 4px solid #e8e8e8;
+  padding-left: 20px;
+  font-size: 18px;
+  opacity: .6;
+  letter-spacing: -1px;
+  font-style: italic;
+  margin: 30px 0;
+}
+
+.post-content ul,
+.post-content ol { padding-left: 20px; }
+
+
+/* Code blocks */
+.post pre,
+.post code {
+  /* border: 1px solid #d5d5e9;
+  background-color: #eef; */
+
+  font-family: "Fira Code", monospace;
+  background-color:#3f3f3f;
+  color:#fdce93;
+  padding: 8px 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 14px;
+  overflow:auto;
+}
+
+.post code { padding: 1px 5px; }
+
+.post ul,
+.post ol { margin-left: 1.35em; }
+
+.post pre code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* terminal */
+.post pre.terminal {
+  border: 1px solid #000;
+  background-color: #333;
+  color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.post pre.terminal code { background-color: #333; }
+
+/* AK custom CSS mods */
+.imgright { float: right; margin-left: 10px; }
+.imgcap img {
+  border: 1px solid #999;
+  max-width: 100%;
+}
+.imgcap {
+  color: #555;
+  font-size: 14px;
+  text-align: center;
+}
+
+.svgdiv {
+  width: 100%;
+  text-align: center;
+}
+
+/* Syntax highlighting styles */
+/* ----------------------------------------------------------*/
+
+.highlight code, .highlight pre {
+  color:#fdce93;
+  background-color:#3f3f3f;
+  border-radius: 4px;
+  font-family: "Fira Code", monospace;
+  font-size: 14px;
+  }
+  
+  .highlight .hll {
+  background-color:#222;
+  }
+  
+  .highlight .err {
+  color:#e37170;
+  background-color:#3d3535;
+  }
+  
+  .highlight .k {
+  color:#f0dfaf;
+  }
+  
+  .highlight .p {
+  color:#41706f;
+  }
+  
+  .highlight .cs {
+  color:#cd0000;
+  font-weight:700;
+  }
+  
+  .highlight .gd {
+  color:#cd0000;
+  }
+  
+  .highlight .ge {
+  color:#ccc;
+  font-style:italic;
+  }
+  
+  .highlight .gr {
+  color:red;
+  }
+  
+  .highlight .go {
+  color:gray;
+  }
+  
+  .highlight .gs {
+  color:#ccc;
+  font-weight:700;
+  }
+  
+  .highlight .gu {
+  color:purple;
+  font-weight:700;
+  }
+  
+  .highlight .gt {
+  color:#0040D0;
+  }
+  
+  .highlight .kc {
+  color:#dca3a3;
+  }
+  
+  .highlight .kd {
+  color:#ffff86;
+  }
+  
+  .highlight .kn {
+  color:#dfaf8f;
+  font-weight:700;
+  }
+  
+  .highlight .kp {
+  color:#cdcf99;
+  }
+  
+  .highlight .kr {
+  color:#cdcd00;
+  }
+  
+  .highlight .ni {
+  color:#c28182;
+  }
+  
+  .highlight .ne {
+  color:#c3bf9f;
+  font-weight:700;
+  }
+  
+  .highlight .nn {
+  color:#8fbede;
+  }
+  
+  .highlight .vi {
+  color:#ffffc7;
+  }
+  
+  .highlight .c,.preview-zenburn .highlight .g,.preview-zenburn .highlight .cm,.preview-zenburn .highlight .cp,.preview-zenburn .highlight .c1 {
+  color:#7f9f7f;
+  }
+  
+  .highlight .l,.preview-zenburn .highlight .x,.preview-zenburn .highlight .no,.preview-zenburn .highlight .nd,.preview-zenburn .highlight .nl,.preview-zenburn .highlight .nx,.preview-zenburn .highlight .py,.preview-zenburn .highlight .w {
+  color:#ccc;
+  }
+  
+  .highlight .n,.preview-zenburn .highlight .nv,.preview-zenburn .highlight .vg {
+  color:#dcdccc;
+  }
+  
+  .highlight .o,.preview-zenburn .highlight .ow {
+  color:#f0efd0;
+  }
+  
+  .highlight .gh,.preview-zenburn .highlight .gp {
+  color:#dcdccc;
+  font-weight:700;
+  }
+  
+  .highlight .gi,.preview-zenburn .highlight .kt {
+  color:#00cd00;
+  }
+  
+  .highlight .ld,.preview-zenburn .highlight .s,.preview-zenburn .highlight .sb,.preview-zenburn .highlight .sc,.preview-zenburn .highlight .sd,.preview-zenburn .highlight .s2,.preview-zenburn .highlight .se,.preview-zenburn .highlight .sh,.preview-zenburn .highlight .si,.preview-zenburn .highlight .sx,.preview-zenburn .highlight .sr,.preview-zenburn .highlight .s1,.preview-zenburn .highlight .ss {
+  color:#cc9393;
+  }
+  
+  .highlight .m,.preview-zenburn .highlight .mf,.preview-zenburn .highlight .mh,.preview-zenburn .highlight .mi,.preview-zenburn .highlight .mo,.preview-zenburn .highlight .il {
+  color:#8cd0d3;
+  }
+  
+  .highlight .na,.preview-zenburn .highlight .nt {
+  color:#9ac39f;
+  }
+  
+  .highlight .nb,.preview-zenburn .highlight .nc,.preview-zenburn .highlight .nf,.preview-zenburn .highlight .bp,.preview-zenburn .highlight .vc {
+  color:#efef8f;
+  }
+
+
+/* media queries */
+/* ----------------------------------------------------------*/
+
+
+@media screen and (max-width: 750px) {
+
+  .footer-col-1 { width: 50%; }
+
+  .footer-col-2 {
+    width: 45%; /*fallback*/
+    width: -webkit-calc(50% - 10px);
+    width: -moz-calc(50% - 10px);
+    width: -o-calc(50% - 10px);
+    width: calc(50% - 10px);
+    margin-right: 0;
+  }
+
+  .site-footer .column.footer-col-3 {
+    width: auto;
+    float: none;
+    clear: both;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .wrap { padding: 0 12px; }
+
+  .site-nav {
+    position: fixed;
+    z-index: 10;
+    top: 14px; right: 8px;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #e8e8e8;
+  }
+
+  .site-nav .menu-icon {
+    display: block;
+    font-size: 24px;
+    color: #505050;
+    float: right;
+    width: 36px;
+    text-align: center;
+    line-height: 36px;
+  }
+
+  .site-nav .menu-icon svg { width: 18px; height: 16px; }
+
+  .site-nav .trigger {
+    clear: both;
+    margin-bottom: 5px;
+    display: none;
+  }
+
+  .site-nav:hover .trigger { display: block; }
+
+  .site-nav .page-link {
+    display: block;
+    text-align: right;
+    line-height: 1.25;
+    padding: 5px 10px;
+    margin: 0;
+  }
+
+  .post-header h1 { font-size: 36px; }
+  .post-content h2 { font-size: 28px; }
+  .post-content h3 { font-size: 22px; }
+  .post-content h4 { font-size: 18px; }
+  .post-content blockquote { padding-left: 10px; }
+  .post-content ul,
+  .post-content ol { padding-left: 10px; }
+
+  .site-footer .column {
+    float: none;
+    clear: both;
+    width: auto;
+    margin: 0 0 15px; }
+
+}
+
+/* Combined MathJax Styles from .math- Blocks */
+  
+/* Common MathJax Styles */
+.MathJax_Display, .MathJax, .mjx-math {
+font-size: 1em;
+font-weight: 400;
+line-height: 1.5;
+letter-spacing: 0.02em;
+color: #333;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+max-width: 100%;
+}
+
+/* Block-level MathJax Styles */
+.MathJax_Display {
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 0.2em;
+  border: 1px solid #cccccc;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  display: block;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  overflow-x: auto !important;
+}
+
+
+/* Inline MathJax Styles */
+.MathJax, .mjx-math {
+display: inline-block;
+margin: 0 0.1em;
+vertical-align: middle;
+}
+
+/* Style adjustments for better visual appeal */
+.home ul.posts {
+  list-style-type: none;
+  padding: 0;
+}
+
+.home ul.posts li {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+
+.collapsible {
+  background-color: transparent; /* Remove the background */
+  color: #333; /* Match the text color to your site's style */
+  cursor: pointer;
+  padding-left: 11px; /* Reduce padding */
+  padding-right: 11px; /* Reduce padding */
+  position: relative;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1.1em; /* Adjust font size as needed */
+  font-weight: 400; /* Make the font a bit bolder */
+}
+
+.collapsible:hover {
+  color: #000; /* Darken text color on hover */
+}
+
+.collapsible:after {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  content: '+';
+  color: #333;
+  float: right;
+  font-size: 1.1em; /* Keep the plus sign proportional */
+  margin-right: 1em; /* Ensure space on the right */
+  padding-left: 11px; /* Reduce padding */
+  padding-right: 11px; /* Reduce padding */
+}
+
+.collapsible.active:after {
+  content: '−'; /* '−' is an en dash, which looks more like a minus sign than a hyphen */
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.15s ease-out;
+  padding-left: 11px; /* Reduce padding */
+  padding-right: 11px; /* Reduce padding */
+}
+
+.collapsible.active + .content {
+  max-height: 250px; /* Adjust this value based on the actual height of your notes */
+  overflow: auto; /* Allows scrolling if the content is taller than the max-height */
+  padding-left: 11px; /* Reduce padding */
+  padding-right: 11px; /* Reduce padding */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
