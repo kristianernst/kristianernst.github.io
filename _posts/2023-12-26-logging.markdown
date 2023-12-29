@@ -1,0 +1,28 @@
+---
+layout: post
+comments: true
+title: "Logging"
+excerpt: "What is logging?"
+date: 2023-12-26 22:00:00
+category: "Operations"
+mathjax: true
+---
+
+If you are like me and have been exposed to the concept of logging via the practice of debugging things in your code, then this will be of interest to you.
+
+The art of logging is not really meant for humans in the first place, it is meant for computers. This will become apparent in what follows.
+
+Logs record what happened to preserve an accurate collection of the necessary steps performed to get data from state A to state B. By data, I here mean something very vague - it could be the processing of a program or the recording of a request to a service. 
+
+This great article: "[the log](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying)" makes the distinction between a table and a log. The table captures data at rest, whereas the log captures change. Consider a bank account, the log captures the various transactions whereas the table captures the balance.
+You can derive the table based on the log, and if you record the changes made to the table, you naturally obtain the log.
+
+> The magic of the log is that if it is a complete log of changes, it holds not only the contents of the final version of the table, but also allows recreating all other versions that might have existed. It is, effectively, a sort of backup of every previous state of the table.
+
+*Why is it useful?*
+
+> The usefulness of the log comes from the simple function that the log provides: producing a persistent, re-playable record of history.
+
+
+
+

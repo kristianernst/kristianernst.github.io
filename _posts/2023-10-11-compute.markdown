@@ -29,9 +29,6 @@ mathjax: true
 	- [Performance](#performance)
 
 
-
-
-
 ## Recent trends
 
 We have switched from one core to mutlicore processing
@@ -226,5 +223,61 @@ $$
 
 These formulas are particularly useful because they separate the three key factors that affect performance. We can use these formulas to compare two different implementations or to evaluate a design alternative if we know its impact on these three parameters.
 
+
+## Chapter 2: instructions, language of the computer
+
+RISC-V
+- An instruction language needs to be simple and practical. 
+- RISC-V requires every instruction to the computer to take three operands.
+
+For example: 
+```python
+f = (g + h) - (i + j)
+```
+
+in RISC-V: 
+
+```
+add v, g, h // store sum as temp var
+add w, i, j // store sum as temp var
+sub f, v, w // calc f, by sub
+```
+
+**Registers and memory**
+
+In RISC-V math operations such as ``add`` ``sub`` are done in registers. 
+There are 32bit registers in the architecture. Why? Smaller is faster, increasing the number of registers may increase clock cycle time. Double why? becayse the electronic signals may have to travel farther, ultimately resulting in slower computation. 
+
+Each register is represented by an x followed by the number: ``x19`` for instance.
+
+But we have billions of data points? How do we do operations then? 
+
+Just thinking about the CPU, what we do is provide *data transfer instructions*, that transfer data between memory and registers.
+When we copy data from memory to a register, we `load`
+
+``g = h + A[8]`` : equivalent to first, load A[8] to some register. Assume the A-array begins at register x22, then we have the following instruction:
+``lw x9, 32(x22) // load word, from x22`` (beginning of the array) offset by (4*8=32), because each word is represented by four bytes, and each memory address stats at the fist byte. Hence, the memory address of the 8th item in the array is found at the 32rd byte... 
+
+Complementary to loadm we have store word (``sw``) which copies data from a registry and stores it in memory.
+
+
+*Good quote on the difference between registers and memory*:
+> Many programs have more variables than computers have registers. Consequently,
+the compiler tries to keep the most frequently used variables in registers and places
+the rest in memory, using loads and stores to move variables between registers and
+memory. The process of putting less frequently used variables (or those needed
+later) into memory is called spilling registers. [...] A RISC-V arithmetic
+instruction can read two registers, operate on them, and write the result. A RISC-V
+data transfer instruction only reads one operand or writes one operand, without
+operating on it. Thus, registers take less time to access and have higher throughput than memory,
+making data in registers both considerably faster to access and simpler to use.
+Accessing registers also uses much less energy than accessing memory. To achieve
+the highest performance and conserve energy, an instruction set architecture must
+have enough registers, and compilers must use registers efficiently.  *page 78 in the [book](https://shop.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6)
+
+Below is a depiction of a 32bit wide register, containing the binary representation of the number: 11.
+<img src="/assets/compute/registers.png" alt="/assets/compute/registers" style="zoom:22%;" />
+
+As you can see, registers are filled right to left. In case *overflow* occurs, i.e. the resulting numbers are larger than what can be represented by the register, it is up to the OS / software to decide what to do.
 
 

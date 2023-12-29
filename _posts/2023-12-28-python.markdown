@@ -1,0 +1,475 @@
+---
+layout: post
+comments: true
+title:  "How does python work?"
+excerpt: "Do I really know what happens when I write and execute my python code?"
+date:   2023-12-28 22:00:00
+category: "Compute"
+mathjax: true
+---
+
+## How does python actually work?
+
+My way to learning programming was the 2.0 way: *"Master python in 24-hours"*, *"42 hours to exellence"*, etc... You know what I am talking about. While you quickly learn to print hello world and returning names of a list, you are bound to only operating on the surface/API level of the language.
+
+Enough of that! I want to know how it actually works so that I can do cool stuff if I want to, such as speeding up processes or leveraging this newly gained knowledge of the transition from higher level languages to binary (machine code).
+
+**Where we are at**: the next couple of sentences will describe the level im currently at. Perhaps you already know a lot more than me, or perhaps you are at somewhat the same level (which i assume is lvl 1 or 2 out of 20)
+
+* I did take the CS50 course first tho, I understood that there was this thing called a compiler that took your high-level C code and converted into byte code. Something that the computer understands.
+* I also read somewhere that python uses an interpreter, which is something different compared to a compiler.
+
+Let us start with drawing a high-level graph of the different abstraction/intermediate layers of code when working in python:
+
+For now, lets assume that the underlying computer architecture is [RISC-V](https://en.wikipedia.org/wiki/RISC-V) (could be some other thing)
+
+1. Source code. This is your ``.py`` files: you write your code using the familiar and simple python syntax.
+2. Byte code. This is an intermediate representation of the source code. This is the ``.pyc`` file. So the first step when executing a python script, is compiling the source code to byte code.
+3. PVM (python virtual machine). The byte code is executed by the PVM.
+4. The PVM is, as its name indicates, a virtual machine that interacts with the CPU of the computer through a layer of abstraction.
+5. PVM is written in C, and the instructions it takes is, as explained, byte code. Because instructions aren't translated to machine code, the PVM is an interpreter.
+6. For I/O or system-level interaction, the interpreter makes direct calls to the OS, which then translates these requests into CPU instructions.
+
+Now, bear in mind that this is a very rough generalization. One might ask, how is the source code converted to byte code? (we will turn to this later).  and how is the PVM actually talking to the CPU, or what about external/builtin libraries?
+
+### Interpreter versus compiler
+
+I have mentioned both terms, and I think it is meaningful to describe their meaning.
+
+Lets look at the two text diagrams:
+
+**A compiler**
+
+```RAW
+Compiling the target program
++----------------+     +-----------+     +----------------+
+| Source Program | --> | Compiler  | --> | Target Program |
++----------------+     +-----------+     +----------------+
+
+Running the target program
++-------+     +----------------+     +--------+
+| Input | --> | Target Program | --> | Output |
++-------+     +----------------+     +--------+
+```
+**An interpreter**
+
+```RAW
++----------------+     
+| Source Program |     +-------------+     +--------+ 
++----------------+ --> | Interpreter | --> | Output | 
+| Input          |     +-------------+     +--------+
++----------------+                             
+```
+
+It becomes immediately clear that the compiler is an intermediate step, we first compile the program - converting the source code to machine code, and then run the program together with some input to generate an output.
+
+The interpreter takes in both the source code as well as the input in one go, and "compiles and interprets" in the same go to generate output.
+
+> The machine-language target program produced by a compiler is usuallymuch faster than an interpreter at mapping inputs to outputs . An interpreter, however, can usually give better error diagnostics than a compiler, because it executes the source program statement by statement. [dragon book](https://www.google.com/search?q=Compilers+-+Principles%2C+Techniques+and+Tools)
+
+Python is both:
+We have a compiler that generates the bytecode and an interpreter that executes the byte code.
+
+```RAW
++----------------+
+| Source Program |
++----------------+
+         |
+         v
+  +------------+
+  | Translator |
+  +------------+
+         |
+         v
++-------------------+-----+
+| Intermediate      |     |
+| Program           |     |
++-------------------+     |
+                          v
++-------+             +-----------+
+| Input |  -------->  | Virtual   |-----> Output
++-------+             | Machine   |
+                      +-----------+
+```
+
+What are the benefits of combining them?
+Java, like python, is a combination, and the dragon book has the following to say about Java:
+> A Java source program may first be compiled intoan intermediate form called bytecodes. The bytecodes are then interpreted by avirtual machine. A benefit of this arrangement is that bytecodes compiled onone machine can be interpreted on another machine, perhaps across a network. In order to achieve faster processing of inputs to outputs, some Java compilers, called just-in-time compilers, translate the bytecodes into machine language immediately before they run the intermediate program to process the input.
+
+### How to get from source code to byte code
+
+As described in the last section, this is really what the compiler does. However, right now I understand it as this magic box that somehow turns A to B. Lets divide this magic box into smaller boxes.
+
+```RAW
++------------------+
+|  Source program  |
++------------------+
+         |
+(raw character stream)
+         |
+         v
++------------------+
+| Lexical analyzer |
++------------------+
+         |
+   (token stream)
+         |
+         v
++------------------+
+| Syntax analyzer  |
++------------------+
+         |
+    (parse tree)
+         |
+       (AST)
+         |
+         v
++------------------+
+| Semantic analyzer|
++------------------+
+         |
+(symbol table) + (AST)
+         |
+       (CFG) 
+         |
+   (code object)
+         | 
+         v
++------------------+
+|    Byte code     |
++------------------+
+
+```
+
+The CPython VM then takes the byte code and executes it.
+
+Lets look at each of these steps:
+
+First, the source code is a raw character stream. Here a lexical analysis is performed, where python [tokenizes](https://docs.python.org/3/library/tokenize.html) the source code into a token stream. Tokens are both operations, literals but also "NEWLINES", "INDENT", "DEDENT", to keep track of the syntactic structure of the source code and catch potential errors.
+
+The tokens are then inputted to the [parser](https://docs.python.org/3.6/library/parser.html#module-parser), which parses the tokens into a parse tree. The parse tree is a tree representation of the syntactic structure of the source code. The tree is formed leveraging [production rules](https://en.wikipedia.org/wiki/Production_(computer_science)) from the [grammar](https://docs.python.org/3/reference/grammar.html#grammar-token-suite) of the python language.
+> As the parse tree is walked, the nodes can be queried for their type, their children if any, the line number that led to the creation of the given node and so on. [source](https://leanpub.com/insidethepythonvirtualmachine/read#leanpub-auto-python-tokens)
+
+The parse tree is then parsed into an abstract syntax tree (AST). The AST is a tree representation of the abstract syntactic structure of the source code.
+
+The AST is a tree that represents the structure of the source code on a higher level compared to the syntactically embedded parse tree.
+
+Take for example this function: ``f() = (1 + 2) * 3``. The parse tree would look like this:
+
+*parse tree*:
+
+```RAW
+            expr
+             |
+            term
+          /  |  \
+         /   |   \
+    factor   *  factor
+      /\          |
+     /  \         |
+   ( expr )       3
+     / | \
+    /  |  \ 
+term   +   term
+  |         |
+  |         |
+factor    factor
+  |         |
+  |         |
+  1         2
+```
+
+Which can be simplified to the following *abstract syntax tree*:
+
+```RAW
+            *
+          /   \
+         /     \
+        +       3
+      /   \
+     /     \
+    1       2
+```
+
+Pretty cool: python actually have a builtin [AST parser](https://docs.python.org/3/library/ast.html)
+
+
+Next step in the process is to build a symbol table, from the AST and the filename of the modules. generating the symbol table consists of two parts:
+1) In the first part of the process, each node of the AST that is passed as argument to the ``PySymtable_BuildObject`` is visited in order to build up a collection of symbols used within the AST.
+   1)  Now, the symbol table entries contain all names that have been used wihtin the mooduke, however they do not have contextual information about the names. For example, the symbol table does not know if a name is a local variable, a global variable, a function, a class, etc. This is where the second part of the process comes in.
+2) In the second part a call to the ``symtable_analyze`` function in the ``Parser/symtable.c`` is initialized. This phase of the algorithm assigns scopes (local, global or free) to the symbols gathered from the first pass.
+
+In Python, the ``symtable`` module provides an interface to the compiler's internal symbol tables. The symbol table is a data structure used by the Python interpreter to store information about the program's structure, particularly about the scopes of variables and functions.
+
+Here’s a brief overview of the data structures associated with the symbol table in Python:
+
+1. **Symtable**: This is the overall symbol table for a Python program. It's a collection of all the symbol table entries. The symbol table itself is a hierarchical structure, mirroring the scope hierarchy in the program. There's a separate symbol table for each scope (global, local, class, and function).
+
+2. **SymtableEntry**: Each entry in the symbol table, known as a ``SymtableEntry`` (or a symbol table entry), represents a single scope within the program. Each of these entries contains information about the scope it represents, such as:
+
+   - The name of the scope (e.g., the name of a function or class).
+   - Which variables are defined in that scope.
+   - For each variable, what role it plays (e.g., local, global, parameter).
+   - Which variables are used but not defined within the scope (free variables).
+   - Information about child scopes (for example, the symbol table entries for functions defined within the current function).
+
+The ``SymtableEntry`` objects are typically accessed through the ``symtable`` module's functions, like ``symtable.symtable()``, which parses a block of Python code into a symbol table. You can then use methods of the symbol table entry objects to inspect the stored information.
+
+Here's a simplified example of how you might use the ``symtable`` module:
+
+```python
+import symtable
+
+source_code = """
+def my_function():
+    a = 1
+    b = 2
+    return a + b
+"""
+
+# Generate the top-level symbol table
+table = symtable.symtable(source_code, "<string>", "exec")
+
+# Get the symbol table entry for 'my_function'
+function_entry = table.lookup("my_function").get_namespace()
+
+# Access information about the scope
+print(function_entry.get_name())  # Outputs 'my_function'
+print(function_entry.get_symbols())  # Outputs symbols within the function's scope
+```
+
+Each symbol within a `SymtableEntry` also has a set of flags that provide additional information about how the symbol is used within its scope (e.g., `DEF_LOCAL`, `DEF_GLOBAL`, `DEF_PARAM`).
+
+The `symtable` module thus allows introspection into the scopes and namespaces of Python code, which can be especially useful when building tools that work with Python code at the syntactic or semantic level.
+
+
+
+In Python, there is not just a single symbol table, but a hierarchy of symbol tables reflecting the nested scopes of a Python program. Each function, class, and module has its own symbol table, and these are organized in a tree structure that mirrors the lexical scoping of the program.
+
+Consider this example:
+  
+- We first define a helper function that will recursively explore the symbol table and print out the names of the symbols in each scope:
+
+  ```RAW
+    >>> def explore_symtable(table, indent=0):
+    ...     indent_str =  " "*indent
+    ...     print(indent_str + "scope:", table.get_name())
+    ...     for symbol in table.get_symbols():
+    ...             print(indent_str + " Symbol:", symbol.get_name(), "| Global:", symbol.is_global())
+    ...     for child in table.get_children():
+    ...             explore_symtable(child, indent + 4)
+    ...
+  ```
+
+```RAW
+>>> source_code = """
+... x = 100  # Global variable
+...
+... def outer_function():
+...   y = 200  # Enclosed variable in the outer function
+...
+...   def inner_function():
+...     z = 300  # Local variable in the inner function
+...     return x + y + z
+...
+...   return inner_function()
+...
+... class MyClass:
+...   a = 400  # Class variable
+...
+...   def my_method(self):
+...     b = 500  # Local variable in a method
+...     return x + self.a + b
+... """
+>>> sym_table = symtable.symtable(source_code, "example", "exec")
+>>> explore_symtable(sym_table)
+scope: top
+ Symbol: x | Global: True
+ Symbol: outer_function | Global: True
+ Symbol: MyClass | Global: True
+    scope: outer_function
+     Symbol: y | Global: False
+     Symbol: inner_function | Global: False
+        scope: inner_function
+         Symbol: z | Global: False
+         Symbol: x | Global: True
+         Symbol: y | Global: False
+    scope: MyClass
+     Symbol: a | Global: False
+     Symbol: my_method | Global: False
+        scope: my_method
+         Symbol: self | Global: False
+         Symbol: b | Global: False
+         Symbol: x | Global: True
+
+```
+
+In this example, there are multiple scopes, each of which will have its own symbol table:
+
+- The **global scope** contains the global variable ``x`` and the definitions of ``outer_function`` and ``MyClass``.
+- The **scope of ``outer_function``** contains the enclosed variable ``y`` and the definition of ``inner_function``.
+- The **scope of ``inner_function``** contains the local variable ``z``.
+- The **scope of ``MyClass``** contains the class variable ``a`` and the definition of ``my_method``.
+- The **scope of ``my_method``** within ``MyClass`` contains the local variable ``b``.
+
+```RAW
+Global Scope (module level)
+│
+├── outer_function
+│   └── inner_function
+│
+└── MyClass
+    └── my_method
+```
+
+Let's reflect on the helper function for a bit, and say something about using the built-in symbol table module:
+  The helper function illustrates that you can use the ``symtable`` module to analyze the source code. It will create a ``SymbolTable`` object for each scope, which can then be queried to understand the relationships between the various scopes and the names defined within them. You can explore this hierarchy programmatically. For example, you can access the symbol table for ``outer_function`` and then navigate to the symbol table for ``inner_function`` from there. Each ``SymtableEntry`` provides methods to access the symbol tables for nested scopes, such as ``get_children()`` for getting child scopes.
+
+This structure is essential for name resolution in Python, as it allows the interpreter to determine the scope of variables and thus how to look them up during execution. It also plays a crucial role in closure behavior, where the inner functions maintain references to variables from their enclosing scopes.
+
+
+Once we have obtained the symbol table as well as the AST, the ``Python/comile.c`` module is called to generate the byte code. This process is a two step process:
+1) **generate a control flow graph (CFG) from the AST**: similarly to the symbol table, the AST is converted into basic blocks of python byte code instructions. Here, the basic blocs and the paths between them form the CGF.
+   1) The CGF shows the code paths that can be taken during the execution of a program.
+   2) Basic blocks are blocks of code that have a single entry but can have multiple exits.
+2) **flatten CGF, calculate jump offsets and generate byte code**: the CGF is flattened using a [post-order depth first search transversal](https://en.wikipedia.org/wiki/Tree_traversal). "After the graph is flattened, the jump offsets are then calculated and used as instruction argument for byte code jump instructions (so that the execution will skip some executions, think of skipping executions in an IF statement). The code object is emitted from this set of instructions." [Inside python virtual machine](https://leanpub.com/insidethepythonvirtualmachine)
+
+Taken from the free online book [Inside python virtual machine](https://leanpub.com/insidethepythonvirtualmachine): the figure below shows the relationship between the primary data structures used in the process of generating the fundamental blocks that make up the control flow graph.
+![CGF flow](https://leanpub.com/site_images/insidethepythonvirtualmachine/compiler.png)
+
+The compiler: 
+> At the very top level is the compiler data structure, which captures the global compilation process for a module.
+> - *c_st: a reference to the symbol table generated in the previous section.
+> - *u: a reference to a compiler unit data structure. This encapsulates information needed for working with a code block. This field points to the compiler unit for the current code block that is being compiled.
+> - *c_stack: a reference to a stack of compiler_unit data structures. When a code block is composed of multiple code blocks, this field manages the saving and restoration of compile_unit data structures as the > compiler encounters new blocks. When the compiler enters a new code block - it creates a new scope - then the compiler_enter_scope() pushes the current compiler_unit - *u- onto the stack - *c_stack, creates a new compiler_unit object, and sets it as the current state for that new block encountered. When the compiler exits the block, the *c_stack is popped off the stack accordingly to restore the state.
+> - The compiler initializes a compiler data structure to compile every Python module; as the AST generated for the module is walked, the compiler creates a compiler_unit data structure for each code block that it encounters within the AST.
+
+The compiler_unit:
+
+> The compiler_unit data structure captures the information needed to generate the required byte code instructions for a code block.
+> - The u_blocks and u_curblock fields reference the basic blocks that make up the compiled code block. The *u_ste field refers to a symbol table entry for the code block the compiler is processing. The rest of the fields have pretty self-explanatory names. The compiler walks the different nodes that make up the code block and depending on whether a given node type begins a basic block or not, a basic block containing the nodes instructions is created or instructions for the node get added to an existing basic block. Node types that may begin a new basic block include but are not limited to the following:
+>   - Function nodes.
+>   - Jump targets.
+>   - Exception handlers.
+>   - Boolean operations, etc.
+
+Basic blocks:
+> The interesting fields here are *b_list that is a linked list of all basic blocks allocated during the compilation process, *b_instr which is an array of instructions within the basic block and *b_next which is the next basic flow reached by normal control flow execution. Each instruction has a structure that holds a bytecode instruction.
+
+
+Assembling the basic blocks: 
+> The assemble function in Python/compile.c linearizes the CFG and creates the code object from the linearized CFG. It does so by computing the instruction offset for jump targets and using these as arguments to the jump instructions.
+> With instructions offset calculated and jump offsets assembled, the compiler emits instructions contained in the flattened graph in reverse post-order from the traversal. The reverse post order is a topological sorting of the CFG. This means for every edge from vertex u to vertex v, u comes before v in the sorting order. This is obvious; we want a node that jumps to another node to always come before that jump target. After emitting the bytecode instructions, the compiler creates code objects for each code block using the emitted bytecode and information contained in the symbol table. The generated code object is returned to the calling function marking the end of the compilation process.
+
+This was just part of the process of understanding what happens inside python.
+We have now gone from source code to code objects, the compiled executable Python code. The next section will among other things provide a tangible example of how to use the ``dis`` module to disassemble the code objects and see the byte code instructions.
+
+### Understanding where the byte code lies and how it works
+
+Example, referring to the great resource: [CS 200: Python Virtual Machine (PVM)](https://zoo.cs.yale.edu/classes/cs200/lectures/PVM.html)
+
+```sh
+>> import opcode, dis
+
+>> def f():
+..   print("hi")
+
+>>> dir(f)
+['__annotations__', '__builtins__', '__call__', '__class__', '__closure__', '__code__', '__defaults__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__get__', '__getattribute__', '__globals__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__kwdefaults__', '__le__', '__lt__', '__module__', '__name__', '__ne__', '__new__', '__qualname__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__']
+
+```
+
+we see that the newly created function has the attribute: ``__code__``. This object has everything python needs to run the function during execution. Whithin this attribute, another attribute exists called ``co_code``, this is where the byte code instructions needed to execute the function lies.
+
+```sh
+
+>> f.__code__.co_code
+b't\x00d\x01\x83\x01\x01\x00d\x00S\x00'
+```
+
+This is the byte representation. We can mape some of the byte representations to opcodes: The field that denotes the operation and format of an instruction.
+
+Slight side-track: the RISC-V architecture have instructions that are 32 bits long, each instruction contains several fields of binary numbers (this design is called the instruction format). The instruction contains all the necessary information for a computer to perform an operation.  
+
+> "Instructions are kept in the computer as a series of high and low electronic signals and may be represented as numbers. In fact, each piece of an instruction can be considered as an individual number, and placing these numbers side by side forms the instruction." (Computer Organization and Design - RISC-V edition)
+
+The byte code and their respective opcodes are more human readable using the disassemble library `dis`:
+
+```sh
+>>> import dis
+>>> dis.dis(f)
+  1           0 LOAD_GLOBAL              0 (print)
+              2 LOAD_CONST               1 ('hi')
+              4 CALL_FUNCTION            1
+              6 POP_TOP
+              8 LOAD_CONST               0 (None)
+             10 RETURN_VALUE
+```
+
+The `dis.dis(f)` output for `def f(): print("hi")` is showing the bytecode instructions that the Python Virtual Machine (PVM) executes for the function `f`. The number to the left indicates the line we are at in the source code. The 0,2,4,6 is the bytecode offsets. Each instruction in Python bytecode is associated with an offset, which is essentially the position of the instruction within the bytecode sequence. As of python 3.6 is as of python 3.6, every instruction will get an argument whether they need it or not. So: one byte for the opcode and one byte for the argument - which makes it much easier to work with.[^1] The numbers to the right are something we will get back to.  [a Bit about Bytes: understanding python bytecode](https://www.youtube.com/watch?v=cSSpnq362Bk)
+
+Here's a breakdown of what each line in the disassembly means:
+
+1. **`LOAD_GLOBAL 0 (print)`**: This instruction loads the `print` function from the global scope. The `0` refers to its position in the list of global variables used by the function.
+
+2. **`LOAD_CONST 1 ('hi')`**: Loads the constant value `'hi'` onto the stack. This is the string that `print` will output.
+
+3. **`CALL_FUNCTION 1`**: Calls the function (in this case, `print`) with one argument. The argument is the string `'hi'`, which was loaded onto the stack in the previous step.
+
+4. **`POP_TOP`**: Removes the result of the `print` function call from the stack. Since `print` returns `None` and its return value isn't being used, this just cleans up the stack.
+
+5. **`LOAD_CONST 0 (None)`**: Loads `None` onto the stack. In Python, if a function doesn't explicitly return a value, it implicitly returns `None`.
+
+6. **`RETURN_VALUE`**: Returns the value on top of the stack, which is `None`. This marks the end of the function execution.
+
+These instructions represent the low-level operations that Python performs to execute the function `f`, demonstrating how high-level constructs like function calls and print statements are translated into bytecode for the PVM to execute.
+
+The `CALL_FUNCTION` instruction in Python's bytecode knows to call the `print` function based on the order of operations and the state of the stack. Here's how it works:
+
+1. **LOAD_GLOBAL 0 (print)**: This pushes the `print` function onto the stack.
+
+2. **LOAD_CONST 1 ('hi')**: This pushes the string `'hi'` onto the stack.
+
+When the `CALL_FUNCTION 1` instruction is executed, it looks at the stack. It knows that it needs to call a function with one argument (`1` indicates the number of arguments). The top item on the stack is `'hi'`, which is the argument, and the item below that is the `print` function. So, it pops these two items off the stack, calls `print` with `'hi'` as the argument, and then executes the function. The stack state and the order of previous instructions inform the `CALL_FUNCTION` which function to call and with what arguments.
+
+
+### The CPython VM
+
+CPython is a stack-oriented VM. A stack is a fundamental data structure that serves as a collection of elemetns with two main ops: ``push`` which adds an element to the collection, and ``pop`` which removes the last added element from the collection. In the VM, each time you call a function in python, you are pushing a new entry (a frame) to the call stack that keeps track of every function that is being executed. When a function returns, its frame is popped off the stack.
+
+CPython uses two stacks while executing:
+
+1. Evaluation stack / data stack - this is where most of executions happens inside a python function.
+
+2. Block stack - keeps track of how many different blocks are active, such as: try/except, with, etc. Some statements like break, continue, etc. affect what the current block is, so python needs to know what the current block is, and it does that by pushing and popping from the block stack.
+
+Why is this relevant?
+
+It might not be, however it will illuminate what is going on under the hood, when you write a python function. It can illuminate what designs are faster:
+
+```sh
+>>> def slow_week():
+...     sec_per_day = 86400
+...     return sec_per_day * 7
+...
+>>> def fast_week():
+...     return 86400 * 7
+...
+>>> import dis
+>>> dis.dis(slow_week)
+  2           0 LOAD_CONST               1 (86400)
+              2 STORE_FAST               0 (sec_per_day)
+
+  3           4 LOAD_FAST                0 (sec_per_day)
+              6 LOAD_CONST               2 (7)
+              8 BINARY_MULTIPLY
+             10 RETURN_VALUE
+>>> dis.dis(fast_week)
+  2           0 LOAD_CONST               1 (604800)
+              2 RETURN_VALUE
+>>>
+```
+
+It becomes immediately clear which function is fastest. Also notice, that the fast operation does not store 7 and 86400, it just multiplies them together - cool thing that the compiler does.
+
+[^1]: There are scenarios where the arguments get larger than one byte can represent. The argument will then be split over mutliple bytes, however it will always be a multiple of 2.
