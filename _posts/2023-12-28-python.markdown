@@ -10,16 +10,14 @@ mathjax: true
 
 My way to learning programming was the 2.0 way: *"Master python in 24-hours"*, *"42 hours to exellence"*, etc... You know what I am talking about. While you quickly learn to print hello world and returning names of a list, you are bound to only operating on the surface/API level of the language.
 
-Enough of that! I want to know how it actually works so that I can do cool stuff if I want to, such as speeding up processes or leveraging this newly gained knowledge of the transition from higher level languages to binary (machine code).
+But there's so much more beneath that surface! I'm on a quest to uncover the deeper mechanics of programming languages. For those who share this curiosity, it's about exploring how we can manipulate these languages for tasks like accelerating processes or understanding the transition from high-level languages to binary (machine code).
 
-**Where we are at**: the next couple of sentences will describe the level im currently at. Perhaps you already know a lot more than me, or perhaps you are at somewhat the same level (which i assume is lvl 1 or 2 out of 20)
+**Where we are at**: the next couple of sentences will describe the level I'm currently at. Perhaps you already know a lot more than me, or perhaps you are at somewhat the same level (which I assume is lvl 1 or 2 out of 20)
 
-* I did take the CS50 course first tho, I understood that there was this thing called a compiler that took your high-level C code and converted into byte code. Something that the computer understands.
+* I did take the CS50 course first tho, I get that there is this thing called a compiler that takes your high-level C code and converts it into machine code.
 * I also read somewhere that python uses an interpreter, which is something different compared to a compiler.
 
-Let us start with drawing a high-level graph of the different abstraction/intermediate layers of code when working in python:
-
-For now, lets assume that the underlying computer architecture is [RISC-V](https://en.wikipedia.org/wiki/RISC-V) (could be some other thing)
+**Mapping Python's layers of abstraction**: Let us start with listing the different abstraction/intermediate layers of code when working in python:
 
 1. Source code. This is your ``.py`` files: you write your code using the familiar and simple python syntax.
 2. Byte code. This is an intermediate representation of the source code. This is the ``.pyc`` file. So the first step when executing a python script, is compiling the source code to byte code.
@@ -27,8 +25,6 @@ For now, lets assume that the underlying computer architecture is [RISC-V](https
 4. The PVM is, as its name indicates, a virtual machine that interacts with the CPU of the computer through a layer of abstraction.
 5. PVM is written in C, and the instructions it takes is, as explained, byte code. Because instructions aren't translated to machine code, the PVM is an interpreter.
 6. For I/O or system-level interaction, the interpreter makes direct calls to the OS, which then translates these requests into CPU instructions.
-
-Now, bear in mind that this is a very rough generalization. One might ask, how is the source code converted to byte code? (we will turn to this later).  and how is the PVM actually talking to the CPU, or what about external/builtin libraries?
 
 ### Interpreter versus compiler
 
@@ -61,7 +57,7 @@ Running the target program
 
 It becomes immediately clear that the compiler is an intermediate step, we first compile the program - converting the source code to machine code, and then run the program together with some input to generate an output.
 
-The interpreter takes in both the source code as well as the input in one go, and "compiles and interprets" in the same go to generate output.
+The interpreter takes in both the source code and the input in one go, and "compiles and interprets" in the same go to generate output.
 
 > The machine-language target program produced by a compiler is usuallymuch faster than an interpreter at mapping inputs to outputs . An interpreter, however, can usually give better error diagnostics than a compiler, because it executes the source program statement by statement. [dragon book](https://www.google.com/search?q=Compilers+-+Principles%2C+Techniques+and+Tools)
 
@@ -345,7 +341,10 @@ The compiler:
 The compiler_unit:
 
 > The compiler_unit data structure captures the information needed to generate the required byte code instructions for a code block.
-> - The u_blocks and u_curblock fields reference the basic blocks that make up the compiled code block. The *u_ste field refers to a symbol table entry for the code block the compiler is processing. The rest of the fields have pretty self-explanatory names. The compiler walks the different nodes that make up the code block and depending on whether a given node type begins a basic block or not, a basic block containing the nodes instructions is created or instructions for the node get added to an existing basic block. Node types that may begin a new basic block include but are not limited to the following:
+> - The u_blocks and u_curblock fields reference the basic blocks that make up the compiled code block. 
+> - The *u_ste field refers to a symbol table entry for the code block the compiler is processing. 
+> - The rest of the fields have pretty self-explanatory names. 
+> - The compiler walks the different nodes that make up the code block and depending on whether a given node type begins a basic block or not, a basic block containing the nodes instructions is created or instructions for the node get added to an existing basic block. Node types that may begin a new basic block include but are not limited to the following:
 >   - Function nodes.
 >   - Jump targets.
 >   - Exception handlers.
@@ -353,7 +352,6 @@ The compiler_unit:
 
 Basic blocks:
 > The interesting fields here are *b_list that is a linked list of all basic blocks allocated during the compilation process, *b_instr which is an array of instructions within the basic block and *b_next which is the next basic flow reached by normal control flow execution. Each instruction has a structure that holds a bytecode instruction.
-
 
 Assembling the basic blocks: 
 > The assemble function in Python/compile.c linearizes the CFG and creates the code object from the linearized CFG. It does so by computing the instruction offset for jump targets and using these as arguments to the jump instructions.
