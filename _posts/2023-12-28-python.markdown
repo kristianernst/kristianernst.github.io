@@ -8,8 +8,6 @@ category: "Compute"
 mathjax: true
 ---
 
-## How does python actually work?
-
 My way to learning programming was the 2.0 way: *"Master python in 24-hours"*, *"42 hours to exellence"*, etc... You know what I am talking about. While you quickly learn to print hello world and returning names of a list, you are bound to only operating on the surface/API level of the language.
 
 Enough of that! I want to know how it actually works so that I can do cool stuff if I want to, such as speeding up processes or leveraging this newly gained knowledge of the transition from higher level languages to binary (machine code).
