@@ -27,20 +27,20 @@ These notes was based on the youtube video [series](https://www.youtube.com/watc
 - [Separability](#separability)
   - [The Base of the topology](#the-base-of-the-topology)
   - [Separability](#separability-1)
-- [Topological manifolds](#topological-manifolds)
-  - [Example: Sphere](#example-sphere)
-  - [Counter example: Line with an orthogonal line](#counter-example-line-with-an-orthogonal-line)
+- [Countability and continuity](#countability-and-continuity)
+  - [Countability](#countability)
+  - [Continuity](#continuity)
+  - [Homeomorphisms](#homeomorphisms)
 - [Compactness, Connectedness and Topological properties](#compactness-connectedness-and-topological-properties)
   - [Compactness](#compactness)
     - [Covers, closed and open sets](#covers-closed-and-open-sets)
     - [Back to the example](#back-to-the-example)
   - [Connectedness](#connectedness)
   - [Homotopy](#homotopy)
-- [Countability and continuity](#countability-and-continuity)
-  - [Countability](#countability)
-  - [Continuity](#continuity)
-  - [Homeomorphisms](#homeomorphisms)
-- [Diffeomorphisms](#diffeomorphisms)
+- [Topological manifolds](#topological-manifolds)
+  - [Example: Sphere](#example-sphere)
+  - [Counter example: Line with an orthogonal line](#counter-example-line-with-an-orthogonal-line)
+-  [Diffeomorphisms](#diffeomorphisms)
   - [The curve](#the-curve)
   - [Coordinate functions](#coordinate-functions)
   - [General relativity reference](#general-relativity-reference)
@@ -222,230 +222,6 @@ Here is the complete separability axiom ranking:
 
 \\(T_4 \Rightarrow T_3  \Rightarrow T_2  \Rightarrow T_1  \Rightarrow T_0\\)
 
-
-## Topological manifolds
-
-Definition: 
-
-> A topological space \\(M\\) satisfying some separability (i.e. it is a T2 space) and countability (i.e. it is paracompact) conditions such that every point \\(p \in M\\) has a neighbourhood homeomorphic to an open set in \\(\mathbb{R}^n\\) for some \\(n \geq 0\\). Every smooth manifold is a topological manifold but not necessarily vice versa. 
-> …
-> For manifolds, Hausdorff and second countable are equivalent to Hausdorff and paracompact, and both are equivalent to the manifold being embeddable in some large-dimensional Euclidean space.
-
-We have a topological space \\((X, T_X)\\) with the properties:
-
-- Hausdorff
-- 2-C
-- Paracompactness
-
-We also assume the notion of “locally euclidian”. 
-
-The trick is that we can view open sets of the topology of X as individual topological spaces themselves.
-
-If we can create a function for any open set in the topology of X, that is homeomorphic to a topological space \\((Y , T_Y)\\) where \\(T_Y\\) is the usual topology in a euclidian space: \\(Y \in \mathbb{R}^n\\).
-
-In this sense, we have created a cover of neighbourhoods that cover all points in \\(X\\), and we need to show that all these neighbourhoods has a mapping to \\(Y\\) that is homeomorphic. If we can do this, we have shown that the space is `locally euclidian`
-
-**Example of mapping to R2:**
-
-<img src="/assets/manifold/Untitled-6515426.png" alt="as" style="zoom: 20%;" />
-
-### Example: Sphere
-
-Consider a sphere
-
-the set we are interested in are the points on the surface of the sphere.
-
-the topological space is: \\(\{X,T_{\mathbb{R}^3|X} \}\\)
-
-What does this mean? 
-
-- Well \\(X\\) is the set of points of the surface of the ball. Not the interior nor the exterior.
-- This set X needs a topology, which is \\(\mathbb{R}^3\\). \\(\mathbb{R}^3\\) has a basis of open balls of spherical form. Some of these open balls will intersect with the surface of the sphere as described by X, which will result in disc shaped objects on the surface of the sphere. These are part of the basis for the topology of the sphere.
-	- The null set is part of the topology for open balls not intersecting the sphere
-	- The sphere itself is part of the topology for the open balls that fully contain the sphere.
-
-Can we map points on the sphere to a topological space \\(\mathbb{R}^2\\)?
-
-- We know the sphere is compact, i.e. there is a finite sub cover for any open cover of the sphere.
-- We know the plane \\(\mathbb{R}^2\\) is NOT compact.
-- Because of 1 and 2, we also know that there is no homeomorphic function that maps the sphere to the plane. Because compactness is a topological property.
-- HOWEVER, if we just take ONE point of the sphere, the sphere becomes non-compact.
-	- All of a sudden, the sphere is homeomorphic to the plane.
-
-Why the sphere is compact:
-
-The surface of the sphere is the set of all points \\((x,y,z) \in \mathbb{R}^3\\) that satisfy the equation \\(x^2 + y^2 + z^2 = r^2\\). 
-
-1. **Closed**: The surface of the sphere is a closed set because it contains all its boundary points. In fact, the surface itself acts as its own boundary in \\(\mathbb{R}^3\\).
-2. **Bounded**: The surface is also bounded because you can enclose it in a larger ball of radius \\(r+ϵ\\) for some \\(ϵ>0\\).
-
-By the [Heine-Borel theorem](https://en.wikipedia.org/wiki/Heine–Borel_theorem), since both properties of the subset is true, it is compact.
-
-Cont:
-
-On the other hand, every spot is locally homeomorphic to a subset of the euclidian space. 
-
-The mapping is not between the sphere and the plane, it is between the topological space open neighborhood of a point p with the subspace topology to a topological space wich is an open neighborhood of the plane \\(\mathbb{R}^2\\) with its subspace topology.
-
-**Chat GPT**
-
-- If you take an open neighborhood around a point *p* on the sphere, you can indeed find a homeomorphism between that neighborhood and an open set in R2. This is a fundamental idea in differential geometry and topology, often discussed under the topic of "charts" and "atlases."
-
-	if we have a point \\(p\\) on the surface of the sphere \\(S^2\\) in \\(\mathbb{R}^3\\), (S2 because it is simply the boundary, i.e. no volume), you can consider an open neighborhood \\(U\\) around \\(p\\) that lies entirely on \\(S^2\\).
-
-	We need a homeomorphic mapping \\(U\\) to an open set \\(V \in \mathbb{R}^2\\). 
-
-	The mapping \\(f:U\rightarrow V\\) will be a homeomorphism if it is:
-
-	1. **Bijective**: A one to one and onto mapping between \\(U\\) and \\(V\\)
-	2. **Continuous**: The map \\(f\\) is continuous
-	3. **Inverse is continuous**: the inverse map \\(f^{-1}: V \rightarrow U\\) is also continuous
-
-	For small enough neighborhoods, these conditions can be met, making \\(f\\) a homeomorphism between \\(U\\) and \\(V\\).
-
-	The key idea is that you are looking at a local piece of the sphere, not the entire sphere. Many global properties (like compactness) prevent a homeomorphism between the whole sphere and the plane. These don’t come into play, when you look at small open neighbourhoods.
-
-lets construct a neighborhood \\(U_p = X \setminus q\\), where \\(q\\) is simply a point on the sphere.
-
-Here's how a geometric interpretation of a function \\(f\\) mapping \\(U_p\\) to \\(V\\)
-
-<img src="/assets/manifold/Untitled-6515433.png" alt="ddd" style="zoom: 20%;" />
-Then we do it again, but instead of removing the south pole, we remove the north pole.
-
-\\(U_q = X \setminus p\\)
-
-<img src="/assets/manifold/Untitled-6515436.png" alt="222" style="zoom: 20%;" />
-
-We then take these two homeomorphisms, pair them up with the sets they are attached to, and put them in a set together
-
-\\(\{ (U_p, f_p), (U_q, f_q)\}\\), the () () are individually called charts, and the set containing all the `charts`, covering the entire topological space in question is called the `atlas`
-
-### Counter example: Line with an orthogonal line
-
-So we want to map \\((X, T_{\mathbb{R}^2 | X})\\) to \\(\mathbb{R}^1\\)
-
-And X is essentially two lines, where one begins from a point on the other line and is ortogonal to that line.
-
-<img src="/assets/manifold/Untitled-6515441.png" alt="333" style="zoom: 20%;" />
-It is impossible to construct a homeomorphic relationship between these two topological spaces. It is possible to map from the higher dimensional space to the lower dimensional one, but not the other way around. Therefore \\(f^{-1}\\) is not onto and one to one (and is thus not invertible).
-
-
-## Compactness, Connectedness and Topological properties
-
-<img src="/assets/manifold/Untitled-6515326.png" alt="555" style="zoom: 20%;" />
-
-How do we know that a space is homeomorphic to another space? (in this case X and Y). Any single function that is 1-1 onto and i continuous and has a continuous inverse, then the two spaces are homeomorphic.
-
-It does not matter that ALL functions, we only need ONE function to achieve this.
-
-Once we have achieved this, then every topological property of one space is also true in the other space homeomorphic to it.
-
-By the same token, if we know that two spaces do not have the same properties, we KNOW that there exists no homeomorphic function. fx. if X is second countable and Y is not.
-
-Open sets are matched to open sets in both directions. I take every element in the topology and I am transforming/mutating it. These homeomorphic functions are transforming/morphing them (we change the shape of things).
-
-A doughnut = a coffee cup! They are homeomorphic. every open set on the doughnut can be mutated into some open set of the coffee cup and vice versa.
-
-Homeomorphsim is the weakest notion that connects two spaces. There are no notions of distance or geometry or anything else. Topology is the geometry without all the measurements.
-
-Properties:
-
-- Countability: inf and finite, etc.
-- Separability: T1, T2, T3, REG, etc…
-- Compactness:
-- Connectedness:
-
-### Compactness
-
-Definition: A subset \\(S\\) of a topological space \\(X\\) is compact if for every open cover, there exists a finite subcover of \\(S\\).
-
-Is the topological space \\((X, J_X)\\) compact?
-
-First, let us ask about a subset. let the open set \\(A \subset (X, J_X)\\), is \\(A\\) compact?
-
-#### Covers, closed and open sets
-
-An open cover of a subset \\(S\\) of \\(X\\) is a collection \\(\mathcal{C} = \{ U_\alpha \}\\) of open sets in \\(X\\) such that 
-
-$$
-S \subseteq \bigcup_\alpha U_{\alpha}
-$$
-
-A subcover is a sub collection \\(\mathcal{C}^{\prime} \subseteq \mathcal{C}\\) that still covers \\(S\\).
-
-A subset \\(S\\) of \\(X\\) is compact if every open cover \\(\mathcal{C}\\) of \\(S\\) has a finite subcover.
-
-An open set in a topological space \\(X\\) is a set \\(U\\) such that for every point \\(x \in U\\) there exists an open neighbourhood \\(N\\) of \\(x\\) such that \\(N\subseteq U\\). In simpler terms, this means that you can wiggle around any point in the set without ever stepping out of it.
-
-A closed set in a topological space \\(X\\) is a set \\(C\\) such that its complement \\(X \setminus C\\) is open. This means that a closed set contains all its `boundary points`. A boundary point of \\(S\\) is a point \\(x\\) such that every open neighborhood of \\(x\\) intersects both \\(S\\) and \\(X \setminus S\\). 
-
-1. **Open Sets and Compactness**: Open sets don't contain their boundary points. When you try to cover an open set with smaller open sets (an open cover), you'll find that you can't pin down the boundary with a finite number of them. You'll always need "just one more" to get closer to the boundary, leading to an infinite subcover.
-2. **Closed Sets and Compactness**: Closed sets do contain their boundary points. When you cover a closed (and bounded) set with open sets, you can always find a finite subcover that includes the boundary. This makes the set compact, at least in Euclidean spaces.
-
-#### Back to the example
-
-The number of open sets we need to cover \\(A\\) is 1. Obviously we can cover \\(A\\) with \\(1, \dots, \infty\\)
-
-We can use infinite open sets in two ways:
-
-- Make a cover with infinite amount of open sets to cover the subset. (an infinite cover with no finite sub-cover)
-- Make an cover with infinite amount of open sets that cover the whole space, thereby ultimately cover the subset with some finite number of these open sets. (an infinite cover with finite sub-cover)
-
-Example: 
-
-The video uses an example of a rectangle in the usual topology of the plane. It compares an open rectangle in which you can fill up the interior of the rectangle (which is equal to the open rectangle itself, by an infinite amount of open subsets. This is then the cover. For this cover, therefore, there is no finite subset, since it would then not be a cover.
-
-Contrary, the closed rectangle. By a similar fashion we can begin to cover the rectangle by an infinite amount of open sets. Here we get infinitely close to the border of the rectangle. However, by this token, we cannot reach the border and thus we need an additional cover to cover the rectangle. Because of this, there will exist a finite sub-cover for the open cover. 
-
-### Connectedness
-
-Definition: A connected set is a set that cannot be partitioned into two non-empty subsets which are open in the relative topology induced on the set. Equivalently, it is a set which cannot be partitioned into two non-empty subsets such that each subset has no points in common with the set closure of the other.
-
-If we have a topological space \\((X, J_X)\\) 
-
-<img src="/assets/manifold/Untitled-6515321.png" alt="545" style="zoom: 20%;" />
-
-Where the space X consists of two spaces G and H, let G and H be open sets in the topology, if there is no intersection between them, then we can say that the space \\(X\\) is NOT connected.
-
-By the property of homeomorphism, if we map to another topological space, the property of connectedness follows:
-
-d<img src="/assets/manifold/Untitled 2.png" alt="546" style="zoom: 20%;" />
-
-**Path-connectedness**
-
-[https://mathworld.wolfram.com/Pathwise-Connected.html](https://mathworld.wolfram.com/Pathwise-Connected.html)
-
-Path-connectedness is another way of understanding connectedness
-
-If we have a topological space \\(X \in \mathbb{R}^2\\)
-
-and we have a continuous function \\(f\\) from \\([0,1]\\) to \\(X\\) such that \\(f(0) = x\\) and \\(f(1)=y\\). 
-
-If you are path connected, you are connected.
-
-
-<img src="/assets/manifold/Untitled 3.png" alt="526" style="zoom: 20%;" />
-
-
-### Homotopy
-
-Definition: A continuous transformation from one function to another. A homotopy between functions \\(f\\) and \\(g\\) from a space \\(X\\) to a space \\(Y\\) is a continuous map \\(G\\) from \\(X \times [0,1] \rightarrow Y\\) such that \\(G(x,0)=f(x)\\) and \\(G(x,1)=g(x)\\) where \\(\times\\) denotes set pairing. another way of saying this is that a homotopy is a path in the mapping space \\(\operatorname{Map}(X,Y)\\) from the first function to the second. Two mathematical objects are said to be [homotopic](https://mathworld.wolfram.com/Homotopic.html) if one can be continuously deformed into the other.
-
-<img src="/assets/manifold/Untitled 4.png" alt="527" style="zoom: 20%;" />
-
-The doughnut have different homotopies of paths because of the hole in the space. I.e. the blue function of path-connectedness behaves vastly different from that of the red line, and the green line and vice versa. However in the topological space of \\(X\\), the red line and the blue line and the green line can be deformed to the other (this is called “simply connected” \\(C \sim X\\)).
-
-The properties:
-
-- separability
-- countability
-- compactness
-- connectedness
-
-Are all part of the topological space. That are carried over via homeomorphism, that allow us to deform.
-
-We do not have notions of shape, distance and other measurements.
-
 ## Countability and continuity
 
 This relates very much to my previous notes on countability in set theory:
@@ -566,6 +342,230 @@ Properties of topological spaces:
 
 The homeomorphism ensures that the properties are “carried over” from the domain to the range and vice versa.
 
+
+
+## Compactness, Connectedness and Topological properties
+
+<img src="/assets/manifold/Untitled-6515326.png" alt="555" style="zoom: 20%;" />
+
+How do we know that a space is homeomorphic to another space? (in this case X and Y). Any single function that is 1-1 onto and i continuous and has a continuous inverse, then the two spaces are homeomorphic.
+
+It does not matter that ALL functions, we only need ONE function to achieve this.
+
+Once we have achieved this, then every topological property of one space is also true in the other space homeomorphic to it.
+
+By the same token, if we know that two spaces do not have the same properties, we KNOW that there exists no homeomorphic function. fx. if X is second countable and Y is not.
+
+Open sets are matched to open sets in both directions. I take every element in the topology and I am transforming/mutating it. These homeomorphic functions are transforming/morphing them (we change the shape of things).
+
+A doughnut = a coffee cup! They are homeomorphic. every open set on the doughnut can be mutated into some open set of the coffee cup and vice versa.
+
+Homeomorphsim is the weakest notion that connects two spaces. There are no notions of distance or geometry or anything else. Topology is the geometry without all the measurements.
+
+Properties:
+
+- Countability: inf and finite, etc.
+- Separability: T1, T2, T3, REG, etc…
+- Compactness:
+- Connectedness:
+
+### Compactness
+
+Definition: A subset \\(S\\) of a topological space \\(X\\) is compact if for every open cover, there exists a finite subcover of \\(S\\).
+
+Is the topological space \\((X, J_X)\\) compact?
+
+First, let us ask about a subset. let the open set \\(A \subset (X, J_X)\\), is \\(A\\) compact?
+
+#### Covers, closed and open sets
+
+An open cover of a subset \\(S\\) of \\(X\\) is a collection \\(\mathcal{C} = \{ U_\alpha \}\\) of open sets in \\(X\\) such that 
+
+$$
+S \subseteq \bigcup_\alpha U_{\alpha}
+$$
+
+A subcover is a sub collection \\(\mathcal{C}^{\prime} \subseteq \mathcal{C}\\) that still covers \\(S\\).
+
+A subset \\(S\\) of \\(X\\) is compact if every open cover \\(\mathcal{C}\\) of \\(S\\) has a finite subcover.
+
+An open set in a topological space \\(X\\) is a set \\(U\\) such that for every point \\(x \in U\\) there exists an open neighbourhood \\(N\\) of \\(x\\) such that \\(N\subseteq U\\). In simpler terms, this means that you can wiggle around any point in the set without ever stepping out of it.
+
+A closed set in a topological space \\(X\\) is a set \\(C\\) such that its complement \\(X \setminus C\\) is open. This means that a closed set contains all its `boundary points`. A boundary point of \\(S\\) is a point \\(x\\) such that every open neighborhood of \\(x\\) intersects both \\(S\\) and \\(X \setminus S\\). 
+
+1. **Open Sets and Compactness**: Open sets don't contain their boundary points. When you try to cover an open set with smaller open sets (an open cover), you'll find that you can't pin down the boundary with a finite number of them. You'll always need "just one more" to get closer to the boundary, leading to an infinite subcover.
+2. **Closed Sets and Compactness**: Closed sets do contain their boundary points. When you cover a closed (and bounded) set with open sets, you can always find a finite subcover that includes the boundary. This makes the set compact, at least in Euclidean spaces.
+
+#### Back to the example
+
+The number of open sets we need to cover \\(A\\) is 1. Obviously we can cover \\(A\\) with \\(1, \dots, \infty\\)
+
+We can use infinite open sets in two ways:
+
+- Make a cover with infinite amount of open sets to cover the subset. (an infinite cover with no finite sub-cover)
+- Make an cover with infinite amount of open sets that cover the whole space, thereby ultimately cover the subset with some finite number of these open sets. (an infinite cover with finite sub-cover)
+
+Example: 
+
+The video uses an example of a rectangle in the usual topology of the plane. It compares an open rectangle in which you can fill up the interior of the rectangle (which is equal to the open rectangle itself, by an infinite amount of open subsets. This is then the cover. For this cover, therefore, there is no finite subset, since it would then not be a cover.
+
+Contrary, the closed rectangle. By a similar fashion we can begin to cover the rectangle by an infinite amount of open sets. Here we get infinitely close to the border of the rectangle. However, by this token, we cannot reach the border and thus we need an additional cover to cover the rectangle. Because of this, there will exist a finite sub-cover for the open cover. 
+
+### Connectedness
+
+Definition: A connected set is a set that cannot be partitioned into two non-empty subsets which are open in the relative topology induced on the set. Equivalently, it is a set which cannot be partitioned into two non-empty subsets such that each subset has no points in common with the set closure of the other.
+
+If we have a topological space \\((X, J_X)\\) 
+
+<img src="/assets/manifold/Untitled-6515321.png" alt="545" style="zoom: 20%;" />
+
+Where the space X consists of two spaces G and H, let G and H be open sets in the topology, if there is no intersection between them, then we can say that the space \\(X\\) is NOT connected.
+
+By the property of homeomorphism, if we map to another topological space, the property of connectedness follows:
+
+d<img src="/assets/manifold/Untitled 2.png" alt="546" style="zoom: 20%;" />
+
+**Path-connectedness**
+
+[https://mathworld.wolfram.com/Pathwise-Connected.html](https://mathworld.wolfram.com/Pathwise-Connected.html)
+
+Path-connectedness is another way of understanding connectedness
+
+If we have a topological space \\(X \in \mathbb{R}^2\\)
+
+and we have a continuous function \\(f\\) from \\([0,1]\\) to \\(X\\) such that \\(f(0) = x\\) and \\(f(1)=y\\). 
+
+If you are path connected, you are connected.
+
+
+<img src="/assets/manifold/Untitled 3.png" alt="526" style="zoom: 20%;" />
+
+
+### Homotopy
+
+Definition: A continuous transformation from one function to another. A homotopy between functions \\(f\\) and \\(g\\) from a space \\(X\\) to a space \\(Y\\) is a continuous map \\(G\\) from \\(X \times [0,1] \rightarrow Y\\) such that \\(G(x,0)=f(x)\\) and \\(G(x,1)=g(x)\\) where \\(\times\\) denotes set pairing. another way of saying this is that a homotopy is a path in the mapping space \\(\operatorname{Map}(X,Y)\\) from the first function to the second. Two mathematical objects are said to be [homotopic](https://mathworld.wolfram.com/Homotopic.html) if one can be continuously deformed into the other.
+
+<img src="/assets/manifold/Untitled 4.png" alt="527" style="zoom: 20%;" />
+
+The doughnut have different homotopies of paths because of the hole in the space. I.e. the blue function of path-connectedness behaves vastly different from that of the red line, and the green line and vice versa. However in the topological space of \\(X\\), the red line and the blue line and the green line can be deformed to the other (this is called “simply connected” \\(C \sim X\\)).
+
+The properties:
+
+- separability
+- countability
+- compactness
+- connectedness
+
+Are all part of the topological space. That are carried over via homeomorphism, that allow us to deform.
+
+We do not have notions of shape, distance and other measurements.
+
+
+## Topological manifolds
+
+Definition: 
+
+> A topological space \\(M\\) satisfying some separability (i.e. it is a T2 space) and countability (i.e. it is paracompact) conditions such that every point \\(p \in M\\) has a neighbourhood homeomorphic to an open set in \\(\mathbb{R}^n\\) for some \\(n \geq 0\\). Every smooth manifold is a topological manifold but not necessarily vice versa. 
+> …
+> For manifolds, Hausdorff and second countable are equivalent to Hausdorff and paracompact, and both are equivalent to the manifold being embeddable in some large-dimensional Euclidean space.
+
+We have a topological space \\((X, T_X)\\) with the properties:
+
+- Hausdorff
+- 2-C
+- Paracompactness
+
+We also assume the notion of “locally euclidian”. 
+
+The trick is that we can view open sets of the topology of X as individual topological spaces themselves.
+
+If we can create a function for any open set in the topology of X, that is homeomorphic to a topological space \\((Y , T_Y)\\) where \\(T_Y\\) is the usual topology in a euclidian space: \\(Y \in \mathbb{R}^n\\).
+
+In this sense, we have created a cover of neighbourhoods that cover all points in \\(X\\), and we need to show that all these neighbourhoods has a mapping to \\(Y\\) that is homeomorphic. If we can do this, we have shown that the space is `locally euclidian`
+
+**Example of mapping to R2:**
+
+<img src="/assets/manifold/Untitled-6515426.png" alt="as" style="zoom: 20%;" />
+
+### Example: Sphere
+
+Consider a sphere
+
+the set we are interested in are the points on the surface of the sphere.
+
+the topological space is: \\(\{X,T_{\mathbb{R}^3|X} \}\\)
+
+What does this mean? 
+
+- Well \\(X\\) is the set of points of the surface of the ball. Not the interior nor the exterior.
+- This set X needs a topology, which is \\(\mathbb{R}^3\\). \\(\mathbb{R}^3\\) has a basis of open balls of spherical form. Some of these open balls will intersect with the surface of the sphere as described by X, which will result in disc shaped objects on the surface of the sphere. These are part of the basis for the topology of the sphere.
+	- The null set is part of the topology for open balls not intersecting the sphere
+	- The sphere itself is part of the topology for the open balls that fully contain the sphere.
+
+Can we map points on the sphere to a topological space \\(\mathbb{R}^2\\)?
+
+- We know the sphere is compact, i.e. there is a finite sub cover for any open cover of the sphere.
+- We know the plane \\(\mathbb{R}^2\\) is NOT compact.
+- Because of 1 and 2, we also know that there is no homeomorphic function that maps the sphere to the plane. Because compactness is a topological property.
+- HOWEVER, if we just take ONE point of the sphere, the sphere becomes non-compact.
+	- All of a sudden, the sphere is homeomorphic to the plane.
+
+Why the sphere is compact:
+
+The surface of the sphere is the set of all points \\((x,y,z) \in \mathbb{R}^3\\) that satisfy the equation \\(x^2 + y^2 + z^2 = r^2\\). 
+
+1. **Closed**: The surface of the sphere is a closed set because it contains all its boundary points. In fact, the surface itself acts as its own boundary in \\(\mathbb{R}^3\\).
+2. **Bounded**: The surface is also bounded because you can enclose it in a larger ball of radius \\(r+ϵ\\) for some \\(ϵ>0\\).
+
+By the [Heine-Borel theorem](https://en.wikipedia.org/wiki/Heine–Borel_theorem), since both properties of the subset is true, it is compact.
+
+Cont:
+
+On the other hand, every spot is locally homeomorphic to a subset of the euclidian space. 
+
+The mapping is not between the sphere and the plane, it is between the topological space open neighborhood of a point p with the subspace topology to a topological space wich is an open neighborhood of the plane \\(\mathbb{R}^2\\) with its subspace topology.
+
+**Chat GPT**
+
+- If you take an open neighborhood around a point *p* on the sphere, you can indeed find a homeomorphism between that neighborhood and an open set in R2. This is a fundamental idea in differential geometry and topology, often discussed under the topic of "charts" and "atlases."
+
+	if we have a point \\(p\\) on the surface of the sphere \\(S^2\\) in \\(\mathbb{R}^3\\), (S2 because it is simply the boundary, i.e. no volume), you can consider an open neighborhood \\(U\\) around \\(p\\) that lies entirely on \\(S^2\\).
+
+	We need a homeomorphic mapping \\(U\\) to an open set \\(V \in \mathbb{R}^2\\). 
+
+	The mapping \\(f:U\rightarrow V\\) will be a homeomorphism if it is:
+
+	1. **Bijective**: A one to one and onto mapping between \\(U\\) and \\(V\\)
+	2. **Continuous**: The map \\(f\\) is continuous
+	3. **Inverse is continuous**: the inverse map \\(f^{-1}: V \rightarrow U\\) is also continuous
+
+	For small enough neighborhoods, these conditions can be met, making \\(f\\) a homeomorphism between \\(U\\) and \\(V\\).
+
+	The key idea is that you are looking at a local piece of the sphere, not the entire sphere. Many global properties (like compactness) prevent a homeomorphism between the whole sphere and the plane. These don’t come into play, when you look at small open neighbourhoods.
+
+lets construct a neighborhood \\(U_p = X \setminus q\\), where \\(q\\) is simply a point on the sphere.
+
+Here's how a geometric interpretation of a function \\(f\\) mapping \\(U_p\\) to \\(V\\)
+
+<img src="/assets/manifold/Untitled-6515433.png" alt="ddd" style="zoom: 20%;" />
+Then we do it again, but instead of removing the south pole, we remove the north pole.
+
+\\(U_q = X \setminus p\\)
+
+<img src="/assets/manifold/Untitled-6515436.png" alt="222" style="zoom: 20%;" />
+
+We then take these two homeomorphisms, pair them up with the sets they are attached to, and put them in a set together
+
+\\(\{ (U_p, f_p), (U_q, f_q)\}\\), the () () are individually called charts, and the set containing all the `charts`, covering the entire topological space in question is called the `atlas`
+
+### Counter example: Line with an orthogonal line
+
+So we want to map \\((X, T_{\mathbb{R}^2 | X})\\) to \\(\mathbb{R}^1\\)
+
+And X is essentially two lines, where one begins from a point on the other line and is ortogonal to that line.
+
+<img src="/assets/manifold/Untitled-6515441.png" alt="333" style="zoom: 20%;" />
+It is impossible to construct a homeomorphic relationship between these two topological spaces. It is possible to map from the higher dimensional space to the lower dimensional one, but not the other way around. Therefore \\(f^{-1}\\) is not onto and one to one (and is thus not invertible).
 
 ## Diffeomorphisms
 

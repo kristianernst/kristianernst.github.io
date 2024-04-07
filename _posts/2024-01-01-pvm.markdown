@@ -1,0 +1,25 @@
+---
+layout: post
+comments: true
+title:  "Python virtual machine"
+excerpt: "Detailing what a virtual machine is, and how it works in python"
+date:   2023-01-01 22:00:00
+category: "Compute"
+mathjax: true
+---
+
+This post is a follow-up to the [How does python work?](https://ernst-hub.github.io/compute/2023/12/28/python/) commit I made a week or so ago. 
+
+In the previos post, we tried to understand the process from source code to machine code, focusing mostly on how we generate byte code. Byte code which the virual machine of python (PVM) uses to execute a program. 
+However, this byte code needs to be translated to machine code somehow.
+
+This is the goal of this post: to understand how the PVM actually works, and how it is set together.
+
+
+
+### What is a virtual machine
+
+
+The first step in this endeavour is to understand what exactly is a virtual machine?
+
+
