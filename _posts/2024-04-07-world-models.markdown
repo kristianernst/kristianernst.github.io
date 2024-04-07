@@ -4,7 +4,7 @@ comments: true
 title:  "On world models"
 excerpt: "learning representations of worlds"
 date:   2024-04-07 22:00:00
-category: "RL"
+category: "Philosophy"
 mathjax: true
 ---
 
@@ -20,23 +20,23 @@ If we knew everything about everything, models would not be useful?
 We use models due to epistemic conditions:
 
 * we cannot know or take into account all factors
-* we therefore need a simplified version helping us pay attention to the most important factors contributing to a certain phenomena. 
+* we therefore need a simplified version helping us pay attention to the most important factors contributing to a certain phenomena.
 
 A world model is trying to model the *world*.
 
 Humans have developed various representations of the world. Each of us has a mental image of the world we live in: its physics, the social rules of society, spirituality, etc.
 
-We use our compressed representation of the world as a guide for living. 
+We use our compressed representation of the world as a guide for living.
 Instincts might be the first representation of the world: survivability and reproduction. Later, as we navigate in the world, we achieve spatio-temporal information that allow us to revise our world models.
 
-An example of how the world model is used, is that of prediction of future states. 
-Imagine for a moment that you are walking toward your friend who has been waiting for you at the metro. As he approaches you, based on his momentum and body expression you predict that he is about to hug you, and therefore prepare for a hug. 
+An example of how the world model is used, is that of prediction of future states.
+Imagine for a moment that you are walking toward your friend who has been waiting for you at the metro. As he approaches you, based on his momentum and body expression you predict that he is about to hug you, and therefore prepare for a hug.
 
-The ability to perform the hug depends on a representation of among other things physics: the ability for you to move appropriately and time the hug, and social: the cues that calls for a hug rather than a handshake, etc. 
+The ability to perform the hug depends on a representation of among other things physics: the ability for you to move appropriately and time the hug, and social: the cues that calls for a hug rather than a handshake, etc.
 
-Much of this information is something we take for granted, however, it is nonetheless there. 
+Much of this information is something we take for granted, however, it is nonetheless there.
 
-### What is text? 
+### What is text?
 
 Text, in its essence, is a distilled representation of human experience and the physical world. It condenses complex real-world phenomena into symbolic language, which can be communicated and understood without the need for direct experience. For example, when we describe an apple falling to the ground, we're not just recounting an event but invoking the laws of physics—specifically gravity—in a form that can be conceptually and visually understood through words alone.
 
