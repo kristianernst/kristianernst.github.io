@@ -2,6 +2,7 @@
 layout: post
 comments: true
 title:  "On LLMs as world models"
+author: "kristian"
 excerpt: "learning representations of worlds"
 date:   2024-04-07 22:00:00
 category: "Philosophy"
