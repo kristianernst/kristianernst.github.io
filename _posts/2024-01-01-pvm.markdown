@@ -3,7 +3,7 @@ layout: post
 comments: true
 title:  "Python virtual machine"
 excerpt: "Detailing what a virtual machine is, and how it works in python"
-date:   2023-01-01 22:00:00
+date:   2024-01-01 22:00:00
 category: "Compute"
 mathjax: true
 ---
