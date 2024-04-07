@@ -1,6 +1,7 @@
 ---
 layout: post
 comments: true
+author: "Kristian Ernst"
 title:  "On world models"
 excerpt: "learning representations of worlds"
 date:   2024-04-07 22:00:00
