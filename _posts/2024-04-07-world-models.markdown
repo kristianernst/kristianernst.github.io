@@ -12,21 +12,19 @@ I want to spend a few minutes commenting on the notion of "world models", as the
 
 Firstly, let us understand what modelling really is about and later on reflect more on this connection. Afterward, I intend to let my thoughts wander unstructured and see if I get somewhere interesting.
 
-===
-
-Modelling is about representation
+### Modelling is about representation
 
 A model is a simplified version of the entity it tries to describe, highlighting a subset of relevant attributes that are helpful for a specific case. Its purpose is therefore to represent the true entity (which can be either physical or abstract) in a particular light.
 
+If we knew everything about everything, models would not be useful?
+We use models due to epistemic conditions:
 
-If we knew everything about everything, models would not be useful? 
-We use models due to epistemic conditions: 
 * we cannot know or take into account all factors
 * we therefore need a simplified version helping us pay attention to the most important factors contributing to a certain phenomena. 
 
 A world model is trying to model the *world*.
 
-Humans have developed various representations of the world. Each of us has a mental image of the world we live in: its physics, the social rules of society, spirituality, etc. 
+Humans have developed various representations of the world. Each of us has a mental image of the world we live in: its physics, the social rules of society, spirituality, etc.
 
 We use our compressed representation of the world as a guide for living. 
 Instincts might be the first representation of the world: survivability and reproduction. Later, as we navigate in the world, we achieve spatio-temporal information that allow us to revise our world models.
@@ -38,21 +36,15 @@ The ability to perform the hug depends on a representation of among other things
 
 Much of this information is something we take for granted, however, it is nonetheless there. 
 
-===
-
-What is text? 
+### What is text? 
 
 Text, in its essence, is a distilled representation of human experience and the physical world. It condenses complex real-world phenomena into symbolic language, which can be communicated and understood without the need for direct experience. For example, when we describe an apple falling to the ground, we're not just recounting an event but invoking the laws of physics—specifically gravity—in a form that can be conceptually and visually understood through words alone.
 
 For LLMs, text is the training substrate. By ingesting vast corpora of text, LLMs are exposed to a broad spectrum of human knowledge and social constructs. Thus, text serves as a proxy for the world in the data these models learn from. It's this foundational role that justifies referring to LLMs as world models: they are trained to simulate understanding and generate outputs based on the wide-ranging human narratives encoded in text.
 
-
-===
-
-Representation squared
+### Representation squared
 
 The concept of "representation squared" refers to a meta-level of abstraction achieved by large language models.
-
 
 Initially, the text itself is an abstraction — a representation of the world as humans perceive and describe it. When we train LLMs, we are not merely passing raw data into these models. Instead, we compress and encode this data into a format that the model can process via the embedding layer. Embeddings are dense, continuous vector spaces that capture semantic meanings of words.
 
@@ -62,10 +54,7 @@ Hence, the LLM itself compresses information in the text into a lower dimensiona
 
 Of course every layer post the embedding layer of the neural network architecture of the LLM is also an abstract representation of the data ...
 
-=== 
-
-Representation common in ML
-
+### Representation common in ML
 
 Representation through compression is a foundational concept in machine learning, not just for processing efficiency but also for enhancing model performance. This principle has been successfully applied across various domains, including recommendation systems, where it has led to significant breakthroughs.
 
@@ -81,15 +70,11 @@ The power of representation via compression extends beyond recommendation system
 
 Thus, the strategy of creating a simplified model of a pre-existing model is not just a matter of efficiency but is a profound method to enhance the model's interpretability and performance. By reducing complexity and focusing on essential representations, machine learning practitioners can achieve more with less, navigating the trade-offs between accuracy and computational demands adeptly.
 
-===
+### Human and AI represenstations, comparing the two
 
-Human and AI represenstations, comparing the two
-
-TODO: 
+TODO:
 
 * adaptive learning
 * text vs all sensory/emotional experiences
 * differences in loss functions
 * biostack, understanding, intuition?
-
-
