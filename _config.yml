@@ -5,7 +5,7 @@ description: "simple page containing my notes"
 baseurl: ""
 url: "http://ernst-hub.github.io"
 twitter_username: _kristianernst
-github_username:  Ernst-hub
+github_username:  kristianernst
 
 # Build settings
 markdown: kramdown
